@@ -35,6 +35,7 @@ class PlayScreen(GameScreen):
         self.baddie_height = 20
         self.baddie_color = (255,0,0)
         self.powerups = []
+        self.thepowerups = []
         self.powerups_width = 20
         self.powerups_height = 20
         self.powerups_color = (0,255,0)
@@ -191,7 +192,6 @@ class PlayScreen(GameScreen):
                     Globals.spaceship.spaceship_speed += .5
                     self.speed_boost_time = 0
                     self.speed_boost = True
-<<<<<<< HEAD
 
                     # For debugging purposes
                     print "Powerup activated"
@@ -204,14 +204,8 @@ class PlayScreen(GameScreen):
                 if(powerups_rect.colliderect(spaceship_rect)):
                     powerups.setAlive(False)
                     Globals.spaceship.ammo += 100
-=======
+
                     self.powerup_1.play()
-                if(Powerups_rect.colliderect(spaceship_rect)):
-                    powerups.setAlive(False)
-                    Globals.spaceship.spaceship_speed += .5
->>>>>>> fc1dc4e4518067f1bbe892a37853c16f8b208b5c
-                    self.speed_boost_time = 0
-                    self.speed_boost = True
 
                     # Change to a different sound
                     self.powerup_1.play()
