@@ -9,7 +9,9 @@ class Spaceship():
         self.x      = y
         self.y      = x
         self.color  = color
-        self.health = 100
+        self.health = 20
+        self.alive = True
+        self.spaceship_speed = 2
         return
 
     def moveLeft(self, dx):
@@ -59,3 +61,5 @@ class Spaceship():
         if self.hitRectangle(x, y, w, h):
             self.health -= 10
         self.rect = pygame.Rect(self.x, self.y,self.width,self.height)
+    def setAlive(self,alive):
+        self.alive = alive

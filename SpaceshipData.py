@@ -17,7 +17,6 @@ class SpaceshipData:
         self.spaceship_width = 10
         self.spaceship_height = 20
         self.spaceship = Spaceship(self.spaceship_width,self.spaceship_height,(self.width / 2), (self.height) -10, (255,255,255))
-        self.spaceship_speed = 2
         self.bullets = []
         self.bullet_width = 5
         self.bullet_height = 10
@@ -36,13 +35,13 @@ class SpaceshipData:
 
     def evolve(self, keys, newkeys, buttons, newbuttons, mouse_position):
         if pygame.K_LEFT in keys:
-            self.spaceship.moveLeft(self.spaceship_speed)
+            self.spaceship.moveLeft(self.spaceship.spaceship_speed)
         if pygame.K_RIGHT in keys:
-            self.spaceship.moveRight(self.spaceship_speed,self.upper_limit)
+            self.spaceship.moveRight(self.spaceship.spaceship_speed,self.upper_limit)
         if pygame.K_UP in keys:
-            self.spaceship.moveUp(self.spaceship_speed)
+            self.spaceship.moveUp(self.spaceship.spaceship_speed)
         if pygame.K_DOWN in keys:
-            self.spaceship.moveDown(self.spaceship_speed,self.height)
+            self.spaceship.moveDown(self.spaceship.spaceship_speed,self.height)
 
         if pygame.K_SPACE in newkeys:
             self.bullets.append(self.spaceship.fire(self.bullet_width,self.bullet_height,self.bullet_color))
@@ -91,6 +90,8 @@ class SpaceshipData:
                 if(baddie_rect.colliderect(spaceship_rect)):
                     self.spaceship.health -=10
                     baddie.setAlive(False)
+                    if(self.spaceship.health<=0):
+                        self.spaceship.spaceship_speed == 0
         return
 
     def addBaddie(self):
