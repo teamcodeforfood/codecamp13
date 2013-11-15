@@ -1,7 +1,19 @@
+# Core imports
 import pygame
 import random
+
+# Player and enemy
 from spaceship import Spaceship
 from baddie import Baddie
+
+# Game managers
+from GameScreen import GameScreen
+from ScreenManager import ScreenManager
+import text
+
+# Screens
+from screens.test import TestScreen
+from screens.Hud import Hud
 
 class SpaceshipData:
 
@@ -29,6 +41,13 @@ class SpaceshipData:
         self.baddies_killed = 0
         self.current_level = 0
         self.resources_path = "resources"
+
+        test_screen = TestScreen()
+        hud_screen = Hud()
+
+        self.screen_manager = ScreenManager()
+        self.screen_manager.setCurrentScreen(test_screen)
+        self.screen_manager.setOverlayScreen(hud_screen)
 
         return
 
@@ -81,6 +100,9 @@ class SpaceshipData:
       
         self.bullets = live_bullets
         self.baddies = live_baddies
+
+        self.screen_manager.current_screen.update()
+        self.screen_manager.hud.update()
             
         return
 
@@ -99,20 +121,7 @@ class SpaceshipData:
         for baddie in self.baddies:
             baddie.draw(surface)
 
-        self.drawTextLeft(surface, str(self.score), (255, 255, 255), 10, 50, self.font)
+        self.screen_manager.current_screen.draw(surface)
+        self.screen_manager.hud.draw(surface)
 
-        return
-    
-    def drawTextLeft(self, surface, text, color, x, y,font):
-        textobj = font.render(text, False, color)
-        textrect = textobj.get_rect()
-        textrect.bottomleft = (x, y)
-        surface.blit(textobj, textrect)
-        return
-
-    def drawTextRight(self, surface, text, color, x, y,font):
-        textobj = font.render(text, False, color)
-        textrect = textobj.get_rect()
-        textrect.bottomright = (x, y)
-        surface.blit(textobj, textrect)
         return
