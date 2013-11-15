@@ -46,6 +46,9 @@ class SpaceshipData:
         self.baddies_killed = 0
         self.current_level = 0
         self.resources_path = "resources"     
+        self.speed_boost_time = 0 
+        self.speed_boost = False
+
 
         # test_screen = TestScreen()
         # hud_screen = Hud()
@@ -150,7 +153,16 @@ class SpaceshipData:
                 if(powerups_rect.colliderect(spaceship_rect)):
                     self.spaceship.spaceship_speed += 2
                     powerups.setAlive(False)
+                    self.spaceship.spaceship_speed += 5
+                    self.speed_boost = True
 
+        if self.speed_boost == True:
+            if self.speed_boost_time <= 1200:
+                self.speed_boost_time += 1
+            else:
+                self.speed_boost = False
+                self.speed_boost_time = 0
+                self.spaceship.spaceship_speed = 5
 
         self.bullets = live_bullets
         self.baddies = live_baddies
