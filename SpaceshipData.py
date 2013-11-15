@@ -5,6 +5,8 @@ import random
 from GameScreen import GameScreen
 from ScreenManager import ScreenManager
 
+from globals import Globals
+
 # Screens
 from screens.Background import Background
 from screens.Hud import Hud
@@ -29,11 +31,14 @@ class SpaceshipData:
         
         if self.screen_manager.current_screen.update(keys, newkeys) == False:
             self.screen_manager.current_screen = self.screen_manager.next
+
+            # this is kind of hacky
+            self.screen_manager.display_hud = True
         else:
             self.screen_manager.current_screen.update(keys, newkeys)
 
         if self.screen_manager.display_hud == True:
-            self.screen_manager.hud.update(self.score, self.spaceship.ammo, self.spaceship.health)
+            self.screen_manager.hud.update(Globals.score, Globals.spaceship.ammo, Globals.spaceship.health)
         
         return
 

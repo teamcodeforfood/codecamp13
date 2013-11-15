@@ -1,3 +1,5 @@
+from spaceship import Spaceship
+
 class Globals():
 
     def setup():
@@ -12,3 +14,8 @@ class Globals():
 
     baddie_height = 20
     baddie_width = 20
+
+    score = 0
+    ammo = 0
+
+    spaceship = Spaceship(10,20,(1280 / 2), (720) -10, (255,255,255))
