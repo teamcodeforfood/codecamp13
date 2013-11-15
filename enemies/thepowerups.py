@@ -2,7 +2,7 @@ import pygame
 from powerups import Powerups
 import random
 
-class Testpowerups(Baddie):
+class Testpowerups(Powerups):
     
     def __init__(self, width, height, x, y, color):
         self.color = (255, 0,0)
@@ -17,7 +17,7 @@ class Testpowerups(Baddie):
         self.alive  = True
         pass
 
-class Test2powerups(Baddie):
+class Test2powerups(Powerups):
     
     def __init__(self, width, height, x, y, color):
         self.color = (0, 0, 255)
