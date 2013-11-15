@@ -8,8 +8,8 @@ class Baddie():
         self.height = height
         self.x      = x
         self.y      = y
-        self.new_x  = x
-        self.new_y  = y
+        self.new_x  = y
+        self.new_y  = x
         self.speed  = 3
         self.color  = color
         self.alive  = True
@@ -22,10 +22,10 @@ class Baddie():
             self.setAlive(False)
         else:
             self.x = self.new_x
-        if self.new_y < upper_wall:
-            self.new_y = upper_wall
-        elif self.new_y + self.height > lower_wall:
-            self.new_y = lower_wall - self.height
+        # if self.new_y < upper_wall:
+            # self.new_y = upper_wall
+        # elif self.new_y + self.height > lower_wall:
+            # self.new_y = lower_wall - self.height
         self.y = self.new_y
         return self.alive
 
