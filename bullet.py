@@ -24,7 +24,7 @@ class Bullet():
             self.hit = True
 
     def checkBackWall(self,back_wall):
-        if (self.y) > 720:
+        if (self.y) < 0:
             self.setAlive(False)
         return
 
