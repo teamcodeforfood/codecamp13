@@ -26,11 +26,7 @@ class PlayScreen(GameScreen):
         self.text_color = (255,0,0)
         self.width  = args[1]
         self.height = args[2]
-<<<<<<< HEAD
         self.upper_limit = 1270
-=======
-        self.upper_limit = 1260
->>>>>>> c4b4fd805591bda74cbad8a279712fbdd2ea1a06
         self.bullets = []
         self.baddies = []
         self.baddie_width = 20
@@ -79,20 +75,13 @@ class PlayScreen(GameScreen):
         if random.randint(1, self.frame_rate*2) == 1:
             self.addBaddie2()
 
-<<<<<<< HEAD
         if random.randint(1, self.frame_rate/2) == 1:
             self.addTestPowerups()
 
         if random.randint(1, self.frame_rate/2) == 1:
-=======
-        if random.randint(1, self.frame_rate*2) == 1:
-            self.addTestPowerups()
-
-        if random.randint(1, self.frame_rate*2) == 1:
->>>>>>> c4b4fd805591bda74cbad8a279712fbdd2ea1a06
             self.addPowerups()
 
-        if random.randint(1, self.frame_rate) == 1:
+        if random.randint(1, self.frame_rate * 2) == 1:
             self.addPlane()
 
         for bullet in self.bullets:
@@ -158,6 +147,7 @@ class PlayScreen(GameScreen):
       
         spaceship_rect = pygame.Rect(Globals.spaceship.x, Globals.spaceship.y,Globals.spaceship.width,Globals.spaceship.height)
 
+        # Check baddies
         for baddie in self.baddies:
             if baddie.alive:
                 baddie_rect = pygame.Rect(baddie.x, baddie.y, baddie.width, baddie.height)
@@ -182,25 +172,10 @@ class PlayScreen(GameScreen):
                     Globals.spaceship.spaceship_speed += .5
                     self.speed_boost_time = 0
                     self.speed_boost = True
-<<<<<<< HEAD
                     self.powerup_1.play()
                 if(Powerups_rect.colliderect(spaceship_rect)):
                     powerups.setAlive(False)
                     Globals.spaceship.spaceship_speed += .2
-=======
-
-                    # For debugging purposes
-                    print "Powerup activated"
-
-
-        for powerups in self.thepowerups:
-            if TestPowerups.alive:
-                TestPowerups_rect = pygame.Rect(TestPowerups.x,TestPowerups.y,pTestPowerups.width, TestPowerups.height)
-
-                if(TestPowerups_rect.colliderect(spaceship_rect)):
-                    Testpowerups.setAlive(False)
-                    Globals.spaceship.spaceship_speed += .5
->>>>>>> c4b4fd805591bda74cbad8a279712fbdd2ea1a06
                     self.speed_boost_time = 0
                     self.speed_boost = True
 
