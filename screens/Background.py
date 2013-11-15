@@ -10,5 +10,5 @@ class Background(GameScreen):
         pass
 
     def draw(self, surface):
-        screen.blit(myimage, imagerect)
+        # screen.blit(myimage, imagerect)
         pass

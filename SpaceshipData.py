@@ -101,11 +101,21 @@ class SpaceshipData:
             if baddie.alive:
                 live_baddies.append(baddie)
       
+        spaceship_rect = pygame.Rect(self.spaceship.x, self.spaceship.y,self.spaceship.width,self.spaceship.height)
+
+        for baddie in self.baddies:
+            if baddie.alive:
+                baddie_rect = pygame.Rect(baddie.x, baddie.y, baddie.width, baddie.height)
+
+                if(baddie_rect.colliderect(spaceship_rect)):
+                    self.spaceship.health -=10
+                    baddie.setAlive(False)
+
         self.bullets = live_bullets
         self.baddies = live_baddies
 
         # self.screen_manager.current_screen.update()
-        self.screen_manager.hud.update(self.score, self.spaceship.ammo)
+        self.screen_manager.hud.update(self.score, self.spaceship.ammo, self.spaceship.health)
             
         return
 
