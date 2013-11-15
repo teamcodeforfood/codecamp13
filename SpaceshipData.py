@@ -6,7 +6,7 @@ import random
 from spaceship import Spaceship
 from baddie import Baddie
 from powerups import Powerups
-
+from gamedata import Gamedata
 # Game managers
 from GameScreen import GameScreen
 from ScreenManager import ScreenManager

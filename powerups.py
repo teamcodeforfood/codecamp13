@@ -4,31 +4,18 @@ import random
 class Powerups(num):
 
 
-        def __init__(self,width,height,x,y,color):
-            self.width  = width
-            self.height = height
-            self.x      = random.randint(0,720)
-            self.y      = 0
-            self.new_x  = y
-            self.new_y  = x
-            self.speed  = 1
-            self.color  = color
-            self.alive  = True
-            self.orig_width = self.width
-            return
-
-        def __init__(self,width,height,x,y,color):
-            self.width  = width
-            self.height = height
-            self.x      = random.randint(0,720)
-            self.y      = 0
-            self.new_x  = y
-            self.new_y  = x
-            self.speed  = 1
-            self.color  = color
-            self.alive  = True
-            self.orig_width = self.width
-            return
+    def __init__(self,width,height,x,y,color):
+        self.width  = width
+        self.height = height
+        self.x      = random.randint(0,720)
+        self.y      = 0
+        self.new_x  = y
+        self.new_y  = x
+        self.speed  = 1
+        self.color  = color
+        self.alive  = True
+        self.orig_width = self.width
+        return
 
     def tick(self,back_wall,upper_wall,lower_wall):
         # self.new_x = self.x + random.randint(-1,1)
