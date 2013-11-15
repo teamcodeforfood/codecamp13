@@ -2,12 +2,13 @@ import pygame
 import random
 from spaceship import Spaceship
 from baddie import Baddie
+from GameScreen import GameScreen
+from ScreenManager import ScreenManager
 
 class SpaceshipData:
 
     def __init__(self,width,height,frame_rate):
         self.font = pygame.font.Font("resources/Fipps-Regular.otf",16)
-        self.font2 = pygame.font.SysFont("Courier New",20)
         self.frame_rate = frame_rate
         self.text_color = (255,0,0)
         self.width  = width
@@ -16,7 +17,7 @@ class SpaceshipData:
         self.spaceship_width = 10
         self.spaceship_height = 20
         self.spaceship = Spaceship(self.spaceship_width,self.spaceship_height,(self.width / 2), (self.height) -10, (255,255,255))
-        self.spaceship_speed = 5
+        self.spaceship_speed = 2
         self.bullets = []
         self.bullet_width = 5
         self.bullet_height = 10
@@ -29,6 +30,8 @@ class SpaceshipData:
         self.baddies_killed = 0
         self.current_level = 0
         self.resources_path = "resources"
+        self.window_x = 1280
+        self.window_y = 720
 
         return
 
@@ -45,7 +48,7 @@ class SpaceshipData:
         if pygame.K_SPACE in newkeys:
             self.bullets.append(self.spaceship.fire(self.bullet_width,self.bullet_height,self.bullet_color))
 
-        if random.randint(1, self.frame_rate/2) == 1:
+        if random.randint(1, self.frame_rate) == 1:
             self.addBaddie()
 
         for bullet in self.bullets:
