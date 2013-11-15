@@ -11,8 +11,8 @@ class TestBaddie(Baddie):
         self.health = 300
         self.x      = random.randint(0,1280)
         self.y      = 0
-        self.new_x  = y
-        self.new_y  = x
+        self.new_x  = x
+        self.new_y  = y
         self.speed  = 1
         self.alive  = True
         pass

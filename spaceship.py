@@ -5,15 +5,15 @@ class Spaceship():
 
     def __init__(self,width,height,x,y,color):
         pygame.mixer.init()
-        
+
         self.width  = width
         self.height = height
-        self.x      = y
-        self.y      = x
+        self.x      = x
+        self.y      = y
         self.color  = color
         self.health = 100
         # TODO: ammo is really high for testing purposes
-        self.ammo   = 100000
+        self.ammo   = 100
         self.spaceship_speed = 2.5
         self.alive = True
         self.space_ship_img = pygame.image.load("resources/boat.png")
@@ -33,8 +33,8 @@ class Spaceship():
     def moveRight(self, dx, upper_limit):
         self.x += dx
         # check the wall
-        if self.x > upper_limit:
-           self.x = upper_limit
+        #if self.x > upper_limit:
+         #  self.x = upper_limit
         return
 
     def moveUp(self, dy):
