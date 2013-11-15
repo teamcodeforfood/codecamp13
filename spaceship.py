@@ -11,6 +11,8 @@ class Spaceship():
         self.color  = color
         self.health = 100
         self.ammo   = 100
+        self.spaceship_speed = 5
+        self.alive = True
         return
 
     def moveLeft(self, dx):
@@ -52,4 +54,5 @@ class Spaceship():
         rect = pygame.Rect( self.x, self.y, self.width, self.height )
         pygame.draw.rect(surface, self.color, rect)
         return
-        
+    def setAlive(self,alive):
+        self.alive = alive
