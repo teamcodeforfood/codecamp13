@@ -4,7 +4,7 @@ from SpaceshipAdventure import SpaceshipAdventure
 def main():
     pygame.font.init()
     pygame.mixer.init()
-    c = SpaceshipAdventure(1920, 1080, 30)
+    c = SpaceshipAdventure(1920, 1080, 120)
     c.main_loop()
     return
     
