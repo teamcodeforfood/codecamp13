@@ -42,4 +42,3 @@ class Baddie():
         rect = pygame.Rect( self.x, self.y, self.width, self.height )
         pygame.draw.rect(surface, self.color, rect)
         return
-        
