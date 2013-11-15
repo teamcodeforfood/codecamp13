@@ -16,3 +16,4 @@ class ScreenManager():
 
     def setBackgroundScreen(self, screen):
         self.bg = screen
+        self.bg.load()

@@ -3,12 +3,12 @@ from GameScreen import GameScreen
 
 class Background(GameScreen):
     def load(self):
-        self.bg_images = list()
-        self.bg_images.append(pygame.image.load("resources/test_bg.png"))
+        self.img = pygame.image.load("resources/test_bg.png")
+        self.imagerect = self.img.get_rect()
 
     def update(self, *args):
         pass
 
     def draw(self, surface):
-        # screen.blit(myimage, imagerect)
+        surface.blit(self.img, self.imagerect)
         pass

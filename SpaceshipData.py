@@ -126,10 +126,9 @@ class SpaceshipData:
         return
 
     def draw(self,surface):
-        self.screen_manager.bg.draw(surface)
-        
         rect = pygame.Rect(0,0,self.width,self.height)
         surface.fill((0,0,0),rect )
+        self.screen_manager.bg.draw(surface)
         self.spaceship.draw(surface)
         for bullet in self.bullets:
             bullet.draw(surface)

@@ -14,7 +14,7 @@ class Hud(GameScreen):
     def draw(self, surface):
         self.text.drawTextLeft(surface, "Score    " + str(self.game_score), (255, 255, 255), 10, 35)
         self.text.drawTextLeft(surface, "Ammo    " + str(self.ammo), (255, 255, 255), 10, 55)
-        self.text.drawTextLeft(surface, "Health    " + str(self.health), (255, 255, 255), 10, 75)
+        self.text.drawTextLeft(surface, "Health   " + str(self.health), (255, 255, 255), 10, 75)
 
         pass
 
