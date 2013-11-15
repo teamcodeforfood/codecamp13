@@ -15,11 +15,11 @@ class SpaceshipData:
         self.upper_limit = self.width/3
         self.spaceship_width = 20
         self.spaceship_height = 10
-        self.spaceship = Spaceship(self.spaceship_width,self.spaceship_height,0,(self.height / 2) - 10, (255,255,255))
+        self.spaceship = Spaceship(self.spaceship_width,self.spaceship_height,(self.width / 2), (self.height) -10, (255,255,255))
         self.spaceship_speed = 5
         self.bullets = []
-        self.bullet_width = 10
-        self.bullet_height = 5
+        self.bullet_width = 5
+        self.bullet_height = 10
         self.bullet_color = (255,255,255)
         self.baddies = []
         self.baddie_width = 20
