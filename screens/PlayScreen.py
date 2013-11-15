@@ -195,7 +195,7 @@ class PlayScreen(GameScreen):
 
                     # For debugging purposes
                     print "Powerup activated"
-
+ # HAHAHAHAH
 
         for powerups in self.thepowerups:
             if powerups.alive:
