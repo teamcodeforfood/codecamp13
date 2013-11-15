@@ -15,6 +15,7 @@ class TestBaddie(Baddie):
         self.new_y  = x
         self.speed  = 1
         self.alive  = True
+        self.sprite_1 = pygame.image.load("resources/sprites/baddie_1.png")
         pass
 
 class Test2Baddie(Baddie):
@@ -30,4 +31,5 @@ class Test2Baddie(Baddie):
         self.new_y  = x
         self.speed  = 1
         self.alive  = True
+        self.sprite_1 = pygame.image.load("resources/sprites/baddie_1.png")
         pass

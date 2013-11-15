@@ -78,13 +78,13 @@ class PlayScreen(GameScreen):
         if random.randint(1, self.frame_rate) == 1:
             self.addBaddie2()
 
-        if random.randint(1, self.frame_rate*2) == 1:
+        if random.randint(1, self.frame_rate*3) == 1:
             self.addTestPowerups()
 
-        if random.randint(1, self.frame_rate*2) == 1:
+        if random.randint(1, self.frame_rate*4) == 1:
             self.addPowerups()
 
-        if random.randint(1, self.frame_rate) == 1:
+        if random.randint(1, self.frame_rate * 3) == 1:
             self.addPlane()
 
         for bullet in self.bullets:
@@ -192,6 +192,8 @@ class PlayScreen(GameScreen):
                     Globals.spaceship.spaceship_speed += .5
                     self.speed_boost_time = 0
                     self.speed_boost = True
+
+                    self.powerup_1.play()
 
                     # For debugging purposes
                     print "Powerup activated"

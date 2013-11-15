@@ -11,7 +11,7 @@ class Plane(Baddie):
         self.height = 32
         self.health = 800
         self.x      = 0
-        self.y      = random.randint(0, 720)
+        self.y      = random.randint(0, 700)
         self.new_x  = self.x
         self.new_y  = self.y
         self.speed  = .4

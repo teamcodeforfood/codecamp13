@@ -13,6 +13,7 @@ class Baddie():
         self.speed  = 1
         self.color  = (255, 255, 255)
         self.alive  = True
+        self.sprite_1 = pygame.image.load("resources/sprites/baddie_1.png")
         return
 
     def tick(self,back_wall,upper_wall,lower_wall):
@@ -40,6 +41,7 @@ class Baddie():
     
     def draw(self, surface):
         rect = pygame.Rect( self.x, self.y, self.width, self.height )
-        pygame.draw.rect(surface, self.color, rect)
+        # pygame.draw.rect(surface, self.color, rect)
+        surface.blit(self.sprite_1, rect)
         return
         
