@@ -3,14 +3,25 @@ from GameScreen import GameScreen
 
 class Background(GameScreen):
     def load(self):
-        self.img = pygame.image.load("resources/test_bg.png").convert()
-        self.imagerect = self.img.get_rect()
-        self.imagerect.y = (-self.imagerect.height)
+        self.bg1 = pygame.image.load("resources/test_bg.png").convert()
+        self.bg2 = pygame.image.load("resources/test_bg2.png").convert()
+
+        self.imagerect1 = self.bg1.get_rect()
+        self.imagerect1.y = (-self.imagerect1.height)
+
+        self.imagerect2 = self.bg2.get_rect()
+        self.imagerect2.y = self.imagerect1.y
 
     def update(self, *args):
-        self.imagerect.y += 1
-        pass
+        self.imagerect1.y += 1
+        
+        if self.imagerect1.y >= 0:
+            self.imagerect2.y += 1
+
+        if self.imagerect2.y >= 0:
+            self.imagerect1.y = (-self.imagerect1.height)
+            self.imagerect2.y = self.imagerect1.y
 
     def draw(self, surface):
-        surface.blit(self.img, self.imagerect)
-        pass
+        surface.blit(self.bg1, self.imagerect1)
+        surface.blit(self.bg2, self.imagerect2)
