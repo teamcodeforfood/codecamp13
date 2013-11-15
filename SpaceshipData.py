@@ -32,7 +32,6 @@ class SpaceshipData:
         self.resources_path = "resources"
         self.window_x = 1280
         self.window_y = 720
-
         return
 
     def evolve(self, keys, newkeys, buttons, newbuttons, mouse_position):
@@ -50,7 +49,6 @@ class SpaceshipData:
 
         if random.randint(1, self.frame_rate) == 1:
             self.addBaddie()
-
         for bullet in self.bullets:
             bullet.moveBullet()
             bullet.checkBackWall(self.width)
@@ -84,7 +82,15 @@ class SpaceshipData:
       
         self.bullets = live_bullets
         self.baddies = live_baddies
-            
+        #Spaceship.update( self.spaceship.x, self.spaceship.y, self.spaceship_width, self.spaceship_height)
+        spaceship_rect = pygame.Rect(self.spaceship.x, self.spaceship.y,self.spaceship.width,self.spaceship.height)
+        for baddie in self.baddies:
+            if baddie.alive:
+                baddie_rect = pygame.Rect(baddie.x, baddie.y, baddie.width, baddie.height)
+
+                if(baddie_rect.colliderect(spaceship_rect)):
+                    self.spaceship.health -=10
+                    baddie.setAlive(False)
         return
 
     def addBaddie(self):
@@ -102,7 +108,8 @@ class SpaceshipData:
         for baddie in self.baddies:
             baddie.draw(surface)
 
-        self.drawTextLeft(surface, str(self.score), (255, 255, 255), 10, 50, self.font)
+        self.drawTextLeft(surface, str("Score " + str(self.score)), (255, 255, 255), 10, 50, self.font)
+        self.drawTextLeft(surface, str("Health " + str(self.spaceship.health)), (255, 255, 255), 10, 80, self.font)
 
         return
     

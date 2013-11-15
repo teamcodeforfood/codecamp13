@@ -9,6 +9,7 @@ class Spaceship():
         self.x      = y
         self.y      = x
         self.color  = color
+        self.health = 100
         return
 
     def moveLeft(self, dx):
@@ -45,5 +46,16 @@ class Spaceship():
     def draw(self, surface):
         rect = pygame.Rect( self.x, self.y, self.width, self.height )
         pygame.draw.rect(surface, self.color, rect)
-        return
-        
+        return 
+
+    def hitRectangle(self, x, y, w, h):
+        if( ((self.x + self.width) >= x) and
+            (self.x <= x + w) ):
+            if( ((self.y + self.height) >= y) and
+                (self.y <= y + h)) :
+                return True
+        return False
+    def update(self, x, y, width, height):
+        if self.hitRectangle(x, y, w, h):
+            self.health -= 10
+        self.rect = pygame.Rect(self.x, self.y,self.width,self.height)

@@ -39,7 +39,8 @@ class Baddie():
         self.alive = alive
     
     def draw(self, surface):
-        rect = pygame.Rect( self.x, self.y, self.width, self.height )
-        pygame.draw.rect(surface, self.color, rect)
+        self.rect = pygame.Rect( self.x, self.y, self.width, self.height )
+        pygame.draw.rect(surface, self.color, self.rect)
         return
-        
+
+    
