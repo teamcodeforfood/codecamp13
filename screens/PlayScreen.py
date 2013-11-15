@@ -47,6 +47,7 @@ class PlayScreen(GameScreen):
         # Sound effects
         self.hit_1 = pygame.mixer.Sound("resources/sound/hit_1.wav")
         self.powerup_1 = pygame.mixer.Sound("resources/sound/powerup_1.wav")
+        self.hurt_1 = pygame.mixer.Sound("resources/sound/hurt_1.wav")
 
     def update(self, *args):
         keys = args[0]
@@ -150,11 +151,12 @@ class PlayScreen(GameScreen):
 
                 if(baddie_rect.colliderect(spaceship_rect)):
                     Globals.spaceship.health -=10
+                    self.hurt_1.play()
                     baddie.setAlive(False)
                     if(Globals.spaceship.health<=0):
                         Globals.spaceship.setAlive(False)
                         print "Spaceship dead"
-                    if(self.baddie.health <= 10):
+                    if(baddie.health <= 10):
                         self.spaceshift.setAlive(False)
 
         for powerups in self.powerups:
