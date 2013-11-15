@@ -6,8 +6,8 @@ class Spaceship():
     def __init__(self,width,height,x,y,color):
         self.width  = width
         self.height = height
-        self.x      = x
-        self.y      = y
+        self.x      = y
+        self.y      = x
         self.color  = color
         return
 
