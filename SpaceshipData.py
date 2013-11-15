@@ -71,7 +71,7 @@ class SpaceshipData:
         if pygame.K_SPACE in newkeys:
             self.bullets.append(self.spaceship.fire(self.bullet_width,self.bullet_height,self.bullet_color))
 
-        if random.randint(1, self.frame_rate) == 1:
+        if random.randint(1, self.frame_rate * 2) == 1:
             self.addBaddie()
             self.addPowerups()
 

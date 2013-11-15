@@ -6,11 +6,11 @@ class Powerups():
     def __init__(self,width,height,x,y,color):
         self.width  = width
         self.height = height
-        self.x      = y + 300
+        self.x      = random.randint(0,720)
         self.y      = 0
         self.new_x  = y
         self.new_y  = x
-        self.speed  = .3
+        self.speed  = 1
         self.color  = color
         self.alive  = True
         return
