@@ -159,12 +159,8 @@ class SpaceshipData:
                     if(self.spaceship.health<=0):
                         self.spaceship.setAlive(False)
                         print "Spaceship dead"
-<<<<<<< HEAD
                     if(self.baddie.health <= 10):
                         self.spaceshift.setAlive(False)
-=======
-
->>>>>>> 3f4475d5238bb2bb5d3a97ad37d18e1b8c47c23b
 
         for powerups in self.powerups:
             if powerups.alive:
