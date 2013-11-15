@@ -86,10 +86,10 @@ class SpaceshipData:
         if random.randint(1, (self.frame_rate)) == 1:
             self.addBaddie2()
 
-        if random.randint(1, self.frame_rate/2) == 1:
+        if random.randint(1, self.frame_rate) == 1:
             self.addTestPowerups()
 
-        if random.randint(1, self.frame_rate/2) == 1:
+        if random.randint(1, self.frame_rate) == 1:
             self.addPowerups()
 
         if random.randint(1, self.frame_rate * 2) == 1:
