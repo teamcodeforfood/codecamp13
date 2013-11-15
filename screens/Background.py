@@ -7,6 +7,7 @@ class Background(GameScreen):
         self.imagerect = self.img.get_rect()
 
     def update(self, *args):
+        self.imagerect.y -= 1
         pass
 
     def draw(self, surface):
