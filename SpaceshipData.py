@@ -33,7 +33,7 @@ class SpaceshipData:
         self.bullets = []
         self.bullet_width = 5
         self.bullet_height = 10
-        self.bullet_color = (255,255,255)
+        self.bullet_color = (255,0,0)
         self.baddies = []
         self.baddie_width = 20
         self.baddie_height = 20
