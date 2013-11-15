@@ -1,4 +1,9 @@
 class Globals():
+
+    def setup():
+        pygame.font.init()
+        pygame.display.init()
+
     bullet_width = 5
     bullet_height = 5
 

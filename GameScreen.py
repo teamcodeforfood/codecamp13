@@ -1,7 +1,7 @@
 from text import Text
 
 class GameScreen():
-    def __init__(self):
+    def __init__(self, *args):
         self.text = Text()
 
     def load(self):
