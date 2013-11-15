@@ -4,3 +4,6 @@ class Globals():
 
     spaceship_height = 20
     spaceship_width = 10
+
+    baddie_height = 20
+    baddie_width = 20
