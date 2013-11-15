@@ -14,9 +14,7 @@ import text
 from globals import Globals
 
 # Baddies
-from enemies.test import Test2Baddie
-
-from enemies.test import TestBaddie
+from enemies.test import *
 
 # Screens
 from screens.test import TestScreen
