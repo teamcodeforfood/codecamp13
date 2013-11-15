@@ -21,3 +21,6 @@ class ScreenManager():
 
     def setScreenQueue(self, screen):
         self.next = screen
+
+    def gamePause(self):
+        self.current_screen = self
