@@ -47,7 +47,7 @@ class Spaceship():
     def fire(self):
         if self.ammo > 0:
             self.ammo -= 1
-            return Bullet(5,10,self.x + (self.width / 2), (self.y + (self.height / 2)),(255, 255, 255))
+            return Bullet(self.x + (self.width / 2), (self.y + (self.height / 2)))
         else:
             return None
 

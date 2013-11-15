@@ -2,7 +2,7 @@ import pygame
 
 class Bullet():
 
-    def __init__(self,width,height,x,y,color):
+    def __init__(self, x, y):
         self.width  = 5
         self.height = 10
         self.x      = x
