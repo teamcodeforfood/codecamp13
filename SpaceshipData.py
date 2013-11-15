@@ -12,6 +12,9 @@ from GameScreen import GameScreen
 from ScreenManager import ScreenManager
 import text
 
+# Baddies
+from enemies.test import TestBaddie
+
 # Screens
 from screens.test import TestScreen
 from screens.Hud import Hud
@@ -149,6 +152,7 @@ class SpaceshipData:
                     baddie.setAlive(False)
                     if(self.spaceship.health<=0):
                         self.spaceship.setAlive(False)
+                        print "Spaceship dead"
 
         for powerups in self.powerups:
             if powerups.alive:
@@ -157,7 +161,11 @@ class SpaceshipData:
                 if(powerups_rect.colliderect(spaceship_rect)):
                     powerups.setAlive(False)
                     self.spaceship.spaceship_speed += 6
+                    self.speed_boost_time = 0
                     self.speed_boost = True
+
+                    # For debugging purposes
+                    print "Powerup activated"
 
         if self.speed_boost == True:
             if self.speed_boost_time <= 1200:
@@ -166,6 +174,9 @@ class SpaceshipData:
                 self.speed_boost = False
                 self.speed_boost_time = 0
                 self.spaceship.spaceship_speed = 5
+
+                # For debugging purposes
+                print "Speed boost ended"
 
         self.bullets = live_bullets
         self.baddies = live_baddies
@@ -177,7 +188,7 @@ class SpaceshipData:
         return
 
     def addBaddie(self):
-        new_baddie = Baddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
+        new_baddie = TestBaddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
         self.baddies.append( new_baddie )
                    
         return

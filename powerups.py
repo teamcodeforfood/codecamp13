@@ -3,10 +3,11 @@ import random
 
 class Powerups():
 
+
     def __init__(self,width,height,x,y,color):
         self.width  = width
         self.height = height
-        self.x      = random.randint(0,1280)
+        self.x      = random.randint(0,720)
         self.y      = 0
         self.new_x  = y
         self.new_y  = x
