@@ -12,7 +12,7 @@ class Spaceship():
         self.health = 100
         # TODO: ammo is really high for testing purposes
         self.ammo   = 100000
-        self.spaceship_speed = 5
+        self.spaceship_speed = 2.5
         self.alive = True
         return
 
