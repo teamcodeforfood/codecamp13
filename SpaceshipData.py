@@ -12,6 +12,7 @@ from screens.Background import Background
 from screens.Hud import Hud
 from screens.MenuScreen import MenuScreen
 from screens.PlayScreen import PlayScreen
+from screens.PauseMenu import PauseMenu
 
 class SpaceshipData:
 
@@ -22,6 +23,8 @@ class SpaceshipData:
         self.screen_manager.setBackgroundScreen(Background())
         self.screen_manager.setCurrentScreen(MenuScreen())
         self.screen_manager.setScreenQueue(PlayScreen())
+
+        self.pause = PauseMenu()
 
         self.screen_manager.next.load(frame_rate, width, height)
 

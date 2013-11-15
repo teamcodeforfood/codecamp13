@@ -55,6 +55,9 @@ class PlayScreen(GameScreen):
         if pygame.K_DOWN in keys or pygame.K_s in keys:
             Globals.spaceship.moveDown(Globals.spaceship.spaceship_speed,self.height)
 
+        if pygame.K_p in newkeys:
+            return False
+
         if pygame.K_SPACE in newkeys:
             self.bullets.append(Globals.spaceship.fire())
 
@@ -65,10 +68,10 @@ class PlayScreen(GameScreen):
         if random.randint(1, (self.frame_rate)) == 1:
             self.addBaddie2()
 
-        if random.randint(1, self.frame_rate) == 1:
+        if random.randint(1, self.frame_rate/2) == 1:
             self.addTestPowerups()
 
-        if random.randint(1, self.frame_rate) == 1:
+        if random.randint(1, self.frame_rate/2) == 1:
             self.addPowerups()
 
         if random.randint(1, self.frame_rate * 2) == 1:
@@ -156,12 +159,12 @@ class PlayScreen(GameScreen):
 
                 if(TestPowerups_rect.colliderect(spaceship_rect)):
                     powerups.setAlive(False)
-                    Globals.spaceship.spaceship_speed += .5
+                    Globals.spaceship.spaceship_speed += 6
                     self.speed_boost_time = 0
                     self.speed_boost = True
                 if(Powerups_rect.colliderect(spaceship_rect)):
                     powerups.setAlive(False)
-                    Globals.spaceship.spaceship_speed += .5
+                    Globals.spaceship.spaceship_speed += 100
                     self.speed_boost_time = 0
                     self.speed_boost = True
 
