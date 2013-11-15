@@ -16,7 +16,7 @@ class Spaceship():
         self.ammo   = 100
         self.spaceship_speed = 2.5
         self.alive = True
-        self.space_ship_img = pygame.image.load("resources/boat.png")
+        self.space_ship_img = pygame.image.load("resources/sprites/ship_1.png")
         
         # Sound effects
         self.lazer_1 = pygame.mixer.Sound("resources/sound/lazer_1.wav")
