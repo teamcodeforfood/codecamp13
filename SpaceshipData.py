@@ -148,7 +148,7 @@ class SpaceshipData:
                 powerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
 
                 if(powerups_rect.colliderect(spaceship_rect)):
-                    self.spaceship_speed += 100
+                    self.spaceship_speed += 3
 
 
         self.bullets = live_bullets
