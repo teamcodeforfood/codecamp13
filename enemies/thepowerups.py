@@ -15,7 +15,13 @@ class TestPowerups(Powerups):
         self.new_y  = x
         self.speed  = 1
         self.alive  = True
+        self.sprite = pygame.image.load("resources/sprites/blue_xp.png")
         pass
+
+    def draw(self, surface):
+        rect = pygame.Rect( self.x, self.y, self.width, self.height )
+        # pygame.draw.rect(surface, self.color, rect)
+        surface.blit(self.sprite, rect)
 
 class Test2powerups(Powerups):
     

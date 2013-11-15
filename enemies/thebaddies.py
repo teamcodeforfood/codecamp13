@@ -6,8 +6,8 @@ class TestBaddie(Baddie):
     
     def __init__(self, width, height, x, y, color):
         self.color = (255, 0,0)
-        self.width  = 30
-        self.height = 30
+        self.width  = width
+        self.height = height
         self.health = 300
         self.x      = random.randint(0,1280)
         self.y      = 0

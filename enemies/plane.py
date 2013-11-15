@@ -1,6 +1,7 @@
 import pygame
 from baddie import Baddie
 import random
+import decimal
 
 class Plane(Baddie):
     
@@ -13,7 +14,7 @@ class Plane(Baddie):
         self.y      = random.randint(0, 720)
         self.new_x  = self.x
         self.new_y  = self.y
-        self.speed  = 1
+        self.speed  = .4
         self.alive  = True
         self.sprite_1 = pygame.image.load("resources/sprites/asteroid_1.png")
         pass
