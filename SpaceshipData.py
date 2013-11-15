@@ -63,6 +63,7 @@ class SpaceshipData:
                     bullet.setAlive(False)
                     baddie.setAlive(False)
                     bullet.hit = False
+                    self.score += 100
 
 
         live_bullets = []
@@ -93,8 +94,10 @@ class SpaceshipData:
             bullet.draw(surface)
         for baddie in self.baddies:
             baddie.draw(surface)
-        return
 
+        self.drawTextLeft(surface, str(self.score), (255, 255, 255), 10, 50, self.font)
+
+        return
     
     def drawTextLeft(self, surface, text, color, x, y,font):
         textobj = font.render(text, False, color)
