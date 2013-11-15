@@ -16,8 +16,8 @@ class Baddie():
         return
 
     def tick(self,back_wall,upper_wall,lower_wall):
-        self.new_x = self.x - self.speed
-        self.new_y = self.y + random.randint(-1,1)
+        self.new_x = self.x + random.randint(-1,1)
+        self.new_y = self.y - self.speed
         if self.new_x < back_wall:
             self.setAlive(False)
         else:
