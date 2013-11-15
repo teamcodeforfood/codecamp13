@@ -13,8 +13,8 @@ class SpaceshipData:
         self.width  = width
         self.height = height
         self.upper_limit = self.width/3
-        self.spaceship_width = 20
-        self.spaceship_height = 10
+        self.spaceship_width = 10
+        self.spaceship_height = 20
         self.spaceship = Spaceship(self.spaceship_width,self.spaceship_height,(self.width / 2), (self.height) -10, (255,255,255))
         self.spaceship_speed = 5
         self.bullets = []
