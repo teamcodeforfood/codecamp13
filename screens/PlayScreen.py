@@ -72,7 +72,7 @@ class PlayScreen(GameScreen):
         if random.randint(1, self.frame_rate*2) == 1:
             self.addPowerups()
 
-        if random.randint(1, self.frame_rate * 2) == 1:
+        if random.randint(1, self.frame_rate) == 1:
             self.addPlane()
 
         for bullet in self.bullets:

@@ -13,7 +13,7 @@ class Spaceship():
         self.color  = color
         self.health = 100
         # TODO: ammo is really high for testing purposes
-        self.ammo   = 100
+        self.ammo   = 10000
         self.spaceship_speed = 2.5
         self.alive = True
         self.space_ship_img = pygame.image.load("resources/sprites/ship_1.png")
