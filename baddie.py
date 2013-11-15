@@ -6,8 +6,8 @@ class Baddie():
     def __init__(self,width,height,x,y,color):
         self.width  = width
         self.height = height
-        self.x      = x
-        self.y      = y
+        self.x      = y + 300
+        self.y      = 0
         self.new_x  = y
         self.new_y  = x
         self.speed  = 3

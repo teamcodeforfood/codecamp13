@@ -22,7 +22,7 @@ class Spaceship():
         self.x += dx
         # check the wall
         if self.x > upper_limit:
-            self.x = upper_limit
+           self.x = upper_limit
         return
 
     def moveUp(self, dy):
