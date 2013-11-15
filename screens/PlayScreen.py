@@ -87,6 +87,8 @@ class PlayScreen(GameScreen):
             powerups.tick(0,0,self.height)
 
         for bullet in self.bullets:
+            if bullet.y < 0:
+                bullet.setAlive(False)
             if not bullet.alive:
                 continue
             for baddie in self.baddies:
