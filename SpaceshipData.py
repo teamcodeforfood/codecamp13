@@ -51,5 +51,4 @@ class SpaceshipData:
         
         if self.screen_manager.display_hud == True:
             self.screen_manager.hud.draw(surface)
-
         return
