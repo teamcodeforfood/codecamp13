@@ -54,13 +54,13 @@ class SpaceshipData:
     def evolve(self, keys, newkeys, buttons, newbuttons, mouse_position):
         self.screen_manager.bg.update()
 
-        if pygame.K_LEFT in keys:
+        if pygame.K_LEFT in keys or pygame.K_a in keys:
             self.spaceship.moveLeft(self.spaceship.spaceship_speed)
-        if pygame.K_RIGHT in keys:
+        if pygame.K_RIGHT in keys or pygame.K_d in keys:
             self.spaceship.moveRight(self.spaceship.spaceship_speed,self.upper_limit)
-        if pygame.K_UP in keys:
+        if pygame.K_UP in keys or pygame.K_w in keys:
             self.spaceship.moveUp(self.spaceship.spaceship_speed)
-        if pygame.K_DOWN in keys:
+        if pygame.K_DOWN in keys or pygame.K_s in keys:
             self.spaceship.moveDown(self.spaceship.spaceship_speed,self.height)
 
         if pygame.K_SPACE in newkeys:
