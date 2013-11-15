@@ -11,7 +11,6 @@ from powerups import Powerups
 from GameScreen import GameScreen
 from ScreenManager import ScreenManager
 import text
-from globals import Globals
 
 # Baddies
 from enemies.test import *
@@ -34,12 +33,13 @@ class SpaceshipData:
         self.spaceship = Spaceship(10,20,(self.width / 2), (self.height) -10, (255,255,255))
         self.bullets = []
         self.baddies = []
-
+        self.baddie_width = 20
+        self.baddie_height = 20
+        self.baddie_color = (255,0,0)
         self.powerups = []
         self.powerups_width = 20
         self.powerups_height = 20
         self.powerups_color = (0,255,0)
-
         self.score = 0
         self.baddies_killed = 0
         self.current_level = 0
@@ -75,9 +75,13 @@ class SpaceshipData:
 
          
 
-#divide self.frame_rate by larger numbers to increase baddie spawn rate
+
         if random.randint(1, (self.frame_rate)) == 1:
             self.addBaddie()
+
+        if random.randint(1, (self.frame_rate)) == 1:
+            self.addBaddie2()
+
         if random.randint(1, self.frame_rate*5) == 1:
             self.addPowerups()
 
@@ -183,10 +187,17 @@ class SpaceshipData:
         return
 
     def addBaddie(self):
-        new_baddie = TestBaddie(self.width, random.randint(0,(self.height-Globals.baddie_height)))
-        self.baddies.append(new_baddie)
+        new_baddie = TestBaddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
+        self.baddies.append( new_baddie )
                    
         return
+    def addBaddie2(self):
+        new_baddie = Test2Baddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
+        self.baddies.append( new_baddie )
+                   
+        return
+        
+
     def addPowerups(self):
         new_powerups = Powerups(self.powerups_width, self.powerups_height, self.width, random.randint(0,(self.height-self.powerups_height)), self.powerups_color )
         self.powerups.append( new_powerups )

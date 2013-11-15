@@ -4,8 +4,8 @@ import random
 
 class TestBaddie(Baddie):
     
-    def __init__(self, x, y):
-        self.color = (55, 55, 55)
+    def __init__(self, width, height, x, y, color):
+        self.color = (255, 0,0)
         self.width  = 30
         self.height = 30
         self.x      = random.randint(0,1280)
@@ -19,7 +19,7 @@ class TestBaddie(Baddie):
 class Test2Baddie(Baddie):
     
     def __init__(self, width, height, x, y, color):
-        self.color = (55, 55, 55)
+        self.color = (0, 0, 255)
         self.width  = width
         self.height = height
         self.x      = random.randint(0,1280)
