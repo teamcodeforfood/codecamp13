@@ -14,6 +14,8 @@ import text
 from globals import Globals
 
 # Baddies
+from enemies.test import Test2Baddie
+
 from enemies.test import TestBaddie
 
 # Screens
@@ -183,8 +185,13 @@ class SpaceshipData:
         return
 
     def addBaddie(self):
+<<<<<<< HEAD
         new_baddie = TestBaddie(self.width, random.randint(0,(self.height-Globals.baddie_height)))
         self.baddies.append(new_baddie)
+=======
+        new_baddie = Test2Baddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
+        self.baddies.append( new_baddie )
+>>>>>>> 55367be46af7a8c0b699715bf9904a7c516329f7
                    
         return
     def addPowerups(self):
