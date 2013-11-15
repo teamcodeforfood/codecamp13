@@ -24,7 +24,7 @@ class Bullet():
         return
 
     def moveBullet(self):
-        self.x += self.speed
+        self.y -= self.speed
         return
 
     def setAlive(self,alive):
