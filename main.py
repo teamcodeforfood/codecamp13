@@ -2,8 +2,7 @@ import pygame
 from SpaceshipAdventure import SpaceshipAdventure
 
 def main():
-    pygame.font.init()
-    pygame.mixer.init()
+    pygame.init()
     c = SpaceshipAdventure(1280, 720, 120)
     c.main_loop()
 

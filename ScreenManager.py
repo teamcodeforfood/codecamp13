@@ -4,6 +4,7 @@ class ScreenManager():
     def __init__(self):
         self.current_screen = None
         self.hud = None
+        self.display_hud = False
 
     def draw(self, surface):
         self.current_screen.draw(surface)
@@ -17,3 +18,6 @@ class ScreenManager():
     def setBackgroundScreen(self, screen):
         self.bg = screen
         self.bg.load()
+
+    def setScreenQueue(self, screen):
+        self.next = screen
