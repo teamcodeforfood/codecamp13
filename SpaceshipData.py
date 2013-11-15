@@ -7,10 +7,14 @@ from spaceship import Spaceship
 from baddie import Baddie
 from powerups import Powerups
 from gamedata import Gamedata
+
 # Game managers
 from GameScreen import GameScreen
 from ScreenManager import ScreenManager
 import text
+
+# Baddies
+from enemies.test import TestBaddie
 
 # Screens
 from screens.test import TestScreen
@@ -179,7 +183,7 @@ class SpaceshipData:
         return
 
     def addBaddie(self):
-        new_baddie = Baddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
+        new_baddie = TestBaddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
         self.baddies.append( new_baddie )
                    
         return
