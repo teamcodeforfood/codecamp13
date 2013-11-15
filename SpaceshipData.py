@@ -71,7 +71,7 @@ class SpaceshipData:
         if pygame.K_SPACE in newkeys:
             self.bullets.append(self.spaceship.fire(self.bullet_width,self.bullet_height,self.bullet_color))
 
-        if random.randint(1, self.frame_rate * 2) == 1:
+        if random.randint(1, self.frame_rate) == 1:
             self.addBaddie()
             self.addPowerups()
 
@@ -114,7 +114,7 @@ class SpaceshipData:
                     powerups.setAlive(False)
                     bullet.hit = False
                     self.score += 100
-                    self.spaceship.spaceship_speed += 100
+                    self.spaceship.spaceship_speed += 2
 
 
         live_bullets = []
@@ -148,7 +148,7 @@ class SpaceshipData:
                 powerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
 
                 if(powerups_rect.colliderect(spaceship_rect)):
-                    self.spaceship_speed += 3
+                    self.spaceship.spaceship_speed += 3
 
 
         self.bullets = live_bullets
