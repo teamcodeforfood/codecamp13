@@ -8,6 +8,7 @@ class TestBaddie(Baddie):
         self.color = (255, 0,0)
         self.width  = 30
         self.height = 30
+        self.health = 300
         self.x      = random.randint(0,1280)
         self.y      = 0
         self.new_x  = y
@@ -22,6 +23,7 @@ class Test2Baddie(Baddie):
         self.color = (0, 0, 255)
         self.width  = width
         self.height = height
+        self.health = 100
         self.x      = random.randint(0,1280)
         self.y      = 0
         self.new_x  = y

@@ -111,10 +111,13 @@ class SpaceshipData:
                 bullet.checkHitBaddie(x,y,w,h)
                 if bullet.getHit():
                     bullet.setAlive(False)
-                    baddie.setAlive(False)
+                    baddie.health -=100
                     bullet.hit = False
                     self.score += 100
                     self.gamedifficulty +=1
+                    if baddie.health <= 0:
+                        baddie.setAlive(False)
+
 
         for bullet in self.bullets:
             if not bullet.alive:
@@ -156,6 +159,8 @@ class SpaceshipData:
                     if(self.spaceship.health<=0):
                         self.spaceship.setAlive(False)
                         print "Spaceship dead"
+                    if(self.baddie.health<=10):
+                        self.spaceshift.setAlive(False)
 
         for powerups in self.powerups:
             if powerups.alive:
@@ -211,6 +216,7 @@ class SpaceshipData:
     def addPlane(self):
         new_plane = Plane()
         self.baddies.append(new_plane)
+
 
 
     def draw(self,surface):
