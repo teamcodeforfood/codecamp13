@@ -19,8 +19,8 @@ class Background(GameScreen):
             self.imagerect2.y += 1
 
         if self.imagerect2.y >= 0:
-            self.imagerect1.y = (-self.imagerect1.height)
-            self.imagerect2.y = self.imagerect1.y
+            self.imagerect1.y = 0
+            self.imagerect2.y = self.imagerect1.y - self.imagerect2.height
 
     def draw(self, surface):
         surface.blit(self.bg1, self.imagerect1)
