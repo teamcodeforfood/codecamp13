@@ -1,7 +1,7 @@
 import pygame
 import random
 
-class Gamedata(num):
+class Gamedata():
 
 	        def __init__(self,width,height,x,y,color):
 	            self.width  = 20

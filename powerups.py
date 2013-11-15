@@ -1,7 +1,7 @@
 import pygame
 import random
 
-class Powerups(num):
+class Powerups():
 
 
     def __init__(self,width,height,x,y,color):
