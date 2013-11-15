@@ -10,7 +10,7 @@ class Baddie():
         self.y      = 0
         self.new_x  = y
         self.new_y  = x
-        self.speed  = 3
+        self.speed  = 1
         self.color  = color
         self.alive  = True
         return
