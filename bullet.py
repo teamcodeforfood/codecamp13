@@ -11,6 +11,7 @@ class Bullet():
         self.color  = (255, 0, 0)
         self.alive  = True
         self.hit    = False
+        self.sprite_1 = pygame.image.load("resources/sprites/lazer_1.png")
         return
 
     def checkHitBaddie(self,x,y,w,h):
@@ -49,6 +50,6 @@ class Bullet():
     
     def draw(self, surface):
         rect = pygame.Rect( self.x, self.y, self.width, self.height )
-        pygame.draw.rect(surface, self.color, rect)
+        surface.blit(self.sprite_1, rect)
         return
         

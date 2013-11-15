@@ -19,19 +19,20 @@ from GameScreen import GameScreen
 
 class PlayScreen(GameScreen):
     def load(self, *args):
+        # pygame.mixer.init()
+
         print args
         self.frame_rate = 120
         self.text_color = (255,0,0)
         self.width  = args[1]
         self.height = args[2]
-        self.upper_limit = self.width/3
+        self.upper_limit = 1270
         self.bullets = []
         self.baddies = []
         self.baddie_width = 20
         self.baddie_height = 20
         self.baddie_color = (255,0,0)
         self.powerups = []
-        self.thepowerups = []
         self.powerups_width = 20
         self.powerups_height = 20
         self.powerups_color = (0,255,0)
@@ -42,6 +43,11 @@ class PlayScreen(GameScreen):
         self.speed_boost_time = 0 
         self.speed_boost = False
         self.gamedifficulty = 1
+
+        # Sound effects
+        self.hit_1 = pygame.mixer.Sound("resources/sound/hit_1.wav")
+        self.powerup_1 = pygame.mixer.Sound("resources/sound/powerup_1.wav")
+        self.hurt_1 = pygame.mixer.Sound("resources/sound/hurt_1.wav")
 
     def update(self, *args):
         keys = args[0]
@@ -56,20 +62,23 @@ class PlayScreen(GameScreen):
         if pygame.K_DOWN in keys or pygame.K_s in keys:
             Globals.spaceship.moveDown(Globals.spaceship.spaceship_speed,self.height)
 
+        if pygame.K_p in newkeys:
+            return False
+
         if pygame.K_SPACE in newkeys:
             self.bullets.append(Globals.spaceship.fire())
 
         # Add baddies
-        if random.randint(1, (self.frame_rate)) == 1:
+        if random.randint(1, self.frame_rate*2) == 1:
             self.addBaddie()
 
-        if random.randint(1, (self.frame_rate)) == 1:
+        if random.randint(1, self.frame_rate*2) == 1:
             self.addBaddie2()
 
-        if random.randint(1, self.frame_rate) == 1:
+        if random.randint(1, self.frame_rate/2) == 1:
             self.addTestPowerups()
 
-        if random.randint(1, self.frame_rate) == 1:
+        if random.randint(1, self.frame_rate/2) == 1:
             self.addPowerups()
 
         if random.randint(1, self.frame_rate * 2) == 1:
@@ -101,8 +110,11 @@ class PlayScreen(GameScreen):
                     bullet.hit = False
                     self.score += 100
                     self.gamedifficulty +=1
+                    self.hit_1.play()
                     if baddie.health <= 0:
                         baddie.setAlive(False)
+                if bullet.y < 0:
+                    bullet.setAlive(False)
 
 
         for bullet in self.bullets:
@@ -132,7 +144,7 @@ class PlayScreen(GameScreen):
         for powerups in self.powerups:
             if powerups.alive:
                 live_powerups.append(powerups)
-
+      
         spaceship_rect = pygame.Rect(Globals.spaceship.x, Globals.spaceship.y,Globals.spaceship.width,Globals.spaceship.height)
 
         for baddie in self.baddies:
@@ -141,39 +153,36 @@ class PlayScreen(GameScreen):
 
                 if(baddie_rect.colliderect(spaceship_rect)):
                     Globals.spaceship.health -=10
+                    self.hurt_1.play()
                     baddie.setAlive(False)
                     if(Globals.spaceship.health<=0):
                         Globals.spaceship.setAlive(False)
                         print "Spaceship dead"
+                    if(baddie.health <= 10):
+                        self.spaceshift.setAlive(False)
 
         for powerups in self.powerups:
             if powerups.alive:
                 Powerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
-                if(Powerups_rect.colliderect(spaceship_rect)):
+                TestPowerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
+
+                if(TestPowerups_rect.colliderect(spaceship_rect)):
                     powerups.setAlive(False)
-                    Globals.spaceship.spaceship_speed += 2
+                    Globals.spaceship.spaceship_speed += .5
                     self.speed_boost_time = 0
                     self.speed_boost = True
+                    self.powerup_1.play()
+                if(Powerups_rect.colliderect(spaceship_rect)):
+                    powerups.setAlive(False)
+                    Globals.spaceship.spaceship_speed += .2
+                    self.speed_boost_time = 0
+                    self.speed_boost = True
+
+                    # Change to a different sound
+                    self.powerup_1.play()
 
                     # For debugging purposes
                     print "Powerup activated"
-
-
-        for powerups in self.thepowerups:
-            if TestPowerups.alive:
-                TestPowerups_rect = pygame.Rect(TestPowerups.x,TestPowerups.y,pTestPowerups.width, TestPowerups.height)
-
-                if(TestPowerups_rect.colliderect(spaceship_rect)):
-                    Testpowerups.setAlive(False)
-                    Globals.spaceship.spaceship_speed += 100
-                    self.speed_boost_time = 0
-                    self.speed_boost = True
-                    # For debugging purposes
-                    print "Powerup 2 activated"
-
-
-
-
 
         if self.speed_boost == True:
             if self.speed_boost_time <= 1200:
