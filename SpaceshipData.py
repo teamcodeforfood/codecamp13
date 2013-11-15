@@ -11,6 +11,7 @@ from powerups import Powerups
 from GameScreen import GameScreen
 from ScreenManager import ScreenManager
 import text
+from globals import Globals
 
 # Baddies
 from enemies.test import TestBaddie
@@ -33,13 +34,12 @@ class SpaceshipData:
         self.spaceship = Spaceship(10,20,(self.width / 2), (self.height) -10, (255,255,255))
         self.bullets = []
         self.baddies = []
-        self.baddie_width = 20
-        self.baddie_height = 20
-        self.baddie_color = (255,0,0)
+
         self.powerups = []
         self.powerups_width = 20
         self.powerups_height = 20
         self.powerups_color = (0,255,0)
+
         self.score = 0
         self.baddies_killed = 0
         self.current_level = 0
@@ -183,8 +183,8 @@ class SpaceshipData:
         return
 
     def addBaddie(self):
-        new_baddie = TestBaddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
-        self.baddies.append( new_baddie )
+        new_baddie = TestBaddie(self.width, random.randint(0,(self.height-Globals.baddie_height)))
+        self.baddies.append(new_baddie)
                    
         return
     def addPowerups(self):
