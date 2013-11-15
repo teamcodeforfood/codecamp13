@@ -31,6 +31,7 @@ class PlayScreen(GameScreen):
         self.baddie_height = 20
         self.baddie_color = (255,0,0)
         self.powerups = []
+        self.thepowerups = []
         self.powerups_width = 20
         self.powerups_height = 20
         self.powerups_color = (0,255,0)
@@ -131,7 +132,7 @@ class PlayScreen(GameScreen):
         for powerups in self.powerups:
             if powerups.alive:
                 live_powerups.append(powerups)
-      
+
         spaceship_rect = pygame.Rect(Globals.spaceship.x, Globals.spaceship.y,Globals.spaceship.width,Globals.spaceship.height)
 
         for baddie in self.baddies:
@@ -144,19 +145,10 @@ class PlayScreen(GameScreen):
                     if(Globals.spaceship.health<=0):
                         Globals.spaceship.setAlive(False)
                         print "Spaceship dead"
-                    if(self.baddie.health <= 10):
-                        self.spaceshift.setAlive(False)
 
         for powerups in self.powerups:
             if powerups.alive:
                 Powerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
-                TestPowerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
-
-                if(TestPowerups_rect.colliderect(spaceship_rect)):
-                    powerups.setAlive(False)
-                    Globals.spaceship.spaceship_speed += 2
-                    self.speed_boost_time = 0
-                    self.speed_boost = True
                 if(Powerups_rect.colliderect(spaceship_rect)):
                     powerups.setAlive(False)
                     Globals.spaceship.spaceship_speed += 2
@@ -165,6 +157,23 @@ class PlayScreen(GameScreen):
 
                     # For debugging purposes
                     print "Powerup activated"
+
+
+        for powerups in self.thepowerups:
+            if TestPowerups.alive:
+                TestPowerups_rect = pygame.Rect(TestPowerups.x,TestPowerups.y,pTestPowerups.width, TestPowerups.height)
+
+                if(TestPowerups_rect.colliderect(spaceship_rect)):
+                    Testpowerups.setAlive(False)
+                    Globals.spaceship.spaceship_speed += 100
+                    self.speed_boost_time = 0
+                    self.speed_boost = True
+                    # For debugging purposes
+                    print "Powerup 2 activated"
+
+
+
+
 
         if self.speed_boost == True:
             if self.speed_boost_time <= 1200:
