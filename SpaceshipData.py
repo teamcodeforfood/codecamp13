@@ -78,8 +78,12 @@ class SpaceshipData:
          
 
 
-        if random.randint(1, (self.frame_rate/(self.gamedifficulty))) == 1:
+        if random.randint(1, (self.frame_rate)) == 1:
             self.addBaddie()
+
+        if random.randint(1, (self.frame_rate)) == 1:
+            self.addBaddie2()
+
         if random.randint(1, self.frame_rate*5) == 1:
             self.addPowerups()
 
@@ -185,10 +189,17 @@ class SpaceshipData:
         return
 
     def addBaddie(self):
+        new_baddie = TestBaddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
+        self.baddies.append( new_baddie )
+                   
+        return
+    def addBaddie2(self):
         new_baddie = Test2Baddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
         self.baddies.append( new_baddie )
                    
         return
+        
+
     def addPowerups(self):
         new_powerups = Powerups(self.powerups_width, self.powerups_height, self.width, random.randint(0,(self.height-self.powerups_height)), self.powerups_color )
         self.powerups.append( new_powerups )
