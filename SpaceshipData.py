@@ -151,6 +151,7 @@ class SpaceshipData:
                 if(powerups_rect.colliderect(spaceship_rect)):
                     powerups.setAlive(False)
                     self.spaceship.spaceship_speed += 6
+                    self.speed_boost_time = 0
                     self.speed_boost = True
 
         if self.speed_boost == True:
