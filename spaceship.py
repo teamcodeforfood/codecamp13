@@ -40,7 +40,7 @@ class Spaceship():
         return
 
     def fire(self,width,height,color):
-        return Bullet(width,height,(self.x + self.width) , (self.y + (self.height /2) - (height/2)),color)
+        return Bullet(width,height,self.x, (self.x + (self.height) - (height/2)),color)
     
     def draw(self, surface):
         rect = pygame.Rect( self.x, self.y, self.width, self.height )
