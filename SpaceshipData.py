@@ -2,68 +2,33 @@
 import pygame
 import random
 
-# Player and enemy
-from spaceship import Spaceship
-from baddie import Baddie
-
-# Powerups
-from powerups import Powerups
-from enemies.thepowerups import *
-
-# Game managers
 from GameScreen import GameScreen
 from ScreenManager import ScreenManager
-import text
 
-# Baddies
-from enemies.thebaddies import *
-from enemies.plane import *
+from globals import Globals
 
 # Screens
-from screens.test import TestScreen
-from screens.Hud import Hud
 from screens.Background import Background
+from screens.Hud import Hud
+from screens.MenuScreen import MenuScreen
+from screens.PlayScreen import PlayScreen
 
 class SpaceshipData:
 
     def __init__(self,width,height,frame_rate):
-        self.font = pygame.font.Font("resources/Fipps-Regular.otf",16)
-        self.font2 = pygame.font.SysFont("Courier New",20)
-        self.frame_rate = frame_rate
-        self.text_color = (255,0,0)
-        self.width  = width
-        self.height = height
-        self.upper_limit = self.width/3
-        self.spaceship = Spaceship(10,20,(self.width / 2), (self.height) -10, (255,255,255))
-        self.bullets = []
-        self.baddies = []
-        self.baddie_width = 20
-        self.baddie_height = 20
-        self.baddie_color = (255,0,0)
-        self.powerups = []
-        self.powerups_width = 20
-        self.powerups_height = 20
-        self.powerups_color = (0,255,0)
-        self.score = 0
-        self.baddies_killed = 0
-        self.current_level = 0
-        self.resources_path = "resources"     
-        self.speed_boost_time = 0 
-        self.speed_boost = False
-        self.gamedifficulty = 1
-
-
-        # test_screen = TestScreen()
-        # hud_screen = Hud()
-
         self.screen_manager = ScreenManager()
         self.screen_manager.setOverlayScreen(Hud())
         self.screen_manager.setBackgroundScreen(Background())
+        self.screen_manager.setCurrentScreen(MenuScreen())
+        self.screen_manager.setScreenQueue(PlayScreen())
+
+        self.screen_manager.next.load(frame_rate, width, height)
 
         return
 
     def evolve(self, keys, newkeys, buttons, newbuttons, mouse_position):
         self.screen_manager.bg.update()
+<<<<<<< HEAD
 
         if pygame.K_LEFT in keys or pygame.K_a in keys:
             self.spaceship.moveLeft(self.spaceship.spaceship_speed)
@@ -215,41 +180,30 @@ class SpaceshipData:
         self.baddies.append( new_baddie )
                    
         return
+=======
+>>>>>>> 1b443d05ff189f84cf018af54efa570a70658207
         
+        if self.screen_manager.current_screen.update(keys, newkeys) == False:
+            self.screen_manager.current_screen = self.screen_manager.next
 
-    def addPowerups(self):
-        new_powerups = Powerups(self.powerups_width, self.powerups_height, self.width, random.randint(0,(self.height-self.powerups_height)), self.powerups_color )
-        self.powerups.append( new_powerups )
+            # this is kind of hacky
+            self.screen_manager.display_hud = True
+        else:
+            self.screen_manager.current_screen.update(keys, newkeys)
 
+        if self.screen_manager.display_hud == True:
+            self.screen_manager.hud.update(Globals.score, Globals.spaceship.ammo, Globals.spaceship.health)
+        
         return
-    def addTestPowerups(self):
-        new_powerups = TestPowerups(self.powerups_width, self.powerups_height, self.width, random.randint(0,(self.height-self.powerups_height)), self.powerups_color )
-        self.powerups.append( new_powerups )
-
-        return
-
-    def addPlane(self):
-        new_plane = Plane()
-        self.baddies.append(new_plane)
-
-
 
     def draw(self,surface):
-        rect = pygame.Rect(0,0,self.width,self.height)
+        rect = pygame.Rect(0,0,1280, 720)
         surface.fill((0,0,0),rect )
         self.screen_manager.bg.draw(surface)
-        self.spaceship.draw(surface)
-        for bullet in self.bullets:
-            bullet.draw(surface)
-        for baddie in self.baddies:
-            baddie.draw(surface)
-        for powerups in self.powerups:
-            powerups.draw(surface)
-
-
-
-
-        # self.screen_manager.current_screen.draw(surface)
-        self.screen_manager.hud.draw(surface)
+        
+        self.screen_manager.current_screen.draw(surface)
+        
+        if self.screen_manager.display_hud == True:
+            self.screen_manager.hud.draw(surface)
 
         return
