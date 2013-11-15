@@ -80,8 +80,8 @@ class SpaceshipData:
 
          
 
-
-        if random.randint(1, (self.frame_rate/(self.gamedifficulty))) == 1:
+#divide self.frame_rate by larger numbers to increase baddie spawn rate
+        if random.randint(1, (self.frame_rate)) == 1:
             self.addBaddie()
         if random.randint(1, self.frame_rate*5) == 1:
             self.addPowerups()
