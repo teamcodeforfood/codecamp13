@@ -114,6 +114,8 @@ class SpaceshipData:
                     powerups.setAlive(False)
                     bullet.hit = False
                     self.score += 100
+                    self.spaceship.spaceship_speed += 100
+
 
         live_bullets = []
         live_baddies = []
@@ -146,7 +148,7 @@ class SpaceshipData:
                 powerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
 
                 if(powerups_rect.colliderect(spaceship_rect)):
-                    self.spaceship.speed += 100
+                    self.spaceship_speed += 100
 
 
         self.bullets = live_bullets
