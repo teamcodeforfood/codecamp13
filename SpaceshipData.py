@@ -165,8 +165,6 @@ class SpaceshipData:
                     if(self.spaceship.health<=0):
                         self.spaceship.setAlive(False)
                         print "Spaceship dead"
-                    if(self.baddie.health <= 10):
-                        self.spaceshift.setAlive(False)
 
         for powerups in self.powerups:
             if powerups.alive:
@@ -180,7 +178,7 @@ class SpaceshipData:
                     self.speed_boost = True
                 if(Powerups_rect.colliderect(spaceship_rect)):
                     powerups.setAlive(False)
-                    self.spaceship.spaceship_speed += 100
+                    self.spaceship.spaceship_speed += 6
                     self.speed_boost_time = 0
                     self.speed_boost = True
 
