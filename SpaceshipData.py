@@ -119,7 +119,6 @@ class SpaceshipData:
                     self.score += 100
                     self.spaceship.spaceship_speed += 2
 
-
         live_bullets = []
         live_baddies = []
         live_powerups = []
@@ -151,9 +150,8 @@ class SpaceshipData:
                 powerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
 
                 if(powerups_rect.colliderect(spaceship_rect)):
-                    self.spaceship.spaceship_speed += 2
                     powerups.setAlive(False)
-                    self.spaceship.spaceship_speed += 5
+                    self.spaceship.spaceship_speed += 6
                     self.speed_boost = True
 
         if self.speed_boost == True:
