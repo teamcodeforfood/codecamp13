@@ -87,7 +87,7 @@ class SpaceshipData:
             self.addBaddie2()
 
         if random.randint(1, self.frame_rate*5) == 1:
-            self.addPowerups()
+            self.addTestPowerups()
 
         if random.randint(1, self.frame_rate * 2) == 1:
             self.addPlane()
@@ -212,6 +212,11 @@ class SpaceshipData:
 
     def addPowerups(self):
         new_powerups = Powerups(self.powerups_width, self.powerups_height, self.width, random.randint(0,(self.height-self.powerups_height)), self.powerups_color )
+        self.powerups.append( new_powerups )
+
+        return
+    def addTestPowerups(self):
+        new_powerups = TestPowerups(self.powerups_width, self.powerups_height, self.width, random.randint(0,(self.height-self.powerups_height)), self.powerups_color )
         self.powerups.append( new_powerups )
 
         return

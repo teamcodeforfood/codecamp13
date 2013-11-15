@@ -2,10 +2,10 @@ import pygame
 from powerups import Powerups
 import random
 
-class Testpowerups(Powerups):
+class TestPowerups(Powerups):
     
     def __init__(self, width, height, x, y, color):
-        self.color = (255, 0,0)
+        self.color = (0, 255,0)
         self.width  = 30
         self.height = 30
         self.health = 300
@@ -20,7 +20,7 @@ class Testpowerups(Powerups):
 class Test2powerups(Powerups):
     
     def __init__(self, width, height, x, y, color):
-        self.color = (0, 0, 255)
+        self.color = (0, 255, 0)
         self.width  = width
         self.height = height
         self.health = 100
