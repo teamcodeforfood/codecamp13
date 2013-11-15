@@ -39,8 +39,8 @@ class SpaceshipData:
         self.baddie_height = 20
         self.baddie_color = (255,0,0)
         self.powerups = []
-        self.powerups_width = 10
-        self.powerups_height = 10
+        self.powerups_width = 20
+        self.powerups_height = 20
         self.powerups_color = (0,255,0)
         self.score = 0
         self.baddies_killed = 0
