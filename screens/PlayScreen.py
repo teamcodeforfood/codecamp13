@@ -19,6 +19,8 @@ from GameScreen import GameScreen
 
 class PlayScreen(GameScreen):
     def load(self, *args):
+        pygame.mixer.init()
+
         print args
         self.frame_rate = 120
         self.text_color = (255,0,0)
@@ -41,6 +43,9 @@ class PlayScreen(GameScreen):
         self.speed_boost_time = 0 
         self.speed_boost = False
         self.gamedifficulty = 1
+
+        self.hit_1 = pygame.mixer.Sound("resources/sound/hit_1.wav")
+        self.powerup_1 = pygame.mixer.Sound("resources/sound/powerup_1.wav")
 
     def update(self, *args):
         keys = args[0]
@@ -90,8 +95,6 @@ class PlayScreen(GameScreen):
             powerups.tick(0,0,self.height)
 
         for bullet in self.bullets:
-            if bullet.y < 0:
-                bullet.setAlive(False)
             if not bullet.alive:
                 continue
             for baddie in self.baddies:
@@ -105,6 +108,7 @@ class PlayScreen(GameScreen):
                     bullet.hit = False
                     self.score += 100
                     self.gamedifficulty +=1
+                    self.hit_1.play()
                     if baddie.health <= 0:
                         baddie.setAlive(False)
 
@@ -162,11 +166,15 @@ class PlayScreen(GameScreen):
                     Globals.spaceship.spaceship_speed += 6
                     self.speed_boost_time = 0
                     self.speed_boost = True
+                    self.powerup_1.play()
                 if(Powerups_rect.colliderect(spaceship_rect)):
                     powerups.setAlive(False)
-                    Globals.spaceship.spaceship_speed += 100
+                    Globals.spaceship.spaceship_speed += 2
                     self.speed_boost_time = 0
                     self.speed_boost = True
+
+                    # Change to a different sound
+                    self.powerup_1.play()
 
                     # For debugging purposes
                     print "Powerup activated"
