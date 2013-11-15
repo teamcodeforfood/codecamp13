@@ -8,6 +8,7 @@ class Plane(Baddie):
         self.color = (55, 55, 55)
         self.width  = 20
         self.height = 10
+        self.health = 800
         self.x      = 0
         self.y      = random.randint(0, 720)
         self.new_x  = self.x
