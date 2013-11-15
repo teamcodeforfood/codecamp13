@@ -9,6 +9,7 @@ from globals import Globals
 
 # Baddies
 from enemies.test import *
+from enemies.thebaddies import *
 from enemies.plane import *
 
 # Powerups
@@ -27,6 +28,7 @@ class PlayScreen(GameScreen):
         self.upper_limit = self.width/3
         self.bullets = []
         self.baddies = []
+        self.thebaddies =[]
         self.baddie_width = 20
         self.baddie_height = 20
         self.baddie_color = (255,0,0)
@@ -84,7 +86,13 @@ class PlayScreen(GameScreen):
         for baddie in self.baddies:
             baddie.tick(0,0,self.height)
 
+        for baddie in self.thebaddies:
+            baddie.tick(0,0,self.height)
+
         for powerups in self.powerups:
+            powerups.tick(0,0,self.height)
+
+        for powerups in self.thepowerups:
             powerups.tick(0,0,self.height)
 
         for bullet in self.bullets:
@@ -146,6 +154,17 @@ class PlayScreen(GameScreen):
                         Globals.spaceship.setAlive(False)
                         print "Spaceship dead"
 
+        for baddie in self.thebaddies:
+            if baddie.alive:
+                baddie_rect = pygame.Rect(baddie.x, baddie.y, baddie.width, baddie.height)
+
+                if(baddie_rect.colliderect(spaceship_rect)):
+                    Globals.spaceship.health -=10
+                    baddie.setAlive(False)
+                    if(Globals.spaceship.health<=0):
+                        Globals.spaceship.setAlive(False)
+                        print "Spaceship dead"
+
         for powerups in self.powerups:
             if powerups.alive:
                 Powerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
@@ -160,12 +179,12 @@ class PlayScreen(GameScreen):
 
 
         for powerups in self.thepowerups:
-            if TestPowerups.alive:
-                TestPowerups_rect = pygame.Rect(TestPowerups.x,TestPowerups.y,pTestPowerups.width, TestPowerups.height)
+            if powerups.alive:
+                powerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
 
-                if(TestPowerups_rect.colliderect(spaceship_rect)):
-                    Testpowerups.setAlive(False)
-                    Globals.spaceship.spaceship_speed += 100
+                if(powerups_rect.colliderect(spaceship_rect)):
+                    powerups.setAlive(False)
+                    Globals.spaceship.ammo += 100
                     self.speed_boost_time = 0
                     self.speed_boost = True
                     # For debugging purposes
@@ -197,8 +216,13 @@ class PlayScreen(GameScreen):
             bullet.draw(surface)
         for baddie in self.baddies:
             baddie.draw(surface)
+        for baddie in self.thebaddies:
+            baddie.draw(surface)
         for powerups in self.powerups:
             powerups.draw(surface)
+        for powerups in self.thepowerups:
+            powerups.draw(surface)
+
     
     def addBaddie(self):
         new_baddie = TestBaddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
@@ -219,7 +243,7 @@ class PlayScreen(GameScreen):
         return
     def addTestPowerups(self):
         new_powerups = TestPowerups(self.powerups_width, self.powerups_height, self.width, random.randint(0,(self.height-self.powerups_height)), self.powerups_color )
-        self.powerups.append( new_powerups )
+        self.thepowerups.append( new_powerups )    
 
         return
 
