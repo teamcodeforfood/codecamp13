@@ -117,7 +117,6 @@ class SpaceshipData:
                     powerups.setAlive(False)
                     bullet.hit = False
                     self.score += 100
-                    self.spaceship.spaceship_speed += 2
 
         live_bullets = []
         live_baddies = []
