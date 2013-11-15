@@ -75,7 +75,7 @@ class SpaceshipData:
             self.bullets.append(self.spaceship.fire(self.bullet_width,self.bullet_height,self.bullet_color))
 
         if random.randint(1, self.frame_rate) == 1:
-            self.addBaddie()+= 1
+            self.addBaddie()
             self.addPowerups()
 
         for bullet in self.bullets:
