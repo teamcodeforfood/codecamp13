@@ -48,6 +48,7 @@ class SpaceshipData:
         self.resources_path = "resources"     
         self.speed_boost_time = 0 
         self.speed_boost = False
+        self.gamedifficulty = 1
 
 
         # test_screen = TestScreen()
@@ -74,8 +75,12 @@ class SpaceshipData:
         if pygame.K_SPACE in newkeys:
             self.bullets.append(self.spaceship.fire(self.bullet_width,self.bullet_height,self.bullet_color))
 
-        if random.randint(1, self.frame_rate) == 1:
+         
+
+
+        if random.randint(1, (self.frame_rate/(self.gamedifficulty))) == 1:
             self.addBaddie()
+        if random.randint(1, self.frame_rate*5) == 1:
             self.addPowerups()
 
         for bullet in self.bullets:
@@ -103,6 +108,7 @@ class SpaceshipData:
                     baddie.setAlive(False)
                     bullet.hit = False
                     self.score += 100
+                    self.gamedifficulty +=1
 
         for bullet in self.bullets:
             if not bullet.alive:
