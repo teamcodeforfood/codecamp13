@@ -24,7 +24,7 @@ class PlayScreen(GameScreen):
         self.text_color = (255,0,0)
         self.width  = args[1]
         self.height = args[2]
-        self.upper_limit = self.width/3
+        self.upper_limit = 1260
         self.bullets = []
         self.baddies = []
         self.baddie_width = 20
