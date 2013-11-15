@@ -14,6 +14,7 @@ class Spaceship():
         self.ammo   = 100000
         self.spaceship_speed = 2.5
         self.alive = True
+        self.space_ship_img = pygame.image.load("resources/boat.png")
         return
 
     def moveLeft(self, dx):
@@ -53,7 +54,8 @@ class Spaceship():
 
     def draw(self, surface):
         rect = pygame.Rect( self.x, self.y, self.width, self.height )
-        pygame.draw.rect(surface, self.color, rect)
+        # pygame.draw.rect(surface, self.color, rect)
+        surface.blit(self.space_ship_img, rect)
         return
 
     def setAlive(self,alive):
