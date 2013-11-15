@@ -5,7 +5,7 @@ import random
 class TestPowerups(Powerups):
     
     def __init__(self, width, height, x, y, color):
-        self.color = (0, 255,0)
+        self.color = (70, 70,70)
         self.width  = 30
         self.height = 30
         self.health = 300

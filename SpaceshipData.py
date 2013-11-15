@@ -86,8 +86,11 @@ class SpaceshipData:
         if random.randint(1, (self.frame_rate)) == 1:
             self.addBaddie2()
 
-        if random.randint(1, self.frame_rate*5) == 1:
+        if random.randint(1, self.frame_rate/2) == 1:
             self.addTestPowerups()
+
+        if random.randint(1, self.frame_rate/2) == 1:
+            self.addPowerups()
 
         if random.randint(1, self.frame_rate * 2) == 1:
             self.addPlane()
@@ -167,11 +170,17 @@ class SpaceshipData:
 
         for powerups in self.powerups:
             if powerups.alive:
-                powerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
+                Powerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
+                TestPowerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
 
-                if(powerups_rect.colliderect(spaceship_rect)):
+                if(TestPowerups_rect.colliderect(spaceship_rect)):
                     powerups.setAlive(False)
                     self.spaceship.spaceship_speed += 6
+                    self.speed_boost_time = 0
+                    self.speed_boost = True
+                if(Powerups_rect.colliderect(spaceship_rect)):
+                    powerups.setAlive(False)
+                    self.spaceship.spaceship_speed += 100
                     self.speed_boost_time = 0
                     self.speed_boost = True
 
