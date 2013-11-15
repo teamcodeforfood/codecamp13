@@ -28,7 +28,7 @@ class SpaceshipData:
         self.spaceship_width = 10
         self.spaceship_height = 20
         self.spaceship = Spaceship(self.spaceship_width,self.spaceship_height,(self.width / 2), (self.height) -10, (255,255,255))
-        self.spaceship_speed = 5
+        self.spaceship_speed = 2
         self.bullets = []
         self.bullet_width = 5
         self.bullet_height = 10
@@ -64,7 +64,7 @@ class SpaceshipData:
         if pygame.K_SPACE in newkeys:
             self.bullets.append(self.spaceship.fire(self.bullet_width,self.bullet_height,self.bullet_color))
 
-        if random.randint(1, self.frame_rate/2) == 1:
+        if random.randint(1, self.frame_rate) == 1:
             self.addBaddie()
 
         for bullet in self.bullets:

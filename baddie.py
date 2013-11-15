@@ -10,13 +10,13 @@ class Baddie():
         self.y      = 0
         self.new_x  = y
         self.new_y  = x
-        self.speed  = 1
+        self.speed  = .3
         self.color  = color
         self.alive  = True
         return
 
     def tick(self,back_wall,upper_wall,lower_wall):
-        self.new_x = self.x + random.randint(-1,1)
+        # self.new_x = self.x + random.randint(-1,1)
         self.new_y = self.y + self.speed
         if self.new_x < back_wall:
             self.setAlive(False)
