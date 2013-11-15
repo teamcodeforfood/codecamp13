@@ -13,6 +13,7 @@ class Powerups():
         self.speed  = 1
         self.color  = color
         self.alive  = True
+        self.orig_width = self.width
         return
 
     def tick(self,back_wall,upper_wall,lower_wall):
@@ -27,6 +28,7 @@ class Powerups():
         # elif self.new_y + self.height > lower_wall:
             # self.new_y = lower_wall - self.height
         self.y = self.new_y
+
         return self.alive
 
     def getAlive(self):
