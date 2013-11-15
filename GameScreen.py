@@ -10,5 +10,5 @@ class GameScreen():
     def draw(self, surface):
         pass
 
-    def update(self):
+    def update(self, *args):
         pass

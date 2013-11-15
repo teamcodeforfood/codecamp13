@@ -46,7 +46,7 @@ class SpaceshipData:
         hud_screen = Hud()
 
         self.screen_manager = ScreenManager()
-        self.screen_manager.setCurrentScreen(test_screen)
+        # self.screen_manager.setCurrentScreen(test_screen)
         self.screen_manager.setOverlayScreen(hud_screen)
 
         return
@@ -101,8 +101,8 @@ class SpaceshipData:
         self.bullets = live_bullets
         self.baddies = live_baddies
 
-        self.screen_manager.current_screen.update()
-        self.screen_manager.hud.update()
+        # self.screen_manager.current_screen.update()
+        self.screen_manager.hud.update(self.score)
             
         return
 
@@ -121,7 +121,7 @@ class SpaceshipData:
         for baddie in self.baddies:
             baddie.draw(surface)
 
-        self.screen_manager.current_screen.draw(surface)
+        # self.screen_manager.current_screen.draw(surface)
         self.screen_manager.hud.draw(surface)
 
         return
