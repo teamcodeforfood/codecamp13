@@ -13,3 +13,6 @@ class ScreenManager():
 
     def setOverlayScreen(self, hud):
         self.hud = hud
+
+    def setBackgroundScreen(self, screen):
+        self.bg = screen

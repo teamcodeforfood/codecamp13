@@ -9,6 +9,8 @@ class Spaceship():
         self.x      = y
         self.y      = x
         self.color  = color
+        self.health = 100
+        self.ammo   = 100
         return
 
     def moveLeft(self, dx):
@@ -40,8 +42,12 @@ class Spaceship():
         return
 
     def fire(self,width,height,color):
-        return Bullet(width,height,self.x + (self.width / 2), (self.y + (self.height / 2)),color)
-    
+        if self.ammo > 0:
+            self.ammo -= 1
+            return Bullet(width,height,self.x + (self.width / 2), (self.y + (self.height / 2)),color)
+        else:
+            return None
+
     def draw(self, surface):
         rect = pygame.Rect( self.x, self.y, self.width, self.height )
         pygame.draw.rect(surface, self.color, rect)

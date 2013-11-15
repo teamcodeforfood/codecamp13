@@ -7,10 +7,12 @@ class Hud(GameScreen):
 
     def update(self, *args):
         self.game_score = args[0]
+        self.ammo = args[1]
         pass
 
     def draw(self, surface):
-        self.text.drawTextLeft(surface, str(self.game_score), (255, 255, 255), 10, 50)
+        self.text.drawTextLeft(surface, "Score    " + str(self.game_score), (255, 255, 255), 10, 35)
+        self.text.drawTextLeft(surface, "Ammo    " + str(self.ammo), (255, 255, 255), 10, 55)
         # self.text.drawTextLeft(surface, "Hello", (255, 255, 255), 10, 50)
 
         pass

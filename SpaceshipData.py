@@ -14,6 +14,7 @@ import text
 # Screens
 from screens.test import TestScreen
 from screens.Hud import Hud
+from screens.Background import Background
 
 class SpaceshipData:
 
@@ -40,18 +41,20 @@ class SpaceshipData:
         self.score = 0
         self.baddies_killed = 0
         self.current_level = 0
-        self.resources_path = "resources"
+        self.resources_path = "resources"     
 
-        test_screen = TestScreen()
-        hud_screen = Hud()
+        # test_screen = TestScreen()
+        # hud_screen = Hud()
 
         self.screen_manager = ScreenManager()
-        # self.screen_manager.setCurrentScreen(test_screen)
-        self.screen_manager.setOverlayScreen(hud_screen)
+        self.screen_manager.setOverlayScreen(Hud())
+        self.screen_manager.setBackgroundScreen(Background())
 
         return
 
     def evolve(self, keys, newkeys, buttons, newbuttons, mouse_position):
+        self.screen_manager.bg.update()
+
         if pygame.K_LEFT in keys:
             self.spaceship.moveLeft(self.spaceship_speed)
         if pygame.K_RIGHT in keys:
@@ -102,7 +105,7 @@ class SpaceshipData:
         self.baddies = live_baddies
 
         # self.screen_manager.current_screen.update()
-        self.screen_manager.hud.update(self.score)
+        self.screen_manager.hud.update(self.score, self.spaceship.ammo)
             
         return
 
@@ -113,6 +116,8 @@ class SpaceshipData:
         return
 
     def draw(self,surface):
+        self.screen_manager.bg.draw(surface)
+        
         rect = pygame.Rect(0,0,self.width,self.height)
         surface.fill((0,0,0),rect )
         self.spaceship.draw(surface)
