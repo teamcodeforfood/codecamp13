@@ -5,6 +5,7 @@ import random
 # Player and enemy
 from spaceship import Spaceship
 from baddie import Baddie
+from powerups import Powerups
 
 # Game managers
 from GameScreen import GameScreen
@@ -38,6 +39,10 @@ class SpaceshipData:
         self.baddie_width = 20
         self.baddie_height = 20
         self.baddie_color = (255,0,0)
+        self.powerups = []
+        self.powerups_width = 10
+        self.powerups_height = 10
+        self.powerups_color = (0,255,0)
         self.score = 0
         self.baddies_killed = 0
         self.current_level = 0
@@ -69,6 +74,7 @@ class SpaceshipData:
 
         if random.randint(1, self.frame_rate) == 1:
             self.addBaddie()
+            self.addPowerups()
 
         for bullet in self.bullets:
             bullet.moveBullet()
@@ -76,6 +82,9 @@ class SpaceshipData:
                 
         for baddie in self.baddies:
             baddie.tick(0,0,self.height)
+
+        for powerups in self.powerups:
+            powerups.tick(0,0,self.height)
 
         for bullet in self.bullets:
             if not bullet.alive:
@@ -91,15 +100,33 @@ class SpaceshipData:
                     bullet.hit = False
                     self.score += 100
 
+        for bullet in self.bullets:
+            if not bullet.alive:
+                continue
+            for powerups in self.powerups:
+                if not powerups.alive:
+                    continue
+                x,y,w,h = powerups.getDimensions()
+                bullet.checkHitPowerups(x,y,w,h)
+                if bullet.getHit():
+                    bullet.setAlive(False)
+                    powerups.setAlive(False)
+                    bullet.hit = False
+                    self.score += 100
 
         live_bullets = []
         live_baddies = []
+        live_powerups = []
         for bullet in self.bullets:
             if bullet.alive:
                 live_bullets.append(bullet)
         for baddie in self.baddies:
             if baddie.alive:
                 live_baddies.append(baddie)
+
+        for powerups in self.powerups:
+            if powerups.alive:
+                live_powerups.append(powerups)
       
         spaceship_rect = pygame.Rect(self.spaceship.x, self.spaceship.y,self.spaceship.width,self.spaceship.height)
 
@@ -111,8 +138,17 @@ class SpaceshipData:
                     self.spaceship.health -=10
                     baddie.setAlive(False)
 
+        for powerups in self.powerups:
+            if powerups.alive:
+                powerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
+
+                if(powerups_rect.colliderect(spaceship_rect)):
+                    self.spaceship.speed += 100
+
+
         self.bullets = live_bullets
         self.baddies = live_baddies
+        self.powerups = live_powerups
 
         # self.screen_manager.current_screen.update()
         self.screen_manager.hud.update(self.score, self.spaceship.ammo, self.spaceship.health)
@@ -124,6 +160,12 @@ class SpaceshipData:
         self.baddies.append( new_baddie )
                    
         return
+    def addPowerups(self):
+        new_powerups = Powerups(self.powerups_width, self.powerups_height, self.width, random.randint(0,(self.height-self.powerups_height)), self.powerups_color )
+        self.powerups.append( new_powerups )
+
+        return
+
 
     def draw(self,surface):
         self.screen_manager.bg.draw(surface)
@@ -135,6 +177,11 @@ class SpaceshipData:
             bullet.draw(surface)
         for baddie in self.baddies:
             baddie.draw(surface)
+        for powerups in self.powerups:
+            powerups.draw(surface)
+
+
+
 
         # self.screen_manager.current_screen.draw(surface)
         self.screen_manager.hud.draw(surface)

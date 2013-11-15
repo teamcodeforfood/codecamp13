@@ -17,6 +17,11 @@ class Bullet():
         if self.hitRectangle(x, y, w, h):
             self.setAlive(False)
             self.hit = True
+            
+    def checkHitPowerups(self,x,y,w,h):
+        if self.hitRectangle(x, y, w, h):
+            self.setAlive(False)
+            self.hit = True
 
     def checkBackWall(self,back_wall):
         if (self.x + self.width) > back_wall:
