@@ -143,6 +143,7 @@ class SpaceshipData:
                     baddie.setAlive(False)
                     if(self.spaceship.health<=0):
                         self.spaceship.setAlive(False)
+                        print "Spaceship dead"
 
         for powerups in self.powerups:
             if powerups.alive:
@@ -154,6 +155,9 @@ class SpaceshipData:
                     self.speed_boost_time = 0
                     self.speed_boost = True
 
+                    # For debugging purposes
+                    print "Powerup activated"
+
         if self.speed_boost == True:
             if self.speed_boost_time <= 1200:
                 self.speed_boost_time += 1
@@ -161,6 +165,9 @@ class SpaceshipData:
                 self.speed_boost = False
                 self.speed_boost_time = 0
                 self.spaceship.spaceship_speed = 5
+
+                # For debugging purposes
+                print "Speed boost ended"
 
         self.bullets = live_bullets
         self.baddies = live_baddies
