@@ -5,7 +5,10 @@ import random
 # Player and enemy
 from spaceship import Spaceship
 from baddie import Baddie
+
+# Powerups
 from powerups import Powerups
+from enemies.thepowerups import *
 
 # Game managers
 from GameScreen import GameScreen
@@ -13,7 +16,7 @@ from ScreenManager import ScreenManager
 import text
 
 # Baddies
-from enemies.test import *
+from enemies.thebaddies import *
 from enemies.plane import *
 
 # Screens
