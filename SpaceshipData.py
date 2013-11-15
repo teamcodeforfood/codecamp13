@@ -28,6 +28,7 @@ class SpaceshipData:
         self.score = 0
         self.baddies_killed = 0
         self.current_level = 0
+        self.resources_path = "resources"
         
         return
 
