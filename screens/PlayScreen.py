@@ -26,7 +26,7 @@ class PlayScreen(GameScreen):
         self.text_color = (255,0,0)
         self.width  = args[1]
         self.height = args[2]
-        self.upper_limit = 1270
+        self.upper_limit = self.width/3
         self.bullets = []
         self.baddies = []
         self.baddie_width = 20
@@ -44,6 +44,7 @@ class PlayScreen(GameScreen):
         self.speed_boost = False
         self.gamedifficulty = 1
 
+        # Sound effects
         self.hit_1 = pygame.mixer.Sound("resources/sound/hit_1.wav")
         self.powerup_1 = pygame.mixer.Sound("resources/sound/powerup_1.wav")
 
@@ -73,10 +74,10 @@ class PlayScreen(GameScreen):
         if random.randint(1, (self.frame_rate)) == 1:
             self.addBaddie2()
 
-        if random.randint(1, self.frame_rate*2) == 1:
+        if random.randint(1, self.frame_rate/2) == 1:
             self.addTestPowerups()
 
-        if random.randint(1, self.frame_rate*2) == 1:
+        if random.randint(1, self.frame_rate/2) == 1:
             self.addPowerups()
 
         if random.randint(1, self.frame_rate * 2) == 1:
@@ -163,17 +164,13 @@ class PlayScreen(GameScreen):
 
                 if(TestPowerups_rect.colliderect(spaceship_rect)):
                     powerups.setAlive(False)
-                    Globals.spaceship.spaceship_speed += .5
+                    Globals.spaceship.spaceship_speed += 6
                     self.speed_boost_time = 0
                     self.speed_boost = True
                     self.powerup_1.play()
                 if(Powerups_rect.colliderect(spaceship_rect)):
                     powerups.setAlive(False)
-<<<<<<< HEAD
                     Globals.spaceship.spaceship_speed += 2
-=======
-                    Globals.spaceship.spaceship_speed += .5
->>>>>>> 8c33036cbbe91cbbda542be81e15480370c228d9
                     self.speed_boost_time = 0
                     self.speed_boost = True
 
