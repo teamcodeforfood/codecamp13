@@ -6,7 +6,7 @@ from baddie import Baddie
 class SpaceshipData:
 
     def __init__(self,width,height,frame_rate):
-        self.font = pygame.font.SysFont("Times New Roman",36)
+        self.font = pygame.font.Font("resources/Fipps-Regular.otf",16)
         self.font2 = pygame.font.SysFont("Courier New",20)
         self.frame_rate = frame_rate
         self.text_color = (255,0,0)
