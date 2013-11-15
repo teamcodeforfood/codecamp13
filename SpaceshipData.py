@@ -14,6 +14,7 @@ import text
 
 # Baddies
 from enemies.test import *
+from enemies.plane import *
 
 # Screens
 from screens.test import TestScreen
@@ -75,7 +76,7 @@ class SpaceshipData:
 
          
 
-
+        # Add baddies
         if random.randint(1, (self.frame_rate)) == 1:
             self.addBaddie()
 
@@ -84,6 +85,9 @@ class SpaceshipData:
 
         if random.randint(1, self.frame_rate*5) == 1:
             self.addPowerups()
+
+        if random.randint(1, self.frame_rate * 2) == 1:
+            self.addPlane()
 
         for bullet in self.bullets:
             bullet.moveBullet()
@@ -203,6 +207,10 @@ class SpaceshipData:
         self.powerups.append( new_powerups )
 
         return
+
+    def addPlane(self):
+        new_plane = Plane()
+        self.baddies.append(new_plane)
 
 
     def draw(self,surface):
