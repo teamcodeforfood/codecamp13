@@ -13,10 +13,10 @@ class Spaceship():
         self.color  = color
         self.health = 100
         # TODO: ammo is really high for testing purposes
-        self.ammo   = 100
+        self.ammo   = 10000
         self.spaceship_speed = 2.5
         self.alive = True
-        self.space_ship_img = pygame.image.load("resources/boat.png")
+        self.space_ship_img = pygame.image.load("resources/sprites/ship_1.png")
         
         # Sound effects
         self.lazer_1 = pygame.mixer.Sound("resources/sound/lazer_1.wav")
@@ -33,8 +33,8 @@ class Spaceship():
     def moveRight(self, dx, upper_limit):
         self.x += dx
         # check the wall
-        #if self.x > upper_limit:
-         #  self.x = upper_limit
+        if self.x > upper_limit:
+           self.x = upper_limit
         return
 
     def moveUp(self, dy):
