@@ -11,8 +11,11 @@ from powerups import Powerups
 from GameScreen import GameScreen
 from ScreenManager import ScreenManager
 import text
+from globals import Globals
 
 # Baddies
+from enemies.test import Test2Baddie
+
 from enemies.test import TestBaddie
 
 # Screens
@@ -30,21 +33,15 @@ class SpaceshipData:
         self.width  = width
         self.height = height
         self.upper_limit = self.width/3
-        self.spaceship_width = 10
-        self.spaceship_height = 20
-        self.spaceship = Spaceship(self.spaceship_width,self.spaceship_height,(self.width / 2), (self.height) -10, (255,255,255))
+        self.spaceship = Spaceship(10,20,(self.width / 2), (self.height) -10, (255,255,255))
         self.bullets = []
-        self.bullet_width = 5
-        self.bullet_height = 10
-        self.bullet_color = (255,0,0)
         self.baddies = []
-        self.baddie_width = 20
-        self.baddie_height = 20
-        self.baddie_color = (255,0,0)
+
         self.powerups = []
         self.powerups_width = 20
         self.powerups_height = 20
         self.powerups_color = (0,255,0)
+
         self.score = 0
         self.baddies_killed = 0
         self.current_level = 0
@@ -76,7 +73,7 @@ class SpaceshipData:
             self.spaceship.moveDown(self.spaceship.spaceship_speed,self.height)
 
         if pygame.K_SPACE in newkeys:
-            self.bullets.append(self.spaceship.fire(self.bullet_width,self.bullet_height,self.bullet_color))
+            self.bullets.append(self.spaceship.fire())
 
          
 
@@ -188,8 +185,8 @@ class SpaceshipData:
         return
 
     def addBaddie(self):
-        new_baddie = TestBaddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
-        self.baddies.append( new_baddie )
+        new_baddie = TestBaddie(self.width, random.randint(0,(self.height-Globals.baddie_height)))
+        self.baddies.append(new_baddie)
                    
         return
     def addPowerups(self):

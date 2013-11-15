@@ -44,10 +44,10 @@ class Spaceship():
             self.y = board_height - self.height
         return
 
-    def fire(self,width,height,color):
+    def fire(self):
         if self.ammo > 0:
             self.ammo -= 1
-            return Bullet(width,height,self.x + (self.width / 2), (self.y + (self.height / 2)),color)
+            return Bullet(self.x + (self.width / 2), (self.y + (self.height / 2)))
         else:
             return None
 
@@ -55,5 +55,6 @@ class Spaceship():
         rect = pygame.Rect( self.x, self.y, self.width, self.height )
         pygame.draw.rect(surface, self.color, rect)
         return
+
     def setAlive(self,alive):
         self.alive = alive

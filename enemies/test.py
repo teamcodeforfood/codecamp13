@@ -4,7 +4,7 @@ import random
 
 class TestBaddie(Baddie):
     
-    def __init__(self, width, height, x, y, color):
+    def __init__(self, x, y):
         self.color = (55, 55, 55)
         self.width  = 30
         self.height = 30

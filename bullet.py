@@ -2,13 +2,13 @@ import pygame
 
 class Bullet():
 
-    def __init__(self,width,height,x,y,color):
-        self.width  = width
-        self.height = height
+    def __init__(self, x, y):
+        self.width  = 5
+        self.height = 10
         self.x      = x
         self.y      = y
         self.speed  = 7
-        self.color  = color
+        self.color  = (255, 0, 0)
         self.alive  = True
         self.hit    = False
         return
