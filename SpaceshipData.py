@@ -25,6 +25,10 @@ class SpaceshipData:
         self.baddie_width = 20
         self.baddie_height = 20
         self.baddie_color = (255,0,0)
+        self.score = 0
+        self.baddies_killed = 0
+        self.current_level = 0
+        self.resources_path = "resources"
         
         return
 
