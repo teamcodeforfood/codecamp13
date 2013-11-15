@@ -22,7 +22,6 @@ class Test2Baddie(Baddie):
         self.color = (55, 55, 55)
         self.width  = width
         self.height = height
->>>>>>> ecc9a7121c12ecbb27f5ba2e69aa01bbc5f07ccc
         self.x      = random.randint(0,1280)
         self.y      = 0
         self.new_x  = y
