@@ -25,7 +25,6 @@ class PlayScreen(GameScreen):
         self.width  = args[1]
         self.height = args[2]
         self.upper_limit = self.width/3
-        self.spaceship = Spaceship(10,20,(self.width / 2), (self.height) -10, (255,255,255))
         self.bullets = []
         self.baddies = []
         self.baddie_width = 20
@@ -48,16 +47,16 @@ class PlayScreen(GameScreen):
         newkeys = args[1]
 
         if pygame.K_LEFT in keys or pygame.K_a in keys:
-            self.spaceship.moveLeft(self.spaceship.spaceship_speed)
+            Globals.spaceship.moveLeft(Globals.spaceship.spaceship_speed)
         if pygame.K_RIGHT in keys or pygame.K_d in keys:
-            self.spaceship.moveRight(self.spaceship.spaceship_speed,self.upper_limit)
+            Globals.spaceship.moveRight(Globals.spaceship.spaceship_speed,self.upper_limit)
         if pygame.K_UP in keys or pygame.K_w in keys:
-            self.spaceship.moveUp(self.spaceship.spaceship_speed)
+            Globals.spaceship.moveUp(Globals.spaceship.spaceship_speed)
         if pygame.K_DOWN in keys or pygame.K_s in keys:
-            self.spaceship.moveDown(self.spaceship.spaceship_speed,self.height)
+            Globals.spaceship.moveDown(Globals.spaceship.spaceship_speed,self.height)
 
         if pygame.K_SPACE in newkeys:
-            self.bullets.append(self.spaceship.fire())
+            self.bullets.append(Globals.spaceship.fire())
 
         # Add baddies
         if random.randint(1, (self.frame_rate)) == 1:
@@ -78,8 +77,8 @@ class PlayScreen(GameScreen):
         for bullet in self.bullets:
             bullet.moveBullet()
             bullet.checkBackWall(self.width)
-        if not self.spaceship.alive:
-            self.spaceship.spaceship_speed = 0
+        if not Globals.spaceship.alive:
+            Globals.spaceship.spaceship_speed = 0
                 
         for baddie in self.baddies:
             baddie.tick(0,0,self.height)
@@ -133,17 +132,17 @@ class PlayScreen(GameScreen):
             if powerups.alive:
                 live_powerups.append(powerups)
       
-        spaceship_rect = pygame.Rect(self.spaceship.x, self.spaceship.y,self.spaceship.width,self.spaceship.height)
+        spaceship_rect = pygame.Rect(Globals.spaceship.x, Globals.spaceship.y,Globals.spaceship.width,Globals.spaceship.height)
 
         for baddie in self.baddies:
             if baddie.alive:
                 baddie_rect = pygame.Rect(baddie.x, baddie.y, baddie.width, baddie.height)
 
                 if(baddie_rect.colliderect(spaceship_rect)):
-                    self.spaceship.health -=10
+                    Globals.spaceship.health -=10
                     baddie.setAlive(False)
-                    if(self.spaceship.health<=0):
-                        self.spaceship.setAlive(False)
+                    if(Globals.spaceship.health<=0):
+                        Globals.spaceship.setAlive(False)
                         print "Spaceship dead"
                     if(self.baddie.health <= 10):
                         self.spaceshift.setAlive(False)
@@ -155,12 +154,12 @@ class PlayScreen(GameScreen):
 
                 if(TestPowerups_rect.colliderect(spaceship_rect)):
                     powerups.setAlive(False)
-                    self.spaceship.spaceship_speed += 6
+                    Globals.spaceship.spaceship_speed += 6
                     self.speed_boost_time = 0
                     self.speed_boost = True
                 if(Powerups_rect.colliderect(spaceship_rect)):
                     powerups.setAlive(False)
-                    self.spaceship.spaceship_speed += 100
+                    Globals.spaceship.spaceship_speed += 100
                     self.speed_boost_time = 0
                     self.speed_boost = True
 
@@ -173,7 +172,7 @@ class PlayScreen(GameScreen):
             else:
                 self.speed_boost = False
                 self.speed_boost_time = 0
-                self.spaceship.spaceship_speed = 5
+                Globals.spaceship.spaceship_speed = 5
 
                 # For debugging purposes
                 print "Speed boost ended"
@@ -184,7 +183,7 @@ class PlayScreen(GameScreen):
 
 
     def draw(self, surface):
-        self.spaceship.draw(surface)
+        Globals.spaceship.draw(surface)
         for bullet in self.bullets:
             bullet.draw(surface)
         for baddie in self.baddies:

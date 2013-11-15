@@ -10,7 +10,7 @@ class MenuScreen(GameScreen):
         pygame.draw.rect(surface, (0, 0, 0), rect)
 
         self.text.drawTextLeft(surface, "spacegame", (255, 255, 255), 50, 50)
-        self.text.drawTextLeft(surface, "press enter to begin", (255, 255, 255), 50, 75)
+        self.text.drawTextLeft(surface, "press space to begin", (255, 255, 255), 50, 75)
 
     def update(self, *args):
         if pygame.K_SPACE in args[0]:
