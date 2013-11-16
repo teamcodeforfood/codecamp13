@@ -1,11 +1,6 @@
 import pygame
 import random
-<<<<<<< HEAD
 from bullet import BaddieBullet
-=======
-import spaceship
-from globals import Globals
->>>>>>> 4bd9b12a430172c7b2677323c732595ad0da6a3b
 
 class Baddie():
 
@@ -27,7 +22,6 @@ class Baddie():
         if self.alive == True:
             if self.ammo > 0:
                 self.ammo -= 1
-                # self.lazer_1.play()
                 return BaddieBullet(self.x + (self.width / 2), (self.y + (self.height / 2)))
             else:
                 return None
@@ -43,10 +37,6 @@ class Baddie():
         # self.new_x = self.x + random.randint(-1,1)
         self.new_y = self.y + self.speed
         if self.new_x < back_wall:
-            self.setAlive(False)
-        if self.new_y > 720:
-            Globals.spaceship.health -= 10
-            Globals.spaceship.missed += 1
             self.setAlive(False)
         # if self.new_y < upper_wall:
             # self.new_y = upper_wall
