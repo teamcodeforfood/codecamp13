@@ -1,5 +1,6 @@
-class Globals():
+from spaceship import Spaceship
 
+class Globals():
     def setup():
         pygame.font.init()
         pygame.display.init()
@@ -7,8 +8,15 @@ class Globals():
     bullet_width = 5
     bullet_height = 5
 
-    spaceship_height = 20
-    spaceship_width = 10
+    spaceship_height = 32
+    spaceship_width = 32
 
-    baddie_height = 20
-    baddie_width = 20
+    baddie_height = 32
+    baddie_width = 32
+
+    score = 0
+    ammo = 0
+
+    mute = False # rip logan's ears
+
+    spaceship = Spaceship(10,20,(1280 / 2), (720) -10, (255,255,255))

@@ -14,6 +14,7 @@ class ScreenManager():
 
     def setOverlayScreen(self, hud):
         self.hud = hud
+        self.hud.load()
 
     def setBackgroundScreen(self, screen):
         self.bg = screen
@@ -21,3 +22,6 @@ class ScreenManager():
 
     def setScreenQueue(self, screen):
         self.next = screen
+
+    def gamePause(self):
+        self.current_screen = self

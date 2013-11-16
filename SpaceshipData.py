@@ -5,20 +5,26 @@ import random
 from GameScreen import GameScreen
 from ScreenManager import ScreenManager
 
+from globals import Globals
+
 # Screens
 from screens.Background import Background
 from screens.Hud import Hud
 from screens.MenuScreen import MenuScreen
 from screens.PlayScreen import PlayScreen
+from screens.PauseMenu import PauseMenu
 
 class SpaceshipData:
 
     def __init__(self,width,height,frame_rate):
+        # set up screens
         self.screen_manager = ScreenManager()
         self.screen_manager.setOverlayScreen(Hud())
         self.screen_manager.setBackgroundScreen(Background())
         self.screen_manager.setCurrentScreen(MenuScreen())
         self.screen_manager.setScreenQueue(PlayScreen())
+        self.screen_manager.current_screen.load()
+        self.pause = PauseMenu()
 
         self.screen_manager.next.load(frame_rate, width, height)
 
@@ -29,11 +35,14 @@ class SpaceshipData:
         
         if self.screen_manager.current_screen.update(keys, newkeys) == False:
             self.screen_manager.current_screen = self.screen_manager.next
+
+            # this is kind of hacky
+            self.screen_manager.display_hud = True
         else:
             self.screen_manager.current_screen.update(keys, newkeys)
 
         if self.screen_manager.display_hud == True:
-            self.screen_manager.hud.update(self.score, self.spaceship.ammo, self.spaceship.health)
+            self.screen_manager.hud.update(Globals.score, Globals.spaceship.ammo, Globals.spaceship.health, Globals.spaceship.missed, Globals.spaceship.gamedifficulty, Globals.spaceship.powerstat)
         
         return
 
@@ -46,5 +55,4 @@ class SpaceshipData:
         
         if self.screen_manager.display_hud == True:
             self.screen_manager.hud.draw(surface)
-
         return

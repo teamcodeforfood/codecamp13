@@ -15,6 +15,7 @@ class Powerups():
         self.color  = color
         self.alive  = True
         self.orig_width = self.width
+        self.sprite = pygame.image.load("resources/sprites/green_xp.png")
         return
 
     def tick(self,back_wall,upper_wall,lower_wall):
@@ -22,8 +23,6 @@ class Powerups():
         self.new_y = self.y + self.speed
         if self.new_x < back_wall:
             self.setAlive(False)
-        else:
-            self.x = self.new_x
         # if self.new_y < upper_wall:
             # self.new_y = upper_wall
         # elif self.new_y + self.height > lower_wall:
@@ -43,6 +42,7 @@ class Powerups():
     
     def draw(self, surface):
         rect = pygame.Rect( self.x, self.y, self.width, self.height )
-        pygame.draw.rect(surface, self.color, rect)
+        # pygame.draw.rect(surface, self.color, rect)
+        surface.blit(self.sprite, rect)
         return
         
