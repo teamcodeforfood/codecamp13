@@ -73,12 +73,12 @@ class Spaceship():
 
         return
 
-    def fire(self):
+    def fire(self, direction='normal'):
         if self.alive == True:
             if self.ammo > 0:
                 self.ammo -= 1
                 self.lazer_1.play()
-                return Bullet(self.x + (self.width / 2), (self.y + (self.height / 2)))
+                return Bullet(self.x + (self.width / 2), (self.y + (self.height / 2)), direction)
             else:
                 return None
 
