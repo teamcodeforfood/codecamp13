@@ -29,7 +29,7 @@ class Spaceship():
 
         # Sound effects
         self.lazer_1 = pygame.mixer.Sound("resources/sound/lazer_1.wav")
-
+        self.gamedifficulty = 1
         return
 
     def moveLeft(self, dx):
