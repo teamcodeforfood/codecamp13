@@ -52,7 +52,10 @@ class Baddie():
             bullet.moveBullet()
 
         self.bullets = live_bullets
-
+        if self.y >= 720:
+            Globals.spaceship.missed += 1
+            Globals.spaceship.health -= 2
+            self.setAlive(False)
         return self.alive
 
     def getAlive(self):

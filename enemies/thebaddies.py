@@ -36,9 +36,11 @@ class TestBaddie(Baddie):
         if self.alive == True:
             if self.ammo > 0:
                 if random.randint(1, 100) == 1:
-                    self.lazer_2_snd.play()
+                    if not Globals.mute == True:
+                        self.lazer_2_snd.play()
                 else:
-                    self.lazer_3_snd.play()
+                    if not Globals.mute == True:
+                        self.lazer_3_snd.play()
                 self.ammo -= 1
                 # self.lazer_1.play()
                 return BaddieBullet(self.x + (self.width / 2), (self.y + (self.height / 2)))
@@ -78,6 +80,7 @@ class TestBaddie(Baddie):
 
         if self.y >= 720:
             Globals.spaceship.missed += 1
+            Globals.spaceship.health -= 2
             print Globals.spaceship.missed
             self.setAlive(False)
 
@@ -105,7 +108,8 @@ class TestBaddie(Baddie):
         return self.alive
 
         if alive == False:
-            self.boom_1.play()
+            if not Globals.mute == True:
+                self.boom_1.play()
 
 # Circle guy
 class Test2Baddie(Baddie):
