@@ -13,6 +13,7 @@ class Spaceship():
         self.color  = color
         self.health = 100
         self.missed = 0
+        self.powerstat = 0
         # TODO: ammo is really high for testing purposes
         self.ammo   = 100
         self.spaceship_speed = 2.5
@@ -73,12 +74,12 @@ class Spaceship():
 
         return
 
-    def fire(self, direction='normal'):
+    def fire(self):
         if self.alive == True:
             if self.ammo > 0:
                 self.ammo -= 1
                 self.lazer_1.play()
-                return Bullet(self.x + (self.width / 2), (self.y + (self.height / 2)), direction)
+                return Bullet(self.x + (self.width / 2), (self.y + (self.height / 2)))
             else:
                 return None
 

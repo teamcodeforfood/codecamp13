@@ -20,5 +20,5 @@ class Meter():
         pass
 
     def update(self, new_val):
-        self.value = new_val
+        self.value -= new_val
         pass

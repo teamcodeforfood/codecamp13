@@ -12,6 +12,7 @@ class Hud(GameScreen):
         self.health = args[2]
         self.missed = args[3]
         self.gamedifficulty = args[4]
+        self.powerstat = args[5]
 
         self.ammo_meter.update(self.ammo)
 
@@ -21,6 +22,10 @@ class Hud(GameScreen):
         self.text.drawTextLeft(surface, "Health   " + str(self.health), (255, 255, 255), 10, 75)
         self.text.drawTextLeft(surface, "Missed   " + str(self.missed), (255, 255, 255), 10, 95)
         self.text.drawTextLeft(surface, "Difficulty   " + str(self.gamedifficulty), (255, 255, 255), 585, 35)
+<<<<<<< HEAD
 
         self.ammo_meter.draw(surface)
 
+=======
+        self.text.drawTextLeft(surface, "Status   " + str(self.powerstat), (255, 255, 255), 1000, 400)
+>>>>>>> d138828e3740a6ce788fc4541f9bffcb8cbf0095

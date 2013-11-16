@@ -2,7 +2,7 @@ import pygame
 
 class Bullet():
 
-    def __init__(self, x, y, direction='normal'):
+    def __init__(self, x, y):
         self.width  = 5
         self.height = 10
         self.x      = x
@@ -12,7 +12,6 @@ class Bullet():
         self.alive  = True
         self.hit    = False
         self.sprite_1 = pygame.image.load("resources/sprites/lazer_1.png")
-        self.direction = direction
         return
 
     def checkHitBaddie(self,x,y,w,h):
@@ -31,18 +30,7 @@ class Bullet():
         return
 
     def moveBullet(self):
-        if self.direction == 'up':
-            self.y -= self.speed
-        if self.direction == 'down':
-            self.y += self.speed
-        elif self.direction == "l":
-            self.y -= self.speed
-            self.x -= self.speed / 2
-        elif self.direction == "r":
-            self.y -= self.speed
-            self.x += self.speed / 2
-        else:
-            self.y -= self.speed
+        self.y -= self.speed
         return
 
     def setAlive(self,alive):
