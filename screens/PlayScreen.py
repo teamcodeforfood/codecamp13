@@ -72,13 +72,13 @@ class PlayScreen(GameScreen):
             self.bullets.append(Globals.spaceship.fire())
 
         # Add baddies
-        if random.randint(1, self.frame_rate * 5) == 1:
+        if random.randint(1, 250 - self.gamedifficulty) == 1:
             self.addBaddie()
 
-        if random.randint(1, self.frame_rate * 2) == 1:
+        if random.randint(1, 250 - self.gamedifficulty) == 1:
             self.addBaddie2()
 
-        if random.randint(1, self.frame_rate*3) == 1:
+        if random.randint(1, self.frame_rate*4) == 1:
             self.addTestPowerups()
 
         if random.randint(1, self.frame_rate*4) == 1:
@@ -119,6 +119,7 @@ class PlayScreen(GameScreen):
                     bullet.hit = False
                     self.score += 100
                     self.gamedifficulty +=1
+                    Globals.spaceship.gamedifficulty +=1
                     self.hit_1.play()
                     if baddie.health <= 0:
                         baddie.setAlive(False)

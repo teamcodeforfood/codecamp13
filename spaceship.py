@@ -13,7 +13,7 @@ class Spaceship():
         self.color  = color
         self.health = 100
         # TODO: ammo is really high for testing purposes
-        self.ammo   = 100
+        self.ammo   = 10000
         self.spaceship_speed = 2.5
         self.alive = True
         self.missed = 0
@@ -21,6 +21,7 @@ class Spaceship():
         
         # Sound effects
         self.lazer_1 = pygame.mixer.Sound("resources/sound/lazer_1.wav")
+        self.gamedifficulty = 1
 
         return
 
