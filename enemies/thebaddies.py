@@ -4,6 +4,7 @@ from bullet import BaddieBullet
 from globals import Globals
 import random
 
+# Triangle one
 class TestBaddie(Baddie):
     
     def __init__(self, width, height, x, y, color):
@@ -25,6 +26,8 @@ class TestBaddie(Baddie):
         self.lazer_2_snd = pygame.mixer.Sound("resources/sound/lazer_2.wav")
         self.lazer_3_snd = pygame.mixer.Sound("resources/sound/lazer_3.wav")
         self.bullets = []
+        self.dir = 1
+
         pass
 
     def fire(self):
@@ -67,19 +70,22 @@ class TestBaddie(Baddie):
                 self.lazer_1_snd.play()
 
         self.y = self.new_y
+        
+        if random.randint(1, 150) == 1:
+            self.bullets.append(self.fire())
 
         if self.y >= 720:
             Globals.spaceship.missed += 1
             print Globals.spaceship.missed
             self.setAlive(False)
 
-        if random.randint(1, 100) == 1:
-            self.bullets.append(self.fire())
-
         for bullet in self.bullets:
             bullet.moveBullet()
 
         # self.bullets = live_bullets
+
+        if self.y >= 720:
+            self.setAlive(False)
 
         return self.alive
 

@@ -72,13 +72,13 @@ class PlayScreen(GameScreen):
             self.bullets.append(Globals.spaceship.fire())
 
         # Add baddies
-        if random.randint(1, 250 - self.gamedifficulty) == 1:
+        if random.randint(1, self.frame_rate * 5) == 1:
             self.addBaddie()
 
-        if random.randint(1, 250 - self.gamedifficulty) == 1:
+        if random.randint(1, self.frame_rate * 2) == 1:
             self.addBaddie2()
 
-        if random.randint(1, self.frame_rate*4) == 1:
+        if random.randint(1, self.frame_rate*3) == 1:
             self.addTestPowerups()
 
         if random.randint(1, self.frame_rate*4) == 1:
@@ -107,28 +107,34 @@ class PlayScreen(GameScreen):
             powerups.tick(0,0,self.height)
 
         for bullet in self.bullets:
+            if bullet == None:
+                break
+
             if not bullet.alive:
                 continue
-            for baddie in self.baddies:
-                if not baddie.alive:
-                    continue
-                x,y,w,h = baddie.getDimensions()
-                bullet.checkHitBaddie(x,y,w,h)
-                if bullet.getHit():
-                    bullet.setAlive(False)
-                    baddie.health -=100
-                    bullet.hit = False
-                    self.score += 100
-                    self.gamedifficulty +=1
-                    Globals.spaceship.gamedifficulty +=1
-                    self.hit_1.play()
-                    if baddie.health <= 0:
-                        baddie.setAlive(False)
-                if bullet.y < 0:
-                    bullet.setAlive(False)
+            else:
+                for baddie in self.baddies:
+                    if not baddie.alive:
+                        continue
+                    x,y,w,h = baddie.getDimensions()
+                    bullet.checkHitBaddie(x,y,w,h)
+                    if bullet.getHit():
+                        bullet.setAlive(False)
+                        baddie.health -=100
+                        bullet.hit = False
+                        self.score += 100
+                        self.gamedifficulty +=1
+                        self.hit_1.play()
+                        if baddie.health <= 0:
+                            baddie.setAlive(False)
+                    if bullet.y < 0:
+                        bullet.setAlive(False)
 
 
         for bullet in self.bullets:
+            if bullet == None:
+                break
+
             if not bullet.alive:
                 continue
             for powerups in self.powerups:
