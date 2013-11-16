@@ -13,7 +13,7 @@ class Baddie():
         self.speed  = .3
         self.color  = (255, 255, 255)
         self.alive  = True
-        self.sprite_1 = pygame.image.load("resources/sprites/baddie_1.png")
+        self.sprite_1 = pygame.image.load("resources/sprites/shipjosh1_2.png")
         return
 
     def tick(self,back_wall,upper_wall,lower_wall):
