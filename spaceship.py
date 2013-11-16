@@ -12,7 +12,7 @@ class Spaceship():
         self.y      = y
         self.color  = color
         self.health = 100
-        self.misses = 0
+        self.missed = 0
         # TODO: ammo is really high for testing purposes
         self.ammo   = 10000
         self.spaceship_speed = 2.5
