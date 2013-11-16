@@ -11,13 +11,15 @@ class Boss():
         self.y      = 100
         self.new_x  = x
         self.new_y  = y
-        self.speed  = .5
+        self.speed  = .2
         self.color  = (255, 0, 255)
         self.alive  = True
         self.sprite_1 = pygame.image.load("resources/sprites/redcapsule.png")
         self.boom_1 = pygame.mixer.Sound("resources/sound/boom_1.wav")
         self.bullets = []
-        self.health = 1000
+        self.health = 10000
+        self.ammo = 100000
+        self.damage = 10
         return
 
     def fire(self):

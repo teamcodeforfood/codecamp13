@@ -176,6 +176,7 @@ class PlayScreen(GameScreen):
         live_baddies = []
         live_powerups = []
         live_thepowerups = []
+        live_bosses = []
         for bullet in self.bullets:
             if bullet == None:
                 break
@@ -185,6 +186,9 @@ class PlayScreen(GameScreen):
         for baddie in self.baddies:
             if baddie.alive:
                 live_baddies.append(baddie)
+        for boss in self.bosses:
+            if boss.alive:
+                live_baddies.append(boss)
 
         for powerups in self.powerups:
             if powerups.alive:
@@ -280,6 +284,7 @@ class PlayScreen(GameScreen):
         self.baddies = live_baddies
         self.powerups = live_powerups
         self.thepowerups = live_thepowerups
+        self.bosses = live_bosses
 
 
     def draw(self, surface):
