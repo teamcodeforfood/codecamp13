@@ -1,6 +1,7 @@
 import pygame
 import random
 from bullet import BaddieBullet
+from globals import Globals
 
 class Boss():
 

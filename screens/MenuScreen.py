@@ -10,7 +10,7 @@ class MenuScreen(GameScreen):
 
     def draw(self, surface):
         rect = pygame.Rect(0, 0, 1280, 720)
-        self.text.drawTextLeft(surface, "Galaxy Jam", (51, 255, 255), 550, 340)
+        self.text.drawTextLeft(surface, "Galaxy Jam", (253, 212, 0), 550, 340)
         self.text.drawTextLeft(surface, "press space to begin", (255, 255, 255), 475, 380)
         self.text.drawTextLeft(surface, "Will Code for food", (255, 0, 0), 950, 30)
         self.text.drawTextLeft(surface, "Josh Beitler", (255, 255, 255), 1000, 50)
