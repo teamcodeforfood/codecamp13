@@ -122,7 +122,7 @@ class PlayScreen(GameScreen):
                         bullet.setAlive(False)
                         baddie.health -=100
                         bullet.hit = False
-                        self.score += 100
+                        Globals.spaceship.score += 100
                         self.gamedifficulty +=1
                         Globals.spaceship.gamedifficulty +=1
                         self.hit_1.play()
