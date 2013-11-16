@@ -152,6 +152,9 @@ class PlayScreen(GameScreen):
         live_baddies = []
         live_powerups = []
         for bullet in self.bullets:
+            if bullet == None:
+                break
+
             if bullet.alive:
                 live_bullets.append(bullet)
         for baddie in self.baddies:

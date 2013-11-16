@@ -155,6 +155,9 @@ class Test2Baddie(Baddie):
             self.bullets.append(self.fire())
 
         for bullet in self.bullets:
+            if bullet == None:
+                break
+                
             bullet.moveBullet()
 
         self.bullets = live_bullets
