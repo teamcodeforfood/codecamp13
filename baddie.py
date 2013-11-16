@@ -54,8 +54,6 @@ class Baddie():
 
         self.bullets = live_bullets
 
-        print self.y
-
         if self.y >= 720:
             Globals.spaceship.missed += 1
             print Globals.spaceship.missed

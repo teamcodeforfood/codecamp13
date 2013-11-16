@@ -71,8 +71,15 @@ class PlayScreen(GameScreen):
         if pygame.K_SPACE in newkeys:
             self.bullets.append(Globals.spaceship.fire())
 
+<<<<<<< HEAD
+        #
+        # Spawning
+        #
+        if random.randint(1, self.frame_rate * 5) == 1:
+=======
         # Add baddies
         if random.randint(1, 250 - self.gamedifficulty) == 1:
+>>>>>>> c8d4072e5ee331f6a5cb554a832174615eff6a7e
             self.addBaddie()
 
         if random.randint(1, 250 - self.gamedifficulty) == 1:
@@ -152,6 +159,7 @@ class PlayScreen(GameScreen):
         live_bullets = []
         live_baddies = []
         live_powerups = []
+        live_thepowerups = []
         for bullet in self.bullets:
             if bullet == None:
                 break
@@ -165,6 +173,10 @@ class PlayScreen(GameScreen):
         for powerups in self.powerups:
             if powerups.alive:
                 live_powerups.append(powerups)
+
+        for powerups in self.thepowerups:
+            if powerups.alive:
+                live_thepowerups.append(powerups)
       
         spaceship_rect = pygame.Rect(Globals.spaceship.x, Globals.spaceship.y,Globals.spaceship.width,Globals.spaceship.height)
 
@@ -194,9 +206,8 @@ class PlayScreen(GameScreen):
                         Globals.spaceship.setAlive(False)
                         print "Spaceship dead"
 
-        for powerups in self.powerups:
+        for powerups in self.thepowerups:
             if powerups.alive:
-                Powerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
                 TestPowerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
 
                 if(TestPowerups_rect.colliderect(spaceship_rect)):
@@ -211,7 +222,7 @@ class PlayScreen(GameScreen):
                     print "Powerup activated"
  # HAHAHAHAH
 
-        for powerups in self.thepowerups:
+        for powerups in self.powerups:
             if powerups.alive:
                 powerups_rect = pygame.Rect(powerups.x,powerups.y,powerups.width, powerups.height)
 
@@ -238,6 +249,7 @@ class PlayScreen(GameScreen):
         self.bullets = live_bullets
         self.baddies = live_baddies
         self.powerups = live_powerups
+        self.thepowerups = live_thepowerups
 
 
     def draw(self, surface):
