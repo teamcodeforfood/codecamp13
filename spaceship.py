@@ -13,6 +13,7 @@ class Spaceship():
         self.color  = color
         self.health = 100
         self.missed = 0
+        self.powerstat = 0
         # TODO: ammo is really high for testing purposes
         self.ammo   = 100
         self.spaceship_speed = 2.5
