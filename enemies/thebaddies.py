@@ -26,6 +26,7 @@ class TestBaddie(Baddie):
         self.lazer_1_snd = pygame.mixer.Sound("resources/sound/hurt_1.wav")
         self.lazer_2_snd = pygame.mixer.Sound("resources/sound/lazer_2.wav")
         self.lazer_3_snd = pygame.mixer.Sound("resources/sound/lazer_3.wav")
+        self.boom_1 = pygame.mixer.Sound("resources/sound/boom_1.wav")
         self.bullets = []
         self.dir = 1
 
@@ -100,6 +101,12 @@ class TestBaddie(Baddie):
 
         return
 
+    def getAlive(self):
+        return self.alive
+
+        if alive == False:
+            self.boom_1.play()
+
 # Circle guy
 class Test2Baddie(Baddie):
     
@@ -117,6 +124,7 @@ class Test2Baddie(Baddie):
         self.alive  = True
         self.ammo = 100000
         self.sprite_1 = pygame.image.load("resources/sprites/shipjosh2_2.png")
+        self.boom_1 = pygame.mixer.Sound("resources/sound/boom_1.wav")
         self.bullets = []
         pass
 
@@ -128,6 +136,12 @@ class Test2Baddie(Baddie):
                 return BaddieBullet(self.x + (self.width / 2), (self.y + (self.height / 2)))
             else:
                 return None
+
+    def getAlive(self):
+        return self.alive
+
+        if alive == False:
+            self.boom_1.play()
 
     def tick(self,back_wall,upper_wall,lower_wall):
         live_bullets = []
@@ -147,12 +161,15 @@ class Test2Baddie(Baddie):
             print Globals.spaceship.missed
             self.setAlive(False)
 
-            (dx, dy) = ((Globals.spaceship.x - self.x)/math.sqrt((Globals.spaceship.x - self.x) ** 2 + (Globals.spaceship.y - self.y) ** 2), 
-            (Globals.spaceship.y - self.y)/math.sqrt((Globals.spaceship.x - self.x) ** 2 + (Globals.spaceship.y - self.y) ** 2))
+        (dx, dy) = ((Globals.spaceship.x - self.x)/math.sqrt((Globals.spaceship.x - self.x) ** 2 + (Globals.spaceship.y - self.y) ** 2), 
+        (Globals.spaceship.y - self.y)/math.sqrt((Globals.spaceship.x - self.x) ** 2 + (Globals.spaceship.y - self.y) ** 2))
 
-            self.x = dx
-            self.y = dy
-
+        ##
+        ## This is the zombie-like code
+        ##
+        # self.x = (Globals.spaceship.x + dx * self.speed)
+        # self.y = (Globals.spaceship.y + dy * self.speed)
+        # self.x += self.speed
 
         for bullet in self.bullets:
             if bullet == None:

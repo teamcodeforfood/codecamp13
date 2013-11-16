@@ -1,6 +1,5 @@
 import pygame
 import random
-from globals import Globals
 from bullet import BaddieBullet
 
 class Baddie():
@@ -16,6 +15,7 @@ class Baddie():
         self.color  = (255, 255, 255)
         self.alive  = True
         self.sprite_1 = pygame.image.load("resources/sprites/baddie_1.png")
+        self.boom_1 = pygame.mixer.Sound("resources/sound/boom_1.wav")
         self.bullets = []
         return
 
@@ -39,7 +39,6 @@ class Baddie():
         self.new_y = self.y + self.speed
         if self.new_x < back_wall:
             self.setAlive(False)
-
         # if self.new_y < upper_wall:
             # self.new_y = upper_wall
         # elif self.new_y + self.height > lower_wall:
@@ -54,14 +53,20 @@ class Baddie():
 
         self.bullets = live_bullets
 
+<<<<<<< HEAD
         if self.y >= 720:
             Globals.spaceship.missed += 1
             self.setAlive(False)
 
+=======
+>>>>>>> 97cde89cb883bcef0076171ec0c7aa2d2b447d20
         return self.alive
 
     def getAlive(self):
         return self.alive
+
+        if alive == False:
+            self.boom_1.play()
 
     def getDimensions(self):
         return self.x,self.y,self.width,self.height
