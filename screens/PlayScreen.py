@@ -11,6 +11,7 @@ from globals import Globals
 from enemies.test import *
 from enemies.thebaddies import *
 from enemies.plane import *
+from enemies.boss1 import *
 
 # Powerups
 from enemies.thepowerups import *
@@ -34,6 +35,10 @@ class PlayScreen(GameScreen):
         self.baddie_width = 32
         self.baddie_height = 32
         self.baddie_color = (255,0,0)
+        self.bosses = []
+        self.boss_width = 100
+        self.boss_height = 100
+        self.boss_color = (255, 0, 255)
         self.powerups = []
         self.thepowerups = []
         self.powerups_width = 16
@@ -75,6 +80,8 @@ class PlayScreen(GameScreen):
         # Spawning
         #
         # Add baddies
+        if self.gamedifficulty == 10:
+            self.addBoss()
         if random.randint(1, 250 - self.gamedifficulty) == 1:
             self.addBaddie()
 
@@ -116,6 +123,20 @@ class PlayScreen(GameScreen):
             if not bullet.alive:
                 continue
             else:
+                for boss in self.bosses:
+                            if not boss.alive:
+                                continue
+                            x,y,w,h = boss.getDimensions()
+                            bullet.checkHitBaddie(x,y,w,h)
+                            if bullet.getHit():
+                                bullet.setAlive(False)
+                                boss.health -=100
+                                bullet.hit = False
+                                self.hit_1.play()
+                                if boss.health <= 0:
+                                    boss.setAlive(False)
+                            if bullet.y < 0:
+                                bullet.setAlive(False)
                 for baddie in self.baddies:
                     if not baddie.alive:
                         continue
@@ -133,7 +154,6 @@ class PlayScreen(GameScreen):
                             baddie.setAlive(False)
                     if bullet.y < 0:
                         bullet.setAlive(False)
-
 
         for bullet in self.bullets:
             if bullet == None:
@@ -189,7 +209,21 @@ class PlayScreen(GameScreen):
                         Globals.spaceship.setAlive(False)
                         print "Spaceship dead"
                     if(baddie.health <= 10):
-                        self.spaceshift.setAlive(False)
+                        self.spaceship.setAlive(False)
+
+        for boss in self.bosses:
+            if boss.alive:
+                boss_rect = pygame.Rect(boss.x, boss.y, boss.width, boss.height)
+
+                if(boss_rect.colliderect(spaceship_rect)):
+                    Globals.spaceship.health -= boss.damage
+                    self.hurt_1.play()
+                    boss.setAlive(False)
+                    if(Globals.spaceship.health<=0):
+                        Globals.spaceship.setAlive(False)
+                        print "Spaceship dead"
+                    if(boss.health <= 10):
+                        self.spaceship.setAlive(False)
 
         for baddie in self.thebaddies:
             if baddie.alive:
@@ -250,6 +284,8 @@ class PlayScreen(GameScreen):
 
     def draw(self, surface):
         Globals.spaceship.draw(surface)
+        for boss in self.bosses:
+            boss.draw(surface)
         for bullet in self.bullets:
             bullet.draw(surface)
         for baddie in self.baddies:
@@ -261,6 +297,11 @@ class PlayScreen(GameScreen):
         for powerups in self.thepowerups:
             powerups.draw(surface)
 
+    def addBoss(self):
+        new_boss = Boss( self.boss_width, self.boss_height, self.width, random.randint(0,(self.height-self.boss_height)), self.boss_color )
+        self.bosses.append( new_boss )
+                   
+        return
     
     def addBaddie(self):
         new_baddie = TestBaddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
