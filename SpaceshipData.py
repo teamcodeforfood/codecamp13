@@ -42,7 +42,7 @@ class SpaceshipData:
             self.screen_manager.current_screen.update(keys, newkeys)
 
         if self.screen_manager.display_hud == True:
-            self.screen_manager.hud.update(Globals.score, Globals.spaceship.ammo, Globals.spaceship.health, Globals.spaceship.missed)
+            self.screen_manager.hud.update(Globals.score, Globals.spaceship.ammo, Globals.spaceship.health, Globals.spaceship.missed, Globals.spaceship.gamedifficulty)
         
         return
 
