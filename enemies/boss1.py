@@ -5,8 +5,8 @@ from bullet import BaddieBullet
 class Boss():
 
     def __init__(self, width, height, x, y, color):
-        self.width  = 100
-        self.height = 100
+        self.width  = 200
+        self.height = 200
         self.x      = 640
         self.y      =10
         self.new_x  = x
