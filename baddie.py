@@ -1,5 +1,7 @@
 import pygame
 import random
+import spaceship
+from globals import Globals
 
 class Baddie():
 
@@ -20,6 +22,10 @@ class Baddie():
         # self.new_x = self.x + random.randint(-1,1)
         self.new_y = self.y + self.speed
         if self.new_x < back_wall:
+            self.setAlive(False)
+        if self.new_y > 720:
+            Globals.spaceship.missed += 1
+            print Globals.spaceship.missed
             self.setAlive(False)
         # if self.new_y < upper_wall:
             # self.new_y = upper_wall
