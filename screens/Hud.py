@@ -6,12 +6,17 @@ from spaceship import Weapons
 
 class Hud(GameScreen):
     def load(self):
-        self.ammo_meter = Meter(100, 20, 100, 0, 100, 10, 100)
+        self.health_meter = Meter(100, 20, 100, 0, 100, 64, (720 - 64))
+        self.ammo_meter = Meter(100, 20, 100, 0, 100, 64, (720 - 90))
 
         # Hotbar
         self.hotbar_bg = pygame.image.load("resources/sprites/hotbar/HotBar.png")
         self.hotbar_sel = pygame.image.load("resources/sprites/hotbar/SelectionRing.png")
         self.hotbar_cur = 1
+
+        # HUD overlays
+        self.health_img = pygame.image.load("resources/overlays/health.png")
+        self.ammo_img = pygame.image.load("resources/overlays/ammo.png")
 
         # Hotbar items
         self.lazer1 = pygame.image.load("resources/sprites/hotbar/lazer_1.png")
@@ -26,6 +31,7 @@ class Hud(GameScreen):
         self.powerstat = args[5]
 
         self.ammo_meter.update(self.ammo)
+        self.health_meter.update(self.health)
 
     def draw(self, surface):
         self.text.drawTextLeft(surface, "Score    " + str(self.score), (255, 255, 255), 10, 35)
@@ -35,6 +41,10 @@ class Hud(GameScreen):
         self.text.drawTextLeft(surface, "Difficulty   " + str(self.gamedifficulty), (255, 255, 255), 585, 35)
 
         self.ammo_meter.draw(surface)
+        self.health_meter.draw(surface)
+
+        surface.blit(self.health_img, pygame.Rect(45, (720 - 64), 20, 20))
+        surface.blit(self.ammo_img, pygame.Rect(45, (720 - 90), 20, 20))
 
         hw = 160
         hh = 32

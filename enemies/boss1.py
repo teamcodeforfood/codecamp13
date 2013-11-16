@@ -32,7 +32,7 @@ class Boss():
         self.lazer_2_snd = pygame.mixer.Sound("resources/sound/lazer_2.wav")
         self.roar_1 = pygame.mixer.Sound("resources/sound/boss_roar_1.ogg")
         self.bullets = []
-        self.health = 20000
+        self.health = 60000
         self.ammo = 100000
         self.damage = 10
         self.direction = 1
@@ -98,7 +98,7 @@ class Boss():
 
         # self.y = self.new_y
 
-        if random.randint(1, 100) == 1: 
+        if random.randint(1, 80) == 1: 
             self.bullets.append(self.fire("down"))
             self.bullets.append(self.fire("l"))
             self.bullets.append(self.fire("r"))
@@ -124,8 +124,11 @@ class Boss():
 
                 if bullet_rect.colliderect(spaceship_rect):
                     bullet.setAlive(False)
-                    Globals.spaceship.health -= 1
-                    self.lazer_1_snd.play()
+                    if (Globals.spaceship.health - 5) <= 0:
+                        Globals.spaceship.setAlive(False)
+                    else:
+                        Globals.spaceship.health -= 5
+                    # self.lazer_1_snd.play()
 
         # self.y = self.new_y
 

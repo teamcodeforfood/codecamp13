@@ -21,8 +21,8 @@ class Spaceship():
         self.missed = 0
         self.powerstat = 0
         # TODO: ammo is really high for testing purposes
-        self.ammo   = 200
-        self.spaceship_speed = 2.5
+        self.ammo   = 100
+        self.spaceship_speed = 1.5
         self.alive = True
         self.gamedifficulty = 1
         self.active_weapon = 0

@@ -110,9 +110,8 @@ class PlayScreen(GameScreen):
         # Spawning
         #
         # Add baddies
-        if Globals.spaceship.gamedifficulty == 5:
+        if Globals.spaceship.gamedifficulty == 500:
             self.spawning = False
-            self.boss_spawned = True
             self.addBoss()
 
         if self.spawning == True:
@@ -209,7 +208,8 @@ class PlayScreen(GameScreen):
                     bullet.setAlive(False)
                     powerups.setAlive(False)
                     bullet.hit = False
-                    self.score += 100
+                    Globals.score += 100
+                    Globals.score -= Globals.spaceship.missed
 
         live_bullets = []
         live_baddies = []
@@ -264,7 +264,7 @@ class PlayScreen(GameScreen):
                 if(boss_rect.colliderect(spaceship_rect)):
                     Globals.spaceship.health -= boss.damage
                     self.hurt_1.play()
-                    boss.setAlive(False)
+                    # boss.setAlive(False)
                     if(Globals.spaceship.health<=0):
                         Globals.spaceship.setAlive(False)
                         print "Spaceship dead"
@@ -345,7 +345,7 @@ class PlayScreen(GameScreen):
             powerups.draw(surface)
 
     def addBoss(self):
-        if len(self.bosses) >= 1:
+        if len(self.bosses) >= 1 or self.boss_spawned == True:
             return
         else:
             self.boss_spawned = True

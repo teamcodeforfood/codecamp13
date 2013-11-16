@@ -13,7 +13,7 @@ class TestPowerups(Powerups):
         self.y      = 0
         self.new_x  = y
         self.new_y  = x
-        self.speed  = 1
+        self.speed  = 2
         self.alive  = True
         self.sprite = pygame.image.load("resources/sprites/blue_xp.png")
         pass

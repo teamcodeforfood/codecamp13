@@ -7,11 +7,13 @@ class MenuScreen(GameScreen):
     def load(self):
         self.flashing = True
         self.flashcount = 0
+        self.textbg = pygame.image.load("resources/overlays/mainmenu_o.png")
 
     def draw(self, surface):
         rect = pygame.Rect(0, 0, 1280, 720)
-        self.text.drawTextLeft(surface, "Galaxy Jam", (253, 212, 0), 550, 340)
-        self.text.drawTextLeft(surface, "press space to begin", (255, 255, 255), 475, 380)
+        surface.blit(self.textbg, pygame.Rect(0, 0, 1280, 720))
+        self.text.drawTitleLeft(surface, "Galaxy Jam", (253, 212, 0), 460, 340)
+        self.text.drawTextLeft(surface, "press space to begin", (255, 255, 255), 475, 355)
         self.text.drawTextLeft(surface, "Will Code for food", (255, 0, 0), 950, 30)
         self.text.drawTextLeft(surface, "Josh Beitler", (255, 255, 255), 1000, 50)
         self.text.drawTextLeft(surface, "Kyler Tolleson", (255, 255, 255), 975, 70)
