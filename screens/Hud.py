@@ -16,6 +16,10 @@ class Hud(GameScreen):
 
         self.ammo_meter.update(self.ammo)
 
+        if self.ammo > 100:
+            self.ammo = 100
+
+
     def draw(self, surface):
         self.text.drawTextLeft(surface, "Score    " + str(self.score), (255, 255, 255), 10, 35)
         self.text.drawTextLeft(surface, "Ammo    " + str(self.ammo), (255, 255, 255), 10, 55)
