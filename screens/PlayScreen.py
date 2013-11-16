@@ -51,6 +51,7 @@ class PlayScreen(GameScreen):
         self.speed_boost_time = 0 
         self.speed_boost = False
         self.gamedifficulty = 1
+        self.spawning = True
 
         # Sound effects
         self.hit_1 = pygame.mixer.Sound("resources/sound/hit_1.wav")
@@ -80,13 +81,21 @@ class PlayScreen(GameScreen):
         # Spawning
         #
         # Add baddies
-        if self.gamedifficulty == 10:
-            self.addBoss()
-        if random.randint(1, 250 - self.gamedifficulty) == 1:
-            self.addBaddie()
+        if Globals.spaceship.gamedifficulty == 100:
+            if len(self.bosses) == 0:
+                self.addBoss()
+                self.spawning = False
 
-        if random.randint(1, 250 - self.gamedifficulty) == 1:
-            self.addBaddie2()
+        if self.spawning:
+
+            if random.randint(1, 250 - Globals.spaceship.gamedifficulty) == 1:
+                self.addBaddie()
+
+            if random.randint(1, 250 - Globals.spaceship.gamedifficulty) == 1:
+                self.addBaddie2()
+
+            if random.randint(1, 500) == 1:
+                self.addPlane()
 
         if random.randint(1, self.frame_rate*3) == 1:
             self.addTestPowerups()
@@ -94,8 +103,7 @@ class PlayScreen(GameScreen):
         if random.randint(1, self.frame_rate*4) == 1:
             self.addPowerups()
 
-        if random.randint(1, 500) == 1:
-            self.addPlane()
+            
 
         for bullet in self.bullets:
             if bullet is not None:
@@ -147,7 +155,6 @@ class PlayScreen(GameScreen):
                         baddie.health -=100
                         bullet.hit = False
                         Globals.score += 100
-                        self.gamedifficulty +=1
                         Globals.spaceship.gamedifficulty +=1
                         self.hit_1.play()
                         if baddie.health <= 0:
@@ -303,11 +310,14 @@ class PlayScreen(GameScreen):
             powerups.draw(surface)
 
     def addBoss(self):
-        new_boss = Boss( self.boss_width, self.boss_height, self.width, random.randint(0,(self.height-self.boss_height)), self.boss_color )
-        self.bosses.append( new_boss )
+        
+        if len(self.bosses) >= 1:
+            return
+        else:
+            new_boss = Boss( self.boss_width, self.boss_height, self.width, random.randint(0,(self.height-self.boss_height)), self.boss_color )
+            self.bosses.append( new_boss )
                    
         return
-    
     def addBaddie(self):
         new_baddie = TestBaddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
         self.baddies.append( new_baddie )
