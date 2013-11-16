@@ -9,11 +9,11 @@ class Globals():
     bullet_width = 5
     bullet_height = 5
 
-    spaceship_height = 20
-    spaceship_width = 10
+    spaceship_height = 32
+    spaceship_width = 32
 
-    baddie_height = 20
-    baddie_width = 20
+    baddie_height = 32
+    baddie_width = 32
 
     score = 0
     ammo = 0
