@@ -24,8 +24,8 @@ class Baddie():
         if self.new_x < back_wall:
             self.setAlive(False)
         if self.new_y > 720:
+            Globals.spaceship.health -= 10
             Globals.spaceship.missed += 1
-            print Globals.spaceship.missed
             self.setAlive(False)
         # if self.new_y < upper_wall:
             # self.new_y = upper_wall
