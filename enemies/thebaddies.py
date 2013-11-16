@@ -27,6 +27,7 @@ class TestBaddie(Baddie):
         self.lazer_2_snd = pygame.mixer.Sound("resources/sound/lazer_2.wav")
         self.lazer_3_snd = pygame.mixer.Sound("resources/sound/lazer_3.wav")
         self.boom_1 = pygame.mixer.Sound("resources/sound/boom_1.wav")
+        self.direction = 1
         self.bullets = []
         self.dir = 1
 
@@ -48,6 +49,17 @@ class TestBaddie(Baddie):
                 return None
 
     def tick(self,back_wall,upper_wall,lower_wall):
+        if self.direction == 1:
+            if self.x <= (1280 - self.width):
+                self.x += self.speed
+            else:
+                self.direction = -1
+        elif self.direction == -1:
+            if self.x >= 0:
+                self.x -= self.speed
+            else:
+                self.direction = 1
+
         live_bullets = []
 
         for bullet in self.bullets:

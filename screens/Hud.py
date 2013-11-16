@@ -35,10 +35,11 @@ class Hud(GameScreen):
 
     def draw(self, surface):
         self.text.drawTextLeft(surface, "Score    " + str(self.score), (255, 255, 255), 10, 35)
-        self.text.drawTextLeft(surface, "Ammo    " + str(self.ammo), (255, 255, 255), 10, 55)
-        self.text.drawTextLeft(surface, "Health   " + str(self.health), (255, 255, 255), 10, 75)
-        self.text.drawTextLeft(surface, "Missed   " + str(self.missed), (255, 255, 255), 10, 95)
-        self.text.drawTextLeft(surface, "Difficulty   " + str(self.gamedifficulty), (255, 255, 255), 585, 35)
+        # self.text.drawTextLeft(surface, "Ammo    " + str(self.ammo), (255, 255, 255), 10, 55)
+        # self.text.drawTextLeft(surface, "Health   " + str(self.health), (255, 255, 255), 10, 75)
+        # self.text.drawTextLeft(surface, "Missed   " + str(self.missed), (255, 255, 255), 10, 95)
+        # self.text.drawTextLeft(surface, "Difficulty   " + str(self.gamedifficulty), (255, 255, 255), 585, 35)
+        # print "Enemies killed: " + str(self.gamedifficulty)
 
         self.ammo_meter.draw(surface)
         self.health_meter.draw(surface)

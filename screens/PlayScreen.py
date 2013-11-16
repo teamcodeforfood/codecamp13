@@ -55,6 +55,7 @@ class PlayScreen(GameScreen):
         self.gamedifficulty = 1
         self.spawning = True
         self.boss_spawned = False
+        self.ammo_timer = 0
 
         # Sound effects
         self.hit_1 = pygame.mixer.Sound("resources/sound/hit_1.wav")
@@ -105,6 +106,13 @@ class PlayScreen(GameScreen):
             if Globals.spaceship.active_weapon <= 7:
                 Globals.spaceship.active_weapon += 1
                 print ">> " + str(Globals.spaceship.active_weapon)
+
+        # Do ammo
+        if self.ammo_timer < 360:
+            self.ammo_timer += 1
+        elif self.ammo_timer >= 360:
+            Globals.spaceship.ammo += 2
+            self.ammo_timer = 0
 
         #
         # Spawning
@@ -327,6 +335,9 @@ class PlayScreen(GameScreen):
         self.powerups = live_powerups
         self.thepowerups = live_thepowerups
         self.bosses = live_bosses
+
+        if Globals.spaceship.health <= 0:
+            Globals.spaceship.setAlive(False)
 
 
     def draw(self, surface):
