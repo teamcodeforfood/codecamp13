@@ -23,7 +23,7 @@ class SpaceshipData:
         self.screen_manager.setBackgroundScreen(Background())
         self.screen_manager.setCurrentScreen(MenuScreen())
         self.screen_manager.setScreenQueue(PlayScreen())
-
+        self.screen_manager.current_screen.load()
         self.pause = PauseMenu()
 
         self.screen_manager.next.load(frame_rate, width, height)

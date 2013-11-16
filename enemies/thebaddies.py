@@ -66,12 +66,22 @@ class TestBaddie(Baddie):
 
             if bullet_rect.colliderect(spaceship_rect):
                 bullet.setAlive(False)
-                Globals.spaceship.health -= 10
+                Globals.spaceship.health -= 1
                 self.lazer_1_snd.play()
 
         self.y = self.new_y
+<<<<<<< HEAD
         
         if random.randint(1, 150) == 1:
+=======
+
+        if self.y >= 720:
+            Globals.spaceship.missed += 1
+            print Globals.spaceship.missed
+            self.setAlive(False)
+
+        if random.randint(1, 100) == 1:
+>>>>>>> caef6c1c4a27cf3ccac487b332a8fd96e7de43d9
             self.bullets.append(self.fire())
 
         for bullet in self.bullets:
@@ -140,6 +150,11 @@ class Test2Baddie(Baddie):
         # elif self.new_y + self.height > lower_wall:
             # self.new_y = lower_wall - self.height
         self.y = self.new_y
+
+        if self.y >= 720:
+            Globals.spaceship.missed += 1
+            print Globals.spaceship.missed
+            self.setAlive(False)
 
         if random.randint(1, 100) == 1:
             self.bullets.append(self.fire())
