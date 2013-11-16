@@ -57,7 +57,7 @@ class TestBaddie(Baddie):
 
             if bullet_rect.colliderect(spaceship_rect):
                 bullet.setAlive(False)
-                Globals.spaceship.health -= 10
+                Globals.spaceship.health -= 1
                 self.lazer_1_snd.play()
 
         self.y = self.new_y
