@@ -97,7 +97,8 @@ class TestBaddie(Baddie):
             self.setAlive(False)
 
         for bullet in self.bullets:
-            bullet.moveBullet()
+            if not bullet== None:
+                bullet.moveBullet()
 
         # self.bullets = live_bullets
 
