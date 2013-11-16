@@ -3,6 +3,7 @@ from baddie import Baddie
 from bullet import BaddieBullet
 from globals import Globals
 import random
+import math
 
 # Triangle one
 class TestBaddie(Baddie):
@@ -116,7 +117,6 @@ class Test2Baddie(Baddie):
         self.alive  = True
         self.ammo = 100000
         self.sprite_1 = pygame.image.load("resources/sprites/shipjosh2_2.png")
-        self.lazer_1 = pygame.image.load("resources/sprites/lazer_2.png")
         self.bullets = []
         pass
 
@@ -131,11 +131,6 @@ class Test2Baddie(Baddie):
 
     def tick(self,back_wall,upper_wall,lower_wall):
         live_bullets = []
-
-        for bullet in self.bullets:
-            if bullet.alive:
-                live_bullets.append(bullet)
-
 
         # self.new_x = self.x + random.randint(-1,1)
         self.new_y = self.y + self.speed
@@ -152,8 +147,12 @@ class Test2Baddie(Baddie):
             print Globals.spaceship.missed
             self.setAlive(False)
 
-        if random.randint(1, 100) == 1:
-            self.bullets.append(self.fire())
+            (dx, dy) = ((Globals.spaceship.x - self.x)/math.sqrt((Globals.spaceship.x - self.x) ** 2 + (Globals.spaceship.y - self.y) ** 2), 
+            (Globals.spaceship.y - self.y)/math.sqrt((Globals.spaceship.x - self.x) ** 2 + (Globals.spaceship.y - self.y) ** 2))
+
+            self.x = dx
+            self.y = dy
+
 
         for bullet in self.bullets:
             if bullet == None:
