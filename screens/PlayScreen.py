@@ -36,8 +36,8 @@ class PlayScreen(GameScreen):
         self.baddie_height = 32
         self.baddie_color = (255,0,0)
         self.bosses = []
-        self.boss_width = 100
-        self.boss_height = 100
+        self.boss_width = 200
+        self.boss_height = 200
         self.boss_color = (255, 0, 255)
         self.powerups = []
         self.thepowerups = []
@@ -81,7 +81,7 @@ class PlayScreen(GameScreen):
         # Spawning
         #
         # Add baddies
-        if Globals.spaceship.gamedifficulty == 100:
+        if Globals.spaceship.gamedifficulty == 10:
             if len(self.bosses) == 0:
                 self.addBoss()
                 self.spawning = False
