@@ -4,7 +4,7 @@ from meter import Meter
 
 class Hud(GameScreen):
     def load(self):
-        self.ammo_meter = Meter(100, 0, 100, 200, 200)
+        self.ammo_meter = Meter(100, 0, 100, 10, 100)
 
     def update(self, *args):
         self.score = args[0]
@@ -30,8 +30,4 @@ class Hud(GameScreen):
         self.ammo_meter.draw(surface)
 
         self.text.drawTextLeft(surface, "Status   " + str(self.powerstat), (255, 255, 255), 1000, 400)
-        self.ammo_meter.draw(surface)
-
-        self.ammo_meter.draw(surface)
-
         self.text.drawTextLeft(surface, "Status   " + str(self.powerstat), (255, 255, 255), 1000, 400)
