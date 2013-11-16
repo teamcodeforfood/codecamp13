@@ -88,8 +88,9 @@ class PlayScreen(GameScreen):
             self.addPlane()
 
         for bullet in self.bullets:
-            bullet.moveBullet()
-            bullet.checkBackWall(self.width)
+            if bullet is not None:
+                bullet.moveBullet()
+                bullet.checkBackWall(self.width)
         if not Globals.spaceship.alive:
             Globals.spaceship.spaceship_speed = 0
                 
