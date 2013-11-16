@@ -15,7 +15,7 @@ class Meter():
         rect_1 = pygame.Rect(self.x + 2, self.y + 2, 198, 23 )
         pygame.draw.rect(surface, (255, 0 ,0), rect_1)
 
-        rect_2 = pygame.Rect(self.x + 2, self.y + 2, self.value * 2, 23 )
+        rect_2 = pygame.Rect(self.x + 1, self.y + 2, self.value * 2, 23 )
         pygame.draw.rect(surface, (0, 255, 0), rect_2)
         pass
 
