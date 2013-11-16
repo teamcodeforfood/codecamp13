@@ -29,7 +29,8 @@ class Spaceship():
 
         # Sound effects
         self.lazer_1 = pygame.mixer.Sound("resources/sound/lazer_1.wav")
-        self.gamedifficulty = 1
+        self.boom_1 = pygame.mixer.Sound("resources/sound/boom_1.wav")
+
         return
 
     def moveLeft(self, dx):
@@ -93,5 +94,12 @@ class Spaceship():
                 surface.blit(self.space_ship_img_r, rect)
         return
 
-    def setAlive(self,alive):
+    def setAlive(self, alive):
         self.alive = alive
+
+        if alive == False:
+            self.boom_1.play()
+            
+            # Move the corpse away
+            self.x = 1000
+            self.y = 1000

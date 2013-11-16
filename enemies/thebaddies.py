@@ -99,6 +99,7 @@ class TestBaddie(Baddie):
 
         return
 
+# Circle guy
 class Test2Baddie(Baddie):
     
     def __init__(self, width, height, x, y, color):
@@ -155,6 +156,9 @@ class Test2Baddie(Baddie):
             self.bullets.append(self.fire())
 
         for bullet in self.bullets:
+            if bullet == None:
+                break
+
             bullet.moveBullet()
 
         self.bullets = live_bullets
