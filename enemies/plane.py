@@ -18,6 +18,7 @@ class Plane(Baddie):
         self.damage = 100000
         self.alive  = True
         self.sprite_1 = pygame.image.load("resources/sprites/asteroid_1.png")
+        self.boom_1 = pygame.mixer.Sound("resources/sound/boom_1.wav")
         pass
 
     def tick(self, back_wall, upper_wall, lower_wall):
@@ -32,3 +33,9 @@ class Plane(Baddie):
     def draw(self, surface):
         rect = pygame.Rect(self.x, self.y, self.width, self.height )
         surface.blit(self.sprite_1, rect)
+
+    def getAlive(self):
+        return self.alive
+
+        if alive == False:
+            self.boom_1.play()
