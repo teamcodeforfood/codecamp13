@@ -13,7 +13,7 @@ class Spaceship():
         self.color  = color
         self.health = 100
         # TODO: ammo is really high for testing purposes
-        self.ammo   = 10000
+        self.ammo   = 100
         self.spaceship_speed = 2.5
         self.alive = True
         self.space_ship_img = pygame.image.load("resources/sprites/ship_1.png")
@@ -33,8 +33,8 @@ class Spaceship():
     def moveRight(self, dx, upper_limit):
         self.x += dx
         # check the wall
-        if self.x > upper_limit:
-           self.x = upper_limit
+        #if self.x > upper_limit:
+         #  self.x = upper_limit
         return
 
     def moveUp(self, dy):
@@ -52,17 +52,19 @@ class Spaceship():
         return
 
     def fire(self):
-        if self.ammo > 0:
-            self.ammo -= 1
-            self.lazer_1.play()
-            return Bullet(self.x + (self.width / 2), (self.y + (self.height / 2)))
-        else:
-            return None
+        if self.alive == True:
+            if self.ammo > 0:
+                self.ammo -= 1
+                self.lazer_1.play()
+                return Bullet(self.x + (self.width / 2), (self.y + (self.height / 2)))
+            else:
+                return None
 
     def draw(self, surface):
-        rect = pygame.Rect( self.x, self.y, self.width, self.height )
-        # pygame.draw.rect(surface, self.color, rect)
-        surface.blit(self.space_ship_img, rect)
+        if self.alive == True:
+            rect = pygame.Rect( self.x, self.y, self.width, self.height )
+            # pygame.draw.rect(surface, self.color, rect)
+            surface.blit(self.space_ship_img, rect)
         return
 
     def setAlive(self,alive):

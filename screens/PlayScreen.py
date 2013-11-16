@@ -31,13 +31,13 @@ class PlayScreen(GameScreen):
         self.bullets = []
         self.baddies = []
         self.thebaddies =[]
-        self.baddie_width = 20
-        self.baddie_height = 20
+        self.baddie_width = 32
+        self.baddie_height = 32
         self.baddie_color = (255,0,0)
         self.powerups = []
         self.thepowerups = []
-        self.powerups_width = 20
-        self.powerups_height = 20
+        self.powerups_width = 16
+        self.powerups_height = 16
         self.powerups_color = (0,255,0)
         self.score = 0
         self.baddies_killed = 0
@@ -72,10 +72,10 @@ class PlayScreen(GameScreen):
             self.bullets.append(Globals.spaceship.fire())
 
         # Add baddies
-        if random.randint(1, self.frame_rate) == 1:
+        if random.randint(1, self.frame_rate * 5) == 1:
             self.addBaddie()
 
-        if random.randint(1, self.frame_rate) == 1:
+        if random.randint(1, self.frame_rate * 2) == 1:
             self.addBaddie2()
 
         if random.randint(1, self.frame_rate*3) == 1:
@@ -84,7 +84,7 @@ class PlayScreen(GameScreen):
         if random.randint(1, self.frame_rate*4) == 1:
             self.addPowerups()
 
-        if random.randint(1, self.frame_rate * 3) == 1:
+        if random.randint(1, 500) == 1:
             self.addPlane()
 
         for bullet in self.bullets:
@@ -162,7 +162,7 @@ class PlayScreen(GameScreen):
                 baddie_rect = pygame.Rect(baddie.x, baddie.y, baddie.width, baddie.height)
 
                 if(baddie_rect.colliderect(spaceship_rect)):
-                    Globals.spaceship.health -=10
+                    Globals.spaceship.health -= baddie.damage
                     self.hurt_1.play()
                     baddie.setAlive(False)
                     if(Globals.spaceship.health<=0):
@@ -209,11 +209,8 @@ class PlayScreen(GameScreen):
 
                     self.powerup_1.play()
 
-                    # Change to a different sound
-                    self.powerup_1.play()
-
                     # For debugging purposes
-                    print "Powerup activated"
+                    print "Powerup 2 activated"
 
         if self.speed_boost == True:
             if self.speed_boost_time <= 1200:
@@ -250,6 +247,7 @@ class PlayScreen(GameScreen):
         self.baddies.append( new_baddie )
                    
         return
+
     def addBaddie2(self):
         new_baddie = Test2Baddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
         self.baddies.append( new_baddie )

@@ -15,6 +15,7 @@ class Powerups():
         self.color  = color
         self.alive  = True
         self.orig_width = self.width
+        self.sprite = pygame.image.load("resources/sprites/green_xp.png")
         return
 
     def tick(self,back_wall,upper_wall,lower_wall):
@@ -41,6 +42,7 @@ class Powerups():
     
     def draw(self, surface):
         rect = pygame.Rect( self.x, self.y, self.width, self.height )
-        pygame.draw.rect(surface, self.color, rect)
+        # pygame.draw.rect(surface, self.color, rect)
+        surface.blit(self.sprite, rect)
         return
         

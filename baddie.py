@@ -10,7 +10,7 @@ class Baddie():
         self.y      = 0
         self.new_x  = x
         self.new_y  = y
-        self.speed  = 1
+        self.speed  = .3
         self.color  = (255, 255, 255)
         self.alive  = True
         self.sprite_1 = pygame.image.load("resources/sprites/baddie_1.png")
