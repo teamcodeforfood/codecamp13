@@ -17,4 +17,4 @@ class Hud(GameScreen):
         self.text.drawTextLeft(surface, "Ammo    " + str(self.ammo), (255, 255, 255), 10, 55)
         self.text.drawTextLeft(surface, "Health   " + str(self.health), (255, 255, 255), 10, 75)
         self.text.drawTextLeft(surface, "Missed   " + str(self.missed), (255, 255, 255), 10, 95)
-        self.text.drawTextLeft(surface, "Difficulty   " + str(self.gamedifficulty), (255, 255, 255), 300, 95)
+        self.text.drawTextLeft(surface, "Difficulty   " + str(self.gamedifficulty), (255, 255, 255), 585, 35)
