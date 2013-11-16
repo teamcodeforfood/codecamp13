@@ -13,10 +13,10 @@ class Background(GameScreen):
         self.imagerect2.y = self.imagerect1.y
 
     def update(self, *args):
-        self.imagerect1.y += 1
+        self.imagerect1.y += 2
         
         if self.imagerect1.y >= 0:
-            self.imagerect2.y += 1
+            self.imagerect2.y += 2
 
         if self.imagerect2.y >= 0:
             self.imagerect1.y = 0
