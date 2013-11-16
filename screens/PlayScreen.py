@@ -68,7 +68,6 @@ class PlayScreen(GameScreen):
             c = pygame.mixer.Channel(i)
             c.set_volume(0.2)
 
-
         if pygame.K_LEFT in keys or pygame.K_a in keys:
             Globals.spaceship.moveLeft(Globals.spaceship.spaceship_speed)
         if pygame.K_RIGHT in keys or pygame.K_d in keys:

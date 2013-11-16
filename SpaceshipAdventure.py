@@ -10,6 +10,7 @@ class SpaceshipAdventure(Game):
 
         if not Globals.mute == True:
             pygame.mixer.music.load("resources/music/bg1.ogg")
+            pygame.mixer.music.set_volume(0.2)
             pygame.mixer.music.play(-1)
 
         return
