@@ -123,6 +123,20 @@ class PlayScreen(GameScreen):
             if not bullet.alive:
                 continue
             else:
+                for boss in self.bosses:
+                            if not boss.alive:
+                                continue
+                            x,y,w,h = boss.getDimensions()
+                            bullet.checkHitBaddie(x,y,w,h)
+                            if bullet.getHit():
+                                bullet.setAlive(False)
+                                boss.health -=100
+                                bullet.hit = False
+                                self.hit_1.play()
+                                if boss.health <= 0:
+                                    boss.setAlive(False)
+                            if bullet.y < 0:
+                                bullet.setAlive(False)
                 for baddie in self.baddies:
                     if not baddie.alive:
                         continue
@@ -140,22 +154,6 @@ class PlayScreen(GameScreen):
                             baddie.setAlive(False)
                     if bullet.y < 0:
                         bullet.setAlive(False)
-                for boss in self.bosses:
-                            if not boss.alive:
-                                continue
-                            x,y,w,h = boss.getDimensions()
-                            bullet.checkHitBaddie(x,y,w,h)
-                            if bullet.getHit():
-                                bullet.setAlive(False)
-                                boss.health -=100
-                                bullet.hit = False
-                                self.hit_1.play()
-                                if boss.health <= 0:
-                                    boss.setAlive(False)
-                            if bullet.y < 0:
-                                bullet.setAlive(False)
-
-
 
         for bullet in self.bullets:
             if bullet == None:
