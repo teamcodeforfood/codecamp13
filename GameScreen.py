@@ -12,3 +12,6 @@ class GameScreen():
 
     def update(self, *args):
         pass
+
+    def lose_screen(self):
+        return True

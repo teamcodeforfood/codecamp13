@@ -61,6 +61,11 @@ class PlayScreen(GameScreen):
         self.hit_1 = pygame.mixer.Sound("resources/sound/hit_1.wav")
         self.powerup_1 = pygame.mixer.Sound("resources/sound/powerup_1.wav")
         self.hurt_1 = pygame.mixer.Sound("resources/sound/hurt_1.wav")
+        self.boom = pygame.mixer.Sound("resources/sound/boom_1.wav")
+        self.game_over = pygame.mixer.Sound("resources/sound/game_over.wav")
+
+    def lose_screen(self, val = True):
+        return val
 
     def update(self, *args):
         keys = args[0]
@@ -112,6 +117,7 @@ class PlayScreen(GameScreen):
             self.ammo_timer += 1
         elif self.ammo_timer >= 360:
             Globals.spaceship.ammo += 2
+            Globals.spaceship.health += 3
             self.ammo_timer = 0
 
         #
@@ -123,10 +129,10 @@ class PlayScreen(GameScreen):
             self.addBoss()
 
         if self.spawning == True:
-            if random.randint(1, 250 - Globals.spaceship.gamedifficulty) == 1:
+            if random.randint(1, 250 - Globals.spaceship.gamedifficulty / 2) == 1:
                 self.addBaddie()
 
-            if random.randint(1, 250 - Globals.spaceship.gamedifficulty) == 1:
+            if random.randint(1, 250 - Globals.spaceship.gamedifficulty / 2) == 1:
                 self.addBaddie2()
 
             if random.randint(1, 500) == 1:
@@ -260,10 +266,20 @@ class PlayScreen(GameScreen):
                     self.hurt_1.play()
                     baddie.setAlive(False)
                     if(Globals.spaceship.health<=0):
+                        Globals.spaceship.x = 1000
+                        Globals.spaceship.x = 1000
+                        spaceship_rect = pygame.Rect(1000, 1000, 0,0)
+                        self.spawning = False
+                        self.boom.play()
+                        self.game_over.play()
+                        pygame.mixer.music.stop()
+                        for baddie in self.baddies:
+                            baddie.setAlive(False)
                         Globals.spaceship.setAlive(False)
                         print "Spaceship dead"
-                    if(baddie.health <= 10):
-                        self.spaceship.setAlive(False)
+                        self.lose_screen(False)
+                    # if(baddie.health <= 10):
+                        # self.spaceship.setAlive(False)
 
         for boss in self.bosses:
             if boss.alive:

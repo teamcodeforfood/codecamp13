@@ -20,7 +20,7 @@ class Globals():
     ammo = 0
 
     # RIP - Logan's ears
-    mute = True
+    mute = False
 
     spaceship = Spaceship(10,20,(1280 / 2), (720) - 42, (255,255,255))
 
