@@ -81,7 +81,7 @@ class PlayScreen(GameScreen):
         # Spawning
         #
         # Add baddies
-        if Globals.spaceship.gamedifficulty == 10:
+        if Globals.spaceship.gamedifficulty == 100:
             if len(self.bosses) == 0:
                 self.addBoss()
                 self.spawning = False
@@ -93,7 +93,7 @@ class PlayScreen(GameScreen):
 
             if random.randint(1, 250 - Globals.spaceship.gamedifficulty) == 1:
                 self.addBaddie2()
-                
+
             if random.randint(1, 500) == 1:
                 self.addPlane()
 
