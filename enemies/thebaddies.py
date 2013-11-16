@@ -70,19 +70,14 @@ class TestBaddie(Baddie):
                 self.lazer_1_snd.play()
 
         self.y = self.new_y
-<<<<<<< HEAD
         
         if random.randint(1, 150) == 1:
-=======
+            self.bullets.append(self.fire())
 
         if self.y >= 720:
             Globals.spaceship.missed += 1
             print Globals.spaceship.missed
             self.setAlive(False)
-
-        if random.randint(1, 100) == 1:
->>>>>>> caef6c1c4a27cf3ccac487b332a8fd96e7de43d9
-            self.bullets.append(self.fire())
 
         for bullet in self.bullets:
             bullet.moveBullet()
