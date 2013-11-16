@@ -71,7 +71,9 @@ class PlayScreen(GameScreen):
         if pygame.K_SPACE in newkeys:
             self.bullets.append(Globals.spaceship.fire())
 
-        # Add baddies
+        #
+        # Spawning
+        #
         if random.randint(1, self.frame_rate * 5) == 1:
             self.addBaddie()
 
