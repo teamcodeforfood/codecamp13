@@ -12,7 +12,7 @@ class Boss():
         self.y      =10
         self.new_x  = x
         self.new_y  = y
-        self.speed  = .1
+        self.speed  = 1
         self.color  = (255, 0, 255)
         self.alive  = True
         self.sprite_1 = pygame.image.load("resources/sprites/roboticus2.png")
@@ -20,10 +20,19 @@ class Boss():
         self.lazer_3_snd = pygame.mixer.Sound("resources/sound/lazer_3.wav")
         self.lazer_1_snd = pygame.mixer.Sound("resources/sound/lazer_1.wav")
         self.lazer_2_snd = pygame.mixer.Sound("resources/sound/lazer_2.wav")
+        self.roar_1 = pygame.mixer.Sound("resources/sound/boss_roar_1.ogg")
         self.bullets = []
         self.health = 20000
         self.ammo = 100000
         self.damage = 10
+
+        Globals.goGoBossMode()
+
+        pygame.mixer.music.stop()
+
+        pygame.mixer.music.load("resources/music/boss_battle.ogg")
+        pygame.mixer.music.set_volume(0.2)
+        pygame.mixer.music.play(-1)
         return
 
     def fire(self):
@@ -43,12 +52,16 @@ class Boss():
                 return None
 
     def tick(self,back_wall,upper_wall,lower_wall):
+        # self.speed = random.randint(1, 4)
+
         live_bullets = []
 
         for bullet in self.bullets:
             if bullet.alive:
                 live_bullets.append(bullet)
 
+        # if random.randint(1, 500) == 1:
+            # self.roar_1.play()
 
         # self.new_x = self.x + random.randint(-1,1)
         self.new_y = self.y + self.speed
@@ -115,17 +128,20 @@ class Boss():
     def getAlive(self):
         return self.alive
 
-        if alive == False:
-            self.boom_1.play()
-            self.boom_1.play()
-            self.boom_1.play()
-
     def getDimensions(self):
         return self.x,self.y,self.width,self.height
 
     def setAlive(self,alive):
         self.alive = alive
-    
+
+        if alive == False:
+            # YOU F*CKING WIN
+            pygame.mixer.music.stop()
+        
+            # i = 0
+            # while i <= 10:
+            self.boom_1.play()
+
     def draw(self, surface):
         rect = pygame.Rect( self.x, self.y, self.width, self.height )
         # pygame.draw.rect(surface, self.color, rect)
