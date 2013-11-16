@@ -13,6 +13,7 @@ class Bullet():
         self.hit    = False
         self.sprite_1 = pygame.image.load("resources/sprites/lazer_1.png")
         self.sprite_2 = pygame.image.load("resources/sprites/lazer_3.png")
+        self.sprite_3 = pygame.image.load("resources/sprites/lazer_4.png")
         self.direction = direction
         self.type = type
         return
@@ -33,8 +34,8 @@ class Bullet():
         return
 
     def moveBullet(self):
-        if self.type == "green":
-            pass
+        if self.type == "red":
+            self.sprite_1 = self.sprite_3
         elif self.direction != "normal":
             self.sprite_1 = self.sprite_2
 
