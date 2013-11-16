@@ -14,6 +14,8 @@ class Globals():
     baddie_height = 32
     baddie_width = 32
 
+    is_in_boss_battle = False
+
     score = 0
     ammo = 0
 

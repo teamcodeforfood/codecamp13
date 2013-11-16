@@ -6,7 +6,7 @@ from spaceship import Weapons
 
 class Hud(GameScreen):
     def load(self):
-        self.ammo_meter = Meter(100, 0, 100, 10, 100)
+        self.ammo_meter = Meter(100, 20, 100, 0, 100, 10, 100)
 
         # Hotbar
         self.hotbar_bg = pygame.image.load("resources/sprites/hotbar/HotBar.png")

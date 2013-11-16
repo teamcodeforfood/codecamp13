@@ -86,8 +86,7 @@ class Bullet():
 ###
 
 class BaddieBullet():
-
-    def __init__(self, x, y):
+    def __init__(self, x, y, type):
         self.width  = 16
         self.height = 16
         self.x      = x
@@ -96,7 +95,13 @@ class BaddieBullet():
         self.color  = (255, 0, 0)
         self.alive  = True
         self.hit    = False
-        self.sprite_1 = pygame.image.load("resources/sprites/lazer_2.png")
+        self.direction = "down"
+        self.type = type
+        self.sprite_1 = pygame.image.load("resources/sprites/lazer_1.png")
+        self.sprite_2 = pygame.image.load("resources/sprites/lazer_3.png")
+        self.sprite_3 = pygame.image.load("resources/sprites/lazer_4.png")
+        self.boss_sprite = pygame.image.load("resources/sprites/boss_proj.png")
+
         return
 
     def checkBackWall(self,back_wall):
@@ -105,7 +110,48 @@ class BaddieBullet():
         return
 
     def moveBullet(self):
-        self.y += self.speed
+        if self.type == "boss":
+            self.sprite_1 = self.sprite_3
+        elif self.type == "red":
+            self.sprite_1 = self.sprite_3
+        
+        # if self.direction != "normal":
+            # self.sprite_1 = self.sprite_2
+
+        if self.direction == 'up':
+            self.y -= self.speed
+        if self.direction == 'down':
+            self.y += self.speed
+        elif self.direction == "l":
+            self.y += self.speed
+            self.x += self.speed / 2
+        elif self.direction == "r":
+            self.y -= self.speed
+            self.x += self.speed / 2
+        elif self.direction == "-l":
+            self.y += self.speed
+            self.x -= self.speed / 2
+        elif self.direction == "-r":
+            self.y += self.speed
+            self.x += self.speed / 2
+        elif self.direction == "fl":
+            self.x -= self.speed
+        elif self.direction == "fr":
+            self.x += self.speed
+        elif self.direction == "ll":
+            self.y += self.speed
+            self.x += self.speed / 3
+        elif self.direction == "rr":
+            self.y -= self.speed
+            self.x += self.speed / 3
+        elif self.direction == "-ll":
+            self.y += self.speed
+            self.x -= self.speed / 3
+        elif self.direction == "-rr":
+            self.y += self.speed
+            self.x += self.speed / 3
+        else:
+            self.y -= self.speed
         return
 
     def setAlive(self,alive):

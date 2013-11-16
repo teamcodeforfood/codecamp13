@@ -1,5 +1,6 @@
 import pygame
 from GameScreen import GameScreen
+from globals import Globals
 
 class Background(GameScreen):
     def load(self):

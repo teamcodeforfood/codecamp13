@@ -32,7 +32,7 @@ class TestBaddie(Baddie):
 
         pass
 
-    def fire(self):
+    def fire(self, direction = "down", type = "red"):
         if self.alive == True:
             if self.ammo > 0:
                 if random.randint(1, 100) == 1:
@@ -43,7 +43,7 @@ class TestBaddie(Baddie):
                         self.lazer_3_snd.play()
                 self.ammo -= 1
                 # self.lazer_1.play()
-                return BaddieBullet(self.x + (self.width / 2), (self.y + (self.height / 2)))
+                return BaddieBullet(self.x + (self.width / 2), (self.y + (self.height / 2)), type)
             else:
                 return None
 
