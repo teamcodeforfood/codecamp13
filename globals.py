@@ -1,7 +1,6 @@
 from spaceship import Spaceship
 
 class Globals():
-
     def setup():
         pygame.font.init()
         pygame.display.init()
@@ -17,5 +16,7 @@ class Globals():
 
     score = 0
     ammo = 0
+
+    mute = False
 
     spaceship = Spaceship(10,20,(1280 / 2), (720) -10, (255,255,255))

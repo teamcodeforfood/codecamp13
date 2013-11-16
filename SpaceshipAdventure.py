@@ -1,13 +1,16 @@
 import pygame
 from game_mouse import Game
 from SpaceshipData import SpaceshipData
+from globals import Globals
 
 class SpaceshipAdventure(Game):
 
     def __init__(self, width, height, frame_rate):
         self.newGame(width,height,frame_rate)
-        pygame.mixer.music.load("resources/music/bg1.ogg")
-        pygame.mixer.music.play(-1)
+
+        if not Globals.mute == True:
+            pygame.mixer.music.load("resources/music/bg1.ogg")
+            pygame.mixer.music.play(-1)
 
         return
     

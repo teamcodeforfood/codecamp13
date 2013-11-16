@@ -16,7 +16,6 @@ class Spaceship():
         # TODO: ammo is really high for testing purposes
         self.ammo   = 100
         self.spaceship_speed = 2.5
-        self.score = 0
         self.alive = True
         self.gamedifficulty = 1
         self.space_ship_img = pygame.image.load("resources/sprites/ship_1.png")
@@ -47,8 +46,8 @@ class Spaceship():
     def moveRight(self, dx, upper_limit):
         self.x += dx
         # check the wall
-        if self.x > 1260:
-           self.x = 1260
+        #if self.x > upper_limit:
+         #  self.x = upper_limit
 
         self.dir = 2
 
