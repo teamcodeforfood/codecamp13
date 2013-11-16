@@ -8,7 +8,7 @@ class TestPowerups(Powerups):
         self.color = (70, 70,70)
         self.width  = width
         self.height = height
-        self.health = 100
+        self.health = 200
         self.x      = random.randint(0,1280)
         self.y      = 0
         self.new_x  = y
