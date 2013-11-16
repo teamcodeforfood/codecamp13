@@ -18,6 +18,8 @@ class Boss():
         self.sprite_1 = pygame.image.load("resources/sprites/roboticus2.png")
         self.boom_1 = pygame.mixer.Sound("resources/sound/boom_1.wav")
         self.lazer_3_snd = pygame.mixer.Sound("resources/sound/lazer_3.wav")
+        self.lazer_1_snd = pygame.mixer.Sound("resources/sound/lazer_1.wav")
+        self.lazer_2_snd = pygame.mixer.Sound("resources/sound/lazer_2.wav")
         self.bullets = []
         self.health = 20000
         self.ammo = 100000
