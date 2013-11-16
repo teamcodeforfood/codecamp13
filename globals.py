@@ -14,12 +14,15 @@ class Globals():
     baddie_height = 32
     baddie_width = 32
 
+    is_in_boss_battle = False
+
     score = 0
     ammo = 0
 
-    mute = False # rip logan's ears
+    # RIP - Logan's ears
+    mute = False
 
-    spaceship = Spaceship(10,20,(1280 / 2), (720) -10, (255,255,255))
+    spaceship = Spaceship(10,20,(1280 / 2), (720) - 42, (255,255,255))
 
     def goGoBossMode():
         pass

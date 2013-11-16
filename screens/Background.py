@@ -1,5 +1,6 @@
 import pygame
 from GameScreen import GameScreen
+from globals import Globals
 
 class Background(GameScreen):
     def load(self):
@@ -25,3 +26,6 @@ class Background(GameScreen):
     def draw(self, surface):
         surface.blit(self.bg1, self.imagerect1)
         surface.blit(self.bg2, self.imagerect2)
+
+    def lose_screen(self):
+        return True

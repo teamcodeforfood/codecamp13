@@ -54,11 +54,18 @@ class PlayScreen(GameScreen):
         self.speed_boost = False
         self.gamedifficulty = 1
         self.spawning = True
+        self.boss_spawned = False
+        self.ammo_timer = 0
 
         # Sound effects
         self.hit_1 = pygame.mixer.Sound("resources/sound/hit_1.wav")
         self.powerup_1 = pygame.mixer.Sound("resources/sound/powerup_1.wav")
         self.hurt_1 = pygame.mixer.Sound("resources/sound/hurt_1.wav")
+        self.boom = pygame.mixer.Sound("resources/sound/boom_1.wav")
+        self.game_over = pygame.mixer.Sound("resources/sound/game_over.wav")
+
+    def lose_screen(self, val = True):
+        return val
 
     def update(self, *args):
         keys = args[0]
@@ -105,21 +112,27 @@ class PlayScreen(GameScreen):
                 Globals.spaceship.active_weapon += 1
                 print ">> " + str(Globals.spaceship.active_weapon)
 
+        # Do ammo
+        if self.ammo_timer < 360:
+            self.ammo_timer += 1
+        elif self.ammo_timer >= 360:
+            Globals.spaceship.ammo += 2
+            Globals.spaceship.health += 3
+            self.ammo_timer = 0
+
         #
         # Spawning
         #
         # Add baddies
-        if Globals.spaceship.gamedifficulty == 10:
-            if len(self.bosses) == 0:
-                self.addBoss()
-                self.spawning = False
+        if Globals.spaceship.gamedifficulty == 200:
+            self.spawning = False
+            self.addBoss()
 
-        if self.spawning:
-
-            if random.randint(1, 250 - Globals.spaceship.gamedifficulty) == 1:
+        if self.spawning == True:
+            if random.randint(1, 250 - Globals.spaceship.gamedifficulty / 2) == 1:
                 self.addBaddie()
 
-            if random.randint(1, 250 - Globals.spaceship.gamedifficulty) == 1:
+            if random.randint(1, 250 - Globals.spaceship.gamedifficulty / 2) == 1:
                 self.addBaddie2()
 
             if random.randint(1, 500) == 1:
@@ -140,6 +153,10 @@ class PlayScreen(GameScreen):
         if not Globals.spaceship.alive:
             Globals.spaceship.spaceship_speed = 0
                 
+
+        for boss in self.bosses:
+            boss.tick(0,0,self.height)
+
         for baddie in self.baddies:
             baddie.tick(0,0,self.height)
 
@@ -161,13 +178,13 @@ class PlayScreen(GameScreen):
             else:
                 for boss in self.bosses:
                             if not boss.alive:
-                                continue
+                                break
                             x,y,w,h = boss.getDimensions()
                             bullet.checkHitBaddie(x,y,w,h)
                             if bullet.getHit():
                                 bullet.setAlive(False)
                                 boss.health -=100
-                                bullet.hit = False
+                                bullet.hit = True
                                 self.hit_1.play()
                                 if boss.health <= 0:
                                     boss.setAlive(False)
@@ -205,25 +222,29 @@ class PlayScreen(GameScreen):
                     bullet.setAlive(False)
                     powerups.setAlive(False)
                     bullet.hit = False
-                    self.score += 100
+                    Globals.score += 100
+                    Globals.score -= Globals.spaceship.missed
 
         live_bullets = []
         live_baddies = []
         live_powerups = []
         live_thepowerups = []
         live_bosses = []
+
         for bullet in self.bullets:
             if bullet == None:
                 break
 
             if bullet.alive:
                 live_bullets.append(bullet)
+
         for baddie in self.baddies:
             if baddie.alive:
                 live_baddies.append(baddie)
+
         for boss in self.bosses:
             if boss.alive:
-                live_baddies.append(boss)
+                live_bosses.append(boss)
 
         for powerups in self.powerups:
             if powerups.alive:
@@ -245,10 +266,20 @@ class PlayScreen(GameScreen):
                     self.hurt_1.play()
                     baddie.setAlive(False)
                     if(Globals.spaceship.health<=0):
+                        Globals.spaceship.x = 1000
+                        Globals.spaceship.x = 1000
+                        spaceship_rect = pygame.Rect(1000, 1000, 0,0)
+                        self.spawning = False
+                        self.boom.play()
+                        self.game_over.play()
+                        pygame.mixer.music.stop()
+                        for baddie in self.baddies:
+                            baddie.setAlive(False)
                         Globals.spaceship.setAlive(False)
                         print "Spaceship dead"
-                    if(baddie.health <= 10):
-                        self.spaceship.setAlive(False)
+                        self.lose_screen(False)
+                    # if(baddie.health <= 10):
+                        # self.spaceship.setAlive(False)
 
         for boss in self.bosses:
             if boss.alive:
@@ -257,7 +288,7 @@ class PlayScreen(GameScreen):
                 if(boss_rect.colliderect(spaceship_rect)):
                     Globals.spaceship.health -= boss.damage
                     self.hurt_1.play()
-                    boss.setAlive(False)
+                    # boss.setAlive(False)
                     if(Globals.spaceship.health<=0):
                         Globals.spaceship.setAlive(False)
                         print "Spaceship dead"
@@ -321,6 +352,9 @@ class PlayScreen(GameScreen):
         self.thepowerups = live_thepowerups
         self.bosses = live_bosses
 
+        if Globals.spaceship.health <= 0:
+            Globals.spaceship.setAlive(False)
+
 
     def draw(self, surface):
         Globals.spaceship.draw(surface)
@@ -338,14 +372,17 @@ class PlayScreen(GameScreen):
             powerups.draw(surface)
 
     def addBoss(self):
-        
-        if len(self.bosses) >= 1:
+        if len(self.bosses) >= 1 or self.boss_spawned == True:
             return
         else:
-            new_boss = Boss( self.boss_width, self.boss_height, self.width, random.randint(0,(self.height-self.boss_height)), self.boss_color )
-            self.bosses.append( new_boss )
+            self.boss_spawned = True
+            for baddie in self.baddies:
+                baddie.setAlive(False)
+            self.bosses.append(Boss( self.boss_width, self.boss_height, self.width, random.randint(0,(self.height-self.boss_height)), self.boss_color ))
+            # self.bosses.append(Boss( self.boss_width, self.boss_height, 10, 10, self.boss_color ))
                    
         return
+
     def addBaddie(self):
         new_baddie = TestBaddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
         self.baddies.append( new_baddie )

@@ -21,8 +21,8 @@ class Spaceship():
         self.missed = 0
         self.powerstat = 0
         # TODO: ammo is really high for testing purposes
-        self.ammo   = 200
-        self.spaceship_speed = 2.5
+        self.ammo   = 100
+        self.spaceship_speed = 1.5
         self.alive = True
         self.gamedifficulty = 1
         self.active_weapon = 0
@@ -38,12 +38,12 @@ class Spaceship():
         # 2 = right
         self.dir = 0
 
-
         # Sound effects
         self.lazer_1 = pygame.mixer.Sound("resources/sound/lazer_1.wav")
         self.lazer_4 = pygame.mixer.Sound("resources/sound/lazer_4.wav")
         self.boom_1 = pygame.mixer.Sound("resources/sound/boom_1.wav")
         self.nope = pygame.mixer.Sound("resources/sound/nope.wav")
+        
 
         return
 
@@ -116,9 +116,9 @@ class Spaceship():
     def setAlive(self, alive):
         self.alive = alive
 
-        if alive == False:
-            self.boom_1.play()
+        # if alive == False:
+            
             
             # Move the corpse away
-            self.x = 1000
-            self.y = 1000
+            # self.x = 1000
+            # self.y = 1000

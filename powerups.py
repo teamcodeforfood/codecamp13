@@ -11,7 +11,7 @@ class Powerups():
         self.y      = 0
         self.new_x  = y
         self.new_y  = x
-        self.speed  = 1
+        self.speed  = 2
         self.color  = color
         self.alive  = True
         self.orig_width = self.width

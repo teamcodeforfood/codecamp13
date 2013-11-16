@@ -13,6 +13,7 @@ from screens.Hud import Hud
 from screens.MenuScreen import MenuScreen
 from screens.PlayScreen import PlayScreen
 from screens.PauseMenu import PauseMenu
+from screens.LoseScreen import LoseScreen
 
 class SpaceshipData:
 
@@ -24,7 +25,8 @@ class SpaceshipData:
         self.screen_manager.setCurrentScreen(MenuScreen())
         self.screen_manager.setScreenQueue(PlayScreen())
         self.screen_manager.current_screen.load()
-        self.pause = PauseMenu()
+        self.screen_manager.lose = LoseScreen()
+        self.screen_manager.lose.load()
 
         self.screen_manager.next.load(frame_rate, width, height)
 
@@ -32,7 +34,13 @@ class SpaceshipData:
 
     def evolve(self, keys, newkeys, buttons, newbuttons, mouse_position):
         self.screen_manager.bg.update()
-        
+
+        # if self.screen_manager.current_screen.lose_screen() == False:
+        #     self.screen_manager.current_screen = self.screen_manager.lose
+        #     self.screen_manager.display_hud = False
+        #     self.screen_manager.current_screen.update(keys, newkeys)
+        #     return
+
         if self.screen_manager.current_screen.update(keys, newkeys) == False:
             self.screen_manager.current_screen = self.screen_manager.next
 
@@ -43,8 +51,7 @@ class SpaceshipData:
 
         if self.screen_manager.display_hud == True:
             self.screen_manager.hud.update(Globals.score, Globals.spaceship.ammo, Globals.spaceship.health, Globals.spaceship.missed, Globals.spaceship.gamedifficulty, Globals.spaceship.powerstat)
-        
-        return
+
 
     def draw(self,surface):
         rect = pygame.Rect(0,0,1280, 720)

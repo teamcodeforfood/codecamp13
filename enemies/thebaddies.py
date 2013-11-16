@@ -27,12 +27,13 @@ class TestBaddie(Baddie):
         self.lazer_2_snd = pygame.mixer.Sound("resources/sound/lazer_2.wav")
         self.lazer_3_snd = pygame.mixer.Sound("resources/sound/lazer_3.wav")
         self.boom_1 = pygame.mixer.Sound("resources/sound/boom_1.wav")
+        self.direction = 1
         self.bullets = []
         self.dir = 1
 
         pass
 
-    def fire(self):
+    def fire(self, direction = "down", type = "red"):
         if self.alive == True:
             if self.ammo > 0:
                 if random.randint(1, 100) == 1:
@@ -43,11 +44,22 @@ class TestBaddie(Baddie):
                         self.lazer_3_snd.play()
                 self.ammo -= 1
                 # self.lazer_1.play()
-                return BaddieBullet(self.x + (self.width / 2), (self.y + (self.height / 2)))
+                return BaddieBullet(self.x + (self.width / 2), (self.y + (self.height / 2)), type)
             else:
                 return None
 
     def tick(self,back_wall,upper_wall,lower_wall):
+        if self.direction == 1:
+            if self.x <= (1280 - self.width):
+                self.x += self.speed
+            else:
+                self.direction = -1
+        elif self.direction == -1:
+            if self.x >= 0:
+                self.x -= self.speed
+            else:
+                self.direction = 1
+
         live_bullets = []
 
         for bullet in self.bullets:
@@ -85,7 +97,8 @@ class TestBaddie(Baddie):
             self.setAlive(False)
 
         for bullet in self.bullets:
-            bullet.moveBullet()
+            if not bullet== None:
+                bullet.moveBullet()
 
         # self.bullets = live_bullets
 

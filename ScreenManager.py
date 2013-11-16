@@ -25,3 +25,5 @@ class ScreenManager():
 
     def gamePause(self):
         self.current_screen = self
+
+    lose = None
