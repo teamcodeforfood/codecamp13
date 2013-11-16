@@ -80,6 +80,7 @@ class TestBaddie(Baddie):
 
         if self.y >= 720:
             Globals.spaceship.missed += 1
+            Globals.spaceship.health -= 2
             print Globals.spaceship.missed
             self.setAlive(False)
 
