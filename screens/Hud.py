@@ -4,7 +4,7 @@ from meter import Meter
 
 class Hud(GameScreen):
     def load(self):
-        self.ammo_meter = Meter(100, 0, 100, 100, 100)
+        self.ammo_meter = Meter(100, 0, 100, 200, 200)
 
     def update(self, *args):
         self.score = args[0]
