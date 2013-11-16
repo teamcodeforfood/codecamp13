@@ -7,7 +7,7 @@ class Background(GameScreen):
         self.bg2 = pygame.image.load("resources/test_bg2.png").convert()
 
         self.imagerect1 = self.bg1.get_rect()
-        self.imagerect1.y = (-self.imagerect1.height)
+        self.imagerect1.y = 720
 
         self.imagerect2 = self.bg2.get_rect()
         self.imagerect2.y = self.imagerect1.y
