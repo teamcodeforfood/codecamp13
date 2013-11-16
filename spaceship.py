@@ -47,8 +47,8 @@ class Spaceship():
     def moveRight(self, dx, upper_limit):
         self.x += dx
         # check the wall
-        #if self.x > upper_limit:
-         #  self.x = upper_limit
+        if self.x > 1260:
+           self.x = 1260
 
         self.dir = 2
 
