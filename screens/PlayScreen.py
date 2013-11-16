@@ -84,14 +84,14 @@ class PlayScreen(GameScreen):
                 self.bullets.append(Globals.spaceship.fire('l', "orange"))
                 self.bullets.append(Globals.spaceship.fire('r', "orange"))
             elif Globals.spaceship.active_weapon == Weapons.circle:
-                self.bullets.append(Globals.spaceship.fire("up"))
-                self.bullets.append(Globals.spaceship.fire("down"))
-                self.bullets.append(Globals.spaceship.fire('l'))
-                self.bullets.append(Globals.spaceship.fire('r'))
-                self.bullets.append(Globals.spaceship.fire('-l'))
-                self.bullets.append(Globals.spaceship.fire('-r'))
-                self.bullets.append(Globals.spaceship.fire('fl'))
-                self.bullets.append(Globals.spaceship.fire('fr'))
+                self.bullets.append(Globals.spaceship.fire("up", "red"))
+                self.bullets.append(Globals.spaceship.fire("down", "red"))
+                self.bullets.append(Globals.spaceship.fire('l', "red"))
+                self.bullets.append(Globals.spaceship.fire('r', "red"))
+                self.bullets.append(Globals.spaceship.fire('-l', "red"))
+                self.bullets.append(Globals.spaceship.fire('-r', "red"))
+                self.bullets.append(Globals.spaceship.fire('fl', "red"))
+                self.bullets.append(Globals.spaceship.fire('fr', "red"))
 
         if pygame.K_q in newkeys:
             if not Globals.spaceship.active_weapon == 0:

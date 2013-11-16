@@ -88,11 +88,13 @@ class Spaceship():
             if self.ammo > 0:
                 self.ammo -= random.randint(0, 1)
 
-                if self.active_weapon == 0 or self.active_weapon == 4:
+                if self.active_weapon == 0:
+                    self.lazer_1.play()
+                elif self.active_weapon == 4:
                     self.lazer_1.play()
                 elif self.active_weapon == 2:
                     self.lazer_4.play()
-                return Bullet(self.x + (self.width / 2), (self.y + (self.height / 2)), direction)
+                return Bullet(self.x + (self.width / 2), (self.y + (self.height / 2)), direction, type)
             else:
                 self.nope.play()
                 return None
