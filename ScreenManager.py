@@ -14,6 +14,7 @@ class ScreenManager():
 
     def setOverlayScreen(self, hud):
         self.hud = hud
+        self.hud.load()
 
     def setBackgroundScreen(self, screen):
         self.bg = screen
