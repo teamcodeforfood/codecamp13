@@ -17,6 +17,7 @@ class Spaceship():
         self.ammo   = 100
         self.spaceship_speed = 2.5
         self.alive = True
+        self.gamedifficulty = 1
         self.space_ship_img = pygame.image.load("resources/sprites/ship_1.png")
         self.space_ship_img_l = pygame.image.load("resources/sprites/ship_1_l.png")
         self.space_ship_img_r = pygame.image.load("resources/sprites/ship_1_r.png")

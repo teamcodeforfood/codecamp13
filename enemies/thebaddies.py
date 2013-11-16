@@ -22,12 +22,18 @@ class TestBaddie(Baddie):
         self.sprite_1 = pygame.image.load("resources/sprites/shipjosh1_2.png")
         self.lazer_1 = pygame.image.load("resources/sprites/lazer_2.png")
         self.lazer_1_snd = pygame.mixer.Sound("resources/sound/hurt_1.wav")
+        self.lazer_2_snd = pygame.mixer.Sound("resources/sound/lazer_2.wav")
+        self.lazer_3_snd = pygame.mixer.Sound("resources/sound/lazer_3.wav")
         self.bullets = []
         pass
 
     def fire(self):
         if self.alive == True:
             if self.ammo > 0:
+                if random.randint(1, 100) == 1:
+                    self.lazer_2_snd.play()
+                else:
+                    self.lazer_3_snd.play()
                 self.ammo -= 1
                 # self.lazer_1.play()
                 return BaddieBullet(self.x + (self.width / 2), (self.y + (self.height / 2)))
@@ -57,7 +63,7 @@ class TestBaddie(Baddie):
 
             if bullet_rect.colliderect(spaceship_rect):
                 bullet.setAlive(False)
-                Globals.spaceship.health -= 1
+                Globals.spaceship.health -= 10
                 self.lazer_1_snd.play()
 
         self.y = self.new_y
