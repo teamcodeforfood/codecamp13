@@ -20,7 +20,7 @@ class MenuScreen(GameScreen):
         self.text.drawTextLeft(surface, "Blue powerups increase your speed!", (81, 212, 255), 350, 640)
         self.text.drawTextLeft(surface, "Green powerups give you ammo!", (52, 255, 100), 405, 660)
         self.text.drawTextLeft(surface, "Be careful when you get to difficulty 100!", (255, 255, 255), 308, 680)
-        self.text.drawTextLeft(surface, "Don't hit the asteroids!", (255, 255, 255), 456, 700)
+        self.text.drawTextLeft(surface, "Don't hit the asteroids!", (255, 255, 255), 475, 700)
 
     def update(self, *args):
         rect = pygame.Rect(0, 0, 1280, 720)

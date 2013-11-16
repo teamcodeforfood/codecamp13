@@ -36,8 +36,6 @@ class Hud(GameScreen):
 
         self.ammo_meter.draw(surface)
 
-        self.text.drawTextLeft(surface, "Status   " + str(self.powerstat), (255, 255, 255), 1000, 400)
-
         hw = 160
         hh = 32
 
