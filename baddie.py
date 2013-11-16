@@ -56,7 +56,6 @@ class Baddie():
 
         if self.y >= 720:
             Globals.spaceship.missed += 1
-            print Globals.spaceship.missed
             self.setAlive(False)
 
         return self.alive
