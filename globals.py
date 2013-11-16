@@ -20,3 +20,6 @@ class Globals():
     mute = False # rip logan's ears
 
     spaceship = Spaceship(10,20,(1280 / 2), (720) -10, (255,255,255))
+
+    def goGoBossMode():
+        pass

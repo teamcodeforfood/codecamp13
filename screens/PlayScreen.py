@@ -109,7 +109,7 @@ class PlayScreen(GameScreen):
         # Spawning
         #
         # Add baddies
-        if Globals.spaceship.gamedifficulty == 100:
+        if Globals.spaceship.gamedifficulty == 10:
             if len(self.bosses) == 0:
                 self.addBoss()
                 self.spawning = False
