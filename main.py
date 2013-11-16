@@ -9,10 +9,6 @@ def main():
     print 'Number of arguments:', len(sys.argv), 'arguments.'
     print 'Argument List:', str(sys.argv)
 
-    # Mute
-    if sys.argv[1] == "sound_off":
-        Globals.mute = True
-
     c = SpaceshipAdventure(1280, 720, 120)
     c.main_loop()
 
