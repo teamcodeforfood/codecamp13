@@ -68,6 +68,11 @@ class TestBaddie(Baddie):
 
         self.y = self.new_y
 
+        if self.y >= 720:
+            Globals.spaceship.missed += 1
+            print Globals.spaceship.missed
+            self.setAlive(False)
+
         if random.randint(1, 100) == 1:
             self.bullets.append(self.fire())
 
@@ -134,6 +139,11 @@ class Test2Baddie(Baddie):
         # elif self.new_y + self.height > lower_wall:
             # self.new_y = lower_wall - self.height
         self.y = self.new_y
+
+        if self.y >= 720:
+            Globals.spaceship.missed += 1
+            print Globals.spaceship.missed
+            self.setAlive(False)
 
         if random.randint(1, 100) == 1:
             self.bullets.append(self.fire())

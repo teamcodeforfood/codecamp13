@@ -1,5 +1,6 @@
 import pygame
 import random
+from globals import Globals
 from bullet import BaddieBullet
 
 class Baddie():
@@ -38,6 +39,7 @@ class Baddie():
         self.new_y = self.y + self.speed
         if self.new_x < back_wall:
             self.setAlive(False)
+
         # if self.new_y < upper_wall:
             # self.new_y = upper_wall
         # elif self.new_y + self.height > lower_wall:
@@ -51,6 +53,13 @@ class Baddie():
             bullet.moveBullet()
 
         self.bullets = live_bullets
+
+        print self.y
+
+        if self.y >= 720:
+            Globals.spaceship.missed += 1
+            print Globals.spaceship.missed
+            self.setAlive(False)
 
         return self.alive
 
