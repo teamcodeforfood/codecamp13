@@ -17,6 +17,6 @@ class Globals():
     score = 0
     ammo = 0
 
-    mute = False
+    mute = True
 
     spaceship = Spaceship(10,20,(1280 / 2), (720) -10, (255,255,255))
