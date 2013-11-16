@@ -6,6 +6,9 @@ class SpaceshipAdventure(Game):
 
     def __init__(self, width, height, frame_rate):
         self.newGame(width,height,frame_rate)
+        pygame.mixer.music.load("resources/music/bg1.ogg")
+        pygame.mixer.music.play(-1)
+
         return
     
     def game_logic(self, keys, newkeys, buttons, newbuttons, mouse_position):
@@ -16,7 +19,6 @@ class SpaceshipAdventure(Game):
         self.data.draw(surface)
         return
 
-    
     def newGame(self,width, height, frame_rate):
         self.width = width
         self.height = height
