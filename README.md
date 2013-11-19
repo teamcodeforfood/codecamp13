@@ -2,6 +2,6 @@ Galaxy Jam
 ==========
 
 Will Code for Food
-* Joshua Beitle
+* Joshua Beitler
 * Logan Cox
 * Kyler Tolleson
