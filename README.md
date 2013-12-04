@@ -9,3 +9,6 @@ Galaxy Jam
 **Graphic Design Dept.**
 * Deyge Falani
 * Dane Christianson
+
+**Motivational Team Coach**
+* Brandon Bench
